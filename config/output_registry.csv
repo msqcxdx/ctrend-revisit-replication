@@ -1,0 +1,27 @@
+paper_item,producer_step,required_output_pattern,minimum_matches,experiments,description
+Table 1,b03,Tables/research_sample.tex,1,all,Research sample
+Table 2,b04,Tables/technical_indicator_strategy_returns.tex,1,all,Technical-indicator strategy returns
+Table 3,b06,Tables/univariate_portfolio_sorts.tex,1,all,Univariate portfolio sorts
+Table 4,b07,Tables/cross_sectional_regressions.tex,1,all,Cross-sectional regressions
+Table 5,b08,Tables/performance_in_subperiods_and_different_market_states.tex,1,all,Subperiod and market-state performance
+Table 6,b10,Tables/factor_performance_across_research_design_choices.tex|Tables/factor_performance_across_research_design_choices_paper_method_specific_available_case.tex,1,all,Full 3072-design research grid
+Table 7,b12,Tables/frontier_expansion_test.tex,1,all,Efficient-frontier expansion test
+Table 8,b13,Tables/the_ctrend_factor_performance_in_big_and_liquid_cryptocurrencies.tex,1,all,Large and liquid cryptocurrency universes
+Table 9,b14,Tables/ctrend_portfolios_and_transaction_costs.tex,1,all,Turnover and transaction costs
+Table B.1,documentation,docs/METHOD_BOUNDARIES.md,1,common,Common variable and method definitions
+Table B.2,b06,Tables/descriptive_statistics_of_asset_pricing_factor_returns.tex,1,all,Factor-return descriptive statistics
+Table B.3,b15,Tables/bivariate_portfolio_sorts.tex,1,all,Bivariate portfolio sorts
+Table B.4,b16,Tables/ctrend_performance_depending_on_cryptocurrency_type.tex,1,all,Cryptocurrency-type performance
+Table B.5,b04,Tables/insignificant_anomaly_strategy_returns.tex,1,all,Insignificant anomaly strategies
+Table B.6,supplementary,Tables/factor_performance_across_research_design_choices_value_weighted_only.tex|Tables/factor_performance_across_research_design_choices_value_weighted_only_paper_method_specific_available_case.tex,1,all,Value-weighted-only research designs
+Table B.7,supplementary,Tables/univariate_portfolio_sorts_alternative_factor_data.tex,1,all,Alternative factor data
+Table B.8,b04,Tables/anomaly_strategy_returns.tex,1,all,Anomaly strategy returns
+Table B.9,b11,Tables/trend_model_alphas.tex,1,all,TREND-model alphas
+Table B.10,b17,Tables/extended_portfolio_holding_periods.tex,1,all,Extended holding periods
+Figure 1,b06,Figures/b06Table3_UnivariatePortfolioSorts_figure0[12].png,2,all,Average factor returns and Sharpe ratios
+Figure 2,b10,Figures/b10Table6_FactorPerformanceAcrossResearchDesignChoices_figure*.png,4,all,Research-design distributions
+Figure 3,b11,Figures/b11Figure3_AnomalyAlphas_figure*.png,3,all,Anomaly alphas
+Figure B.1,supplementary,Figures/b10FigureB1_ValueWeightedResearchDesigns_figure*.png,4,all,Value-weighted-only distributions
+Figure B.2,b06,Figures/b06Table3_UnivariatePortfolioSorts_figure03.png,1,all,Cumulative factor returns
+Figures C.3-C.4,b18,Figures/b18FigureC3_C4_AverageVariableImportance_figure0[12].png,2,all,Variable importance and selection frequency
+Revised Table 6 audit,b10,Tables/table_6_panel_b_pairwise_common_week_estimator_comparisons.tex|Tables/table_6_panel_d_estimator_coverage_and_failure_audit.tex|Tables/strict_all_estimator_common_week_performance_across_balanced_research_design_cells.tex,3,M1,M1-only common-week and failure audit

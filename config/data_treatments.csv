@@ -1,0 +1,4 @@
+data_id,label,raw_cmc,event_price_adjustment,excluded_assets,interpretation
+D0,Original CMC panels,yes,none,none,Primary data specification; does not edit or remove assets using retrospective event information
+D1,Original CMC excluding INNBCL,yes,none,CMCID 3787,Retrospective named-asset sensitivity; not a real-time investable OOS screen
+D2,Original CMC excluding INNBCL and event assets,yes,none,CMCID 3787 plus 27 frozen event CMCIDs,Conservative retrospective event-asset sensitivity; not a real-time investable OOS screen

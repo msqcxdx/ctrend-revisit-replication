@@ -1,0 +1,5 @@
+Accepted production version: MATLAB 23.2 (R2023b) Update 11.
+
+Every run records the observed `version`, `version('-release')`, and toolbox
+inventory in its run root. `environment/environment_check.m` rejects every
+other release and any R2023b installation that is not Update 11.

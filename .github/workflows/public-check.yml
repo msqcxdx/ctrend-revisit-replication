@@ -1,0 +1,14 @@
+name: Public export check
+on:
+  push:
+  pull_request:
+jobs:
+  lightweight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Public source and saved-summary checks
+        run: python3 scripts/public_quickcheck.py

@@ -1,0 +1,23 @@
+function sDataBuildID = fGetCurrentWeeklyDataBuildID(sDataPath)
+% Read and validate the canonical current weekly data-build identifier.
+
+arguments
+    sDataPath {mustBeTextScalar} = './DATA/'
+end
+
+rManifest = fAssertWeeklyDataBuildManifest(sDataPath);
+sFilename = fullfile(char(sDataPath), 'bCharacteristicsOLHC_Combo1.mat');
+assert(exist(sFilename, 'file') == 2, ...
+    'Canonical weekly input %s is missing; rerun b01 and b02.', sFilename);
+rBuild = load(sFilename, 'sDataBuildID', 'rInputProvenance', ...
+    'sWeeklyCodeFingerprint');
+assert(isfield(rBuild, 'sDataBuildID') && ...
+       isfield(rBuild, 'rInputProvenance') && ...
+       isfield(rBuild, 'sWeeklyCodeFingerprint'), ...
+    'Canonical weekly input lacks corrected provenance; rerun b01 and b02.');
+fAssertWeeklyDataProvenance(rBuild.sDataBuildID, rBuild.rInputProvenance, ...
+    rBuild.sWeeklyCodeFingerprint);
+sDataBuildID = char(rBuild.sDataBuildID);
+assert(strcmp(sDataBuildID,char(rManifest.sDataBuildID)), ...
+    'Canonical weekly input and bundle manifest have different build IDs.');
+end

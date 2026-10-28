@@ -1,0 +1,9 @@
+# Public-export security and history review
+
+Review date: 2026-10-28 UTC. Controlled source commit: `58c8bad72d318eb7f17610084cc826bfbbbe9511`. This repository starts with a **new Git history**; no commit or tag from the controlled source was imported.
+
+The read-only scanner `scripts/audit_controlled_history.py` (SHA-256 `b5c5e7a5e99d7d589a113df96af47602b6afab09ad2fb836157efad49a14793f`) used `git cat-file --batch-all-objects --batch` on every local object of the controlled source repository: 18,734 objects, including 16,354 blobs and 2,578,675,510 uncompressed blob bytes. It searched for classic/fine-grained GitHub token shapes, AWS access-key IDs, OpenAI-style key shapes and PEM private-key headers. Each high-confidence class returned zero candidate blobs. This is a pattern-based review, not proof that no credential of any possible format ever existed.
+
+The history scan found 30 blobs containing filesystem-path-shaped strings. The public export separately screened for the project's user, host IP and data-disk path; none occurs in the exported text. One legacy host-IP regex literal in a non-scientific preflight scanner was omitted by the deterministic export step, recorded as a source/public hash difference in `provenance/SOURCE_FILE_MAP.csv`. The original author ZIP's 68 members had zero matches for the same high-confidence key patterns. No controlled run path, credential file, `.env`, log directory, private Git metadata or raw CMC matrix was copied to this public history.
+
+The controlled repository had previously been visible publicly for a period. A new clean repository prevents those objects from becoming this repository's history; it cannot erase external forks, caches or downloads. Effective credentials, if discovered later, must be revoked or rotated independently of any Git rewrite. This report intentionally does not reproduce suspected secret values or internal paths.

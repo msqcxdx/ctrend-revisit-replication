@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying CTREND revisit article when available, this repository's exact commit, and the original Fieberg et al. paper."
+title: "CTREND Revisit: public replication materials"
+type: software
+authors:
+  - name: "CTREND Revisit Research Team"
+abstract: "Rights-screened source, summary evidence, experiment identities, and a public quick check for the P x M x D CTREND revisit."

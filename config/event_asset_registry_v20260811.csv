@@ -1,0 +1,31 @@
+asset_id,symbol,event_ids,registry_status,independent_reaudit_class,in_D2,reason
+638,TROLL,TROLL_20151202,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+895,XAUR,XAUR_20160822,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+1106,SHND,SHND_201910,EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,event confirmed but CMC field switch cannot be reconstructed safely
+1212,MOJO,MOJO_20170307,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+1902,MYB,MYB_20180607,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+2603,NPXS,NPXS_TO_PUNDIX_2021,SEPARATE_CMCIDS_NO_SPLICE,D_different_assets_or_cmcids,0,separate old-token CMCID; never splice to PUNDIX and do not exclude merely because the project migrated
+2698,HYDRO,HYDRO_20210302,EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,event confirmed but aggregate CMC field switch cannot be reconstructed safely
+3071,EUNO,EUNO_20201015,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+3332,GOSS,GOSS_20190322,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+3468,WFBN,WFBN_20190418,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+3481,PNY,PNY_20190324,EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,event confirmed but holder conversion unresolved
+3600,HP,HP_20191002,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+3686,CVNT,CVNT_202103,EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,event confirmed but field-date factors are not uniquely observed
+4069,BURN,BURN_20200306,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+4165,CREDIT,CREDIT_20200923,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+4275,COMBO,COMBO_20210120,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed quote-unit event in registry
+5834,ADD,ADD_20210310,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed fixed-unit event
+6586,BNTX,BNTX_20201218,EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,migration confirmed but holder ratio is not proved
+7002,XRPDOWN,XRPDOWN_20210408,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed reverse split
+7004,TRXDOWN,TRXDOWN_20210914,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed reverse split
+7006,DOTDOWN,DOTDOWN_20210407;DOTDOWN_20211022,APPLY_REGISTERED_RULES,A_safe_fixed,1,two confirmed reverse splits
+7010,BNBDOWN,BNBDOWN_20210414,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed reverse split
+7012,LINKDOWN,LINKDOWN_20210408,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed reverse split
+7014,ADADOWN,ADADOWN_20210408,APPLY_REGISTERED_RULES,A_safe_fixed,1,confirmed reverse split
+9040,PUNDIX,NPXS_TO_PUNDIX_2021,SEPARATE_CMCIDS_NO_SPLICE,D_different_assets_or_cmcids,0,separate new-token CMCID; its independent series contains no cross-CMCID mechanical return
+10208,AER,AER_202107,EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,event confirmed but field units are not uniquely assigned
+10700,KICK,KICK_20211227,EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,event confirmed but conversion evidence conflicts
+17020,BIRDS,NOTICE_17020_STRONG_FIXED_RATIO_CANDIDATE_MIXED_UNIT_CANDLE,INDEPENDENT_REAUDIT_EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,CMC notice confirms migration coincident with jump but direct fixed-ratio and field-boundary proof is insufficient
+18615,CFA,NOTICE_18615_STRONG_FIXED_RATIO_CANDIDATE_STAGED_MIXED_SOURCE_TRANSITION,INDEPENDENT_REAUDIT_EVENT_CONFIRMED_NO_OP,C_confirmed_unresolved,1,CMC notice confirms migration coincident with staged jumps but direct fixed-ratio and field-boundary proof is insufficient
+6539,YAM,YAM_20200813,EVENT_CONFIRMED_NO_OP,E_non_fixed_rebase,0,elastic-supply rebase is not a constant-unit conversion

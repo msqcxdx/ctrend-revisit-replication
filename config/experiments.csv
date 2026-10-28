@@ -1,0 +1,10 @@
+sequence,experiment_id,method_id,data_id,method_engine,data_exclusion_file,raw_adjustment_mode,headline_role,reuse_status
+1,M0_D0,M0,D0,engines/M0/base,config/exclusions/D0.csv,none,published_method_raw_cmc,new_run_required
+2,M0_D1,M0,D1,engines/M0/base,config/exclusions/D1.csv,none,published_method_exclude_innbcl,new_run_required
+3,M0_D2,M0,D2,engines/M0/base,config/exclusions/D2.csv,none,published_method_exclude_innbcl_and_event_assets,new_run_required
+4,M1_D0,M1,D0,engines/M1/base,config/exclusions/D0.csv,none,corrected_method_raw_cmc,new_run_required
+5,M1_D1,M1,D1,engines/M1/base,config/exclusions/D1.csv,none,corrected_method_exclude_innbcl,new_run_required
+6,M1_D2,M1,D2,engines/M1/base,config/exclusions/D2.csv,none,corrected_method_exclude_innbcl_and_event_assets,new_run_required
+7,M2_D0,M2,D0,engines/M2/base,config/exclusions/D0.csv,none,lookahead_only_raw_cmc,new_run_required
+8,M2_D1,M2,D1,engines/M2/base,config/exclusions/D1.csv,none,lookahead_only_exclude_innbcl,new_run_required
+9,M2_D2,M2,D2,engines/M2/base,config/exclusions/D2.csv,none,lookahead_only_exclude_innbcl_and_event_assets,new_run_required

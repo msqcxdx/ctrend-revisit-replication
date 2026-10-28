@@ -1,0 +1,27 @@
+paper_item,paper_location,coverage,primary_machine_file
+Table 1,PDF p.7（期刊 p.3122）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table 3,PDF p.15（期刊 p.3130）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Figure 1,PDF p.2（期刊 p.3117），引言,accepted PNG/FIG inventory + numerical counterpart,EIGHTEEN_EXPERIMENT_FIGURE_INVENTORY.csv
+Table 4,PDF p.18（期刊 p.3133）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table 5,PDF p.20（期刊 p.3135）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Figure 2,Table 6 对应的研究设计分布图,accepted PNG/FIG inventory + numerical counterpart,EIGHTEEN_EXPERIMENT_FIGURE_INVENTORY.csv
+Table 7,PDF p.26（期刊 p.3141）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Figure 3,正文 anomaly-alpha 图及其数值底稿,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table 9,PDF p.32（期刊 p.3147）,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.1,Appendix Table B.1,definition comparison,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.2,Appendix Table B.2,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.3,Appendix Table B.3,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.4,Appendix Table B.4,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.5,Appendix Table B.5,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.6,Appendix Table B.6,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.7,Appendix Table B.7,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.8,Appendix Table B.8,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.9,Appendix Table B.9,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Table B.10,Appendix Table B.10,numeric table + exhaustive cell CSV,EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv
+Figure B.1,Appendix Figure B.1,accepted PNG/FIG inventory + numerical counterpart,EIGHTEEN_EXPERIMENT_FIGURE_INVENTORY.csv
+Figure B.2,Appendix Figure B.2,accepted PNG/FIG inventory + numerical counterpart,EIGHTEEN_EXPERIMENT_FIGURE_INVENTORY.csv
+Figure C.3,Appendix Figure C.3,accepted PNG/FIG inventory + numerical counterpart,EIGHTEEN_EXPERIMENT_FIGURE_INVENTORY.csv
+Figure C.4,Appendix Figure C.4,accepted PNG/FIG inventory + numerical counterpart,EIGHTEEN_EXPERIMENT_FIGURE_INVENTORY.csv

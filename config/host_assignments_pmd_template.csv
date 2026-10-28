@@ -1,0 +1,19 @@
+host,sequence,experiment_id,notes
+host_a,1,P0_M2_D0,Sequential full runs; example allocation only
+host_a,2,P0_M2_D1,Sequential full runs
+host_a,3,P0_M2_D2,Sequential full runs
+host_a,4,P1_M2_D0,Sequential full runs
+host_a,5,P1_M2_D1,Sequential full runs
+host_a,6,P1_M2_D2,Sequential full runs
+host_a,7,P1_M1_D0,Sequential full runs
+host_a,8,P1_M1_D1,Sequential full runs
+host_a,9,P1_M1_D2,Sequential full runs
+host_b,1,P0_M0_D0,Sequential full runs; example allocation only
+host_b,2,P0_M0_D1,Sequential full runs
+host_b,3,P0_M0_D2,Sequential full runs
+host_b,4,P1_M0_D0,Sequential full runs
+host_b,5,P1_M0_D1,Sequential full runs
+host_b,6,P1_M0_D2,Sequential full runs
+host_b,7,P0_M1_D0,Sequential full runs
+host_b,8,P0_M1_D1,Sequential full runs
+host_b,9,P0_M1_D2,Sequential full runs

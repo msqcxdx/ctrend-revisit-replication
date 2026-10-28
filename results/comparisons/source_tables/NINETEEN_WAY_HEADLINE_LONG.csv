@@ -1,0 +1,248 @@
+metric,series,value
+CTREND H-L weekly mean (t),paper,3.87 (5.19)
+CTREND H-L weekly mean (t),P0_M0_D0,3.89 (5.12)
+CTREND H-L weekly mean (t),P0_M0_D1,3.88 (5.11)
+CTREND H-L weekly mean (t),P0_M0_D2,3.82 (4.98)
+CTREND H-L weekly mean (t),P0_M2_D0,4.29 (3.91)
+CTREND H-L weekly mean (t),P0_M2_D1,4.12 (3.78)
+CTREND H-L weekly mean (t),P0_M2_D2,4.18 (3.84)
+CTREND H-L weekly mean (t),P0_M1_D0,0.05 (0.02)
+CTREND H-L weekly mean (t),P0_M1_D1,2.66 (3.08)
+CTREND H-L weekly mean (t),P0_M1_D2,2.51 (2.79)
+CTREND H-L weekly mean (t),P1_M0_D0,3.94 (5.17)
+CTREND H-L weekly mean (t),P1_M0_D1,3.88 (5.08)
+CTREND H-L weekly mean (t),P1_M0_D2,3.96 (5.20)
+CTREND H-L weekly mean (t),P1_M2_D0,4.50 (4.03)
+CTREND H-L weekly mean (t),P1_M2_D1,4.37 (3.93)
+CTREND H-L weekly mean (t),P1_M2_D2,4.35 (3.99)
+CTREND H-L weekly mean (t),P1_M1_D0,0.06 (0.03)
+CTREND H-L weekly mean (t),P1_M1_D1,2.67 (3.09)
+CTREND H-L weekly mean (t),P1_M1_D2,2.50 (2.77)
+Weekly standard deviation,paper,14.34
+Weekly standard deviation,P0_M0_D0,14.20
+Weekly standard deviation,P0_M0_D1,14.19
+Weekly standard deviation,P0_M0_D2,14.32
+Weekly standard deviation,P0_M2_D0,20.60
+Weekly standard deviation,P0_M2_D1,20.49
+Weekly standard deviation,P0_M2_D2,20.43
+Weekly standard deviation,P0_M1_D0,39.79
+Weekly standard deviation,P0_M1_D1,15.85
+Weekly standard deviation,P0_M1_D2,16.52
+Weekly standard deviation,P1_M0_D0,14.24
+Weekly standard deviation,P1_M0_D1,14.26
+Weekly standard deviation,P1_M0_D2,14.22
+Weekly standard deviation,P1_M2_D0,20.99
+Weekly standard deviation,P1_M2_D1,20.87
+Weekly standard deviation,P1_M2_D2,20.52
+Weekly standard deviation,P1_M1_D0,39.78
+Weekly standard deviation,P1_M1_D1,15.85
+Weekly standard deviation,P1_M1_D2,16.54
+Annualized Sharpe,paper,1.94
+Annualized Sharpe,P0_M0_D0,1.98
+Annualized Sharpe,P0_M0_D1,1.97
+Annualized Sharpe,P0_M0_D2,1.92
+Annualized Sharpe,P0_M2_D0,1.50
+Annualized Sharpe,P0_M2_D1,1.45
+Annualized Sharpe,P0_M2_D2,1.47
+Annualized Sharpe,P0_M1_D0,0.01
+Annualized Sharpe,P0_M1_D1,1.21
+Annualized Sharpe,P0_M1_D2,1.10
+Annualized Sharpe,P1_M0_D0,2.00
+Annualized Sharpe,P1_M0_D1,1.96
+Annualized Sharpe,P1_M0_D2,2.01
+Annualized Sharpe,P1_M2_D0,1.55
+Annualized Sharpe,P1_M2_D1,1.51
+Annualized Sharpe,P1_M2_D2,1.53
+Annualized Sharpe,P1_M1_D0,0.01
+Annualized Sharpe,P1_M1_D1,1.21
+Annualized Sharpe,P1_M1_D2,1.09
+CCAPM alpha (t),paper,3.80 (5.03)
+CCAPM alpha (t),P0_M0_D0,3.75 (4.86)
+CCAPM alpha (t),P0_M0_D1,3.74 (4.85)
+CCAPM alpha (t),P0_M0_D2,3.66 (4.70)
+CCAPM alpha (t),P0_M2_D0,4.34 (3.90)
+CCAPM alpha (t),P0_M2_D1,4.17 (3.77)
+CCAPM alpha (t),P0_M2_D2,4.21 (3.82)
+CCAPM alpha (t),P0_M1_D0,-0.08 (-0.04)
+CCAPM alpha (t),P0_M1_D1,2.59 (2.95)
+CCAPM alpha (t),P0_M1_D2,2.48 (2.71)
+CCAPM alpha (t),P1_M0_D0,3.81 (4.93)
+CCAPM alpha (t),P1_M0_D1,3.74 (4.83)
+CCAPM alpha (t),P1_M0_D2,3.82 (4.94)
+CCAPM alpha (t),P1_M2_D0,4.52 (3.99)
+CCAPM alpha (t),P1_M2_D1,4.39 (3.90)
+CCAPM alpha (t),P1_M2_D2,4.37 (3.94)
+CCAPM alpha (t),P1_M1_D0,-0.07 (-0.03)
+CCAPM alpha (t),P1_M1_D1,2.60 (2.96)
+CCAPM alpha (t),P1_M1_D2,2.47 (2.70)
+LTW alpha (t),paper,2.62 (4.22)
+LTW alpha (t),P0_M0_D0,2.53 (3.87)
+LTW alpha (t),P0_M0_D1,2.52 (3.85)
+LTW alpha (t),P0_M0_D2,2.39 (3.67)
+LTW alpha (t),P0_M2_D0,3.11 (3.00)
+LTW alpha (t),P0_M2_D1,2.96 (2.88)
+LTW alpha (t),P0_M2_D2,2.95 (2.92)
+LTW alpha (t),P0_M1_D0,-1.38 (-0.61)
+LTW alpha (t),P0_M1_D1,1.45 (1.82)
+LTW alpha (t),P0_M1_D2,1.32 (1.58)
+LTW alpha (t),P1_M0_D0,2.59 (3.93)
+LTW alpha (t),P1_M0_D1,2.54 (3.85)
+LTW alpha (t),P1_M0_D2,2.54 (3.94)
+LTW alpha (t),P1_M2_D0,3.06 (2.93)
+LTW alpha (t),P1_M2_D1,2.95 (2.85)
+LTW alpha (t),P1_M2_D2,3.06 (3.03)
+LTW alpha (t),P1_M1_D0,-1.37 (-0.61)
+LTW alpha (t),P1_M1_D1,1.47 (1.83)
+LTW alpha (t),P1_M1_D2,1.31 (1.57)
+"Net return (1), 30/40 bps (t)",paper,2.90 (3.89)
+"Net return (1), 30/40 bps (t)",P0_M0_D0,2.93 (3.86)
+"Net return (1), 30/40 bps (t)",P0_M0_D1,2.92 (3.84)
+"Net return (1), 30/40 bps (t)",P0_M0_D2,2.86 (3.73)
+"Net return (1), 30/40 bps (t)",P0_M2_D0,3.35 (3.05)
+"Net return (1), 30/40 bps (t)",P0_M2_D1,3.18 (2.91)
+"Net return (1), 30/40 bps (t)",P0_M2_D2,3.25 (2.98)
+"Net return (1), 30/40 bps (t)",P0_M1_D0,-0.87 (-0.40)
+"Net return (1), 30/40 bps (t)",P0_M1_D1,1.77 (2.04)
+"Net return (1), 30/40 bps (t)",P0_M1_D2,1.62 (1.79)
+"Net return (1), 30/40 bps (t)",P1_M0_D0,2.98 (3.91)
+"Net return (1), 30/40 bps (t)",P1_M0_D1,2.91 (3.81)
+"Net return (1), 30/40 bps (t)",P1_M0_D2,3.00 (3.94)
+"Net return (1), 30/40 bps (t)",P1_M2_D0,3.56 (3.18)
+"Net return (1), 30/40 bps (t)",P1_M2_D1,3.43 (3.08)
+"Net return (1), 30/40 bps (t)",P1_M2_D2,3.42 (3.13)
+"Net return (1), 30/40 bps (t)",P1_M1_D0,-0.86 (-0.40)
+"Net return (1), 30/40 bps (t)",P1_M1_D1,1.78 (2.05)
+"Net return (1), 30/40 bps (t)",P1_M1_D2,1.60 (1.77)
+"Net return (2), 40/50 bps (t)",paper,2.62 (3.53)
+"Net return (2), 40/50 bps (t)",P0_M0_D0,2.66 (3.50)
+"Net return (2), 40/50 bps (t)",P0_M0_D1,2.64 (3.48)
+"Net return (2), 40/50 bps (t)",P0_M0_D2,2.59 (3.38)
+"Net return (2), 40/50 bps (t)",P0_M2_D0,3.08 (2.81)
+"Net return (2), 40/50 bps (t)",P0_M2_D1,2.91 (2.67)
+"Net return (2), 40/50 bps (t)",P0_M2_D2,2.98 (2.74)
+"Net return (2), 40/50 bps (t)",P0_M1_D0,-1.14 (-0.52)
+"Net return (2), 40/50 bps (t)",P0_M1_D1,1.50 (1.73)
+"Net return (2), 40/50 bps (t)",P0_M1_D2,1.35 (1.49)
+"Net return (2), 40/50 bps (t)",P1_M0_D0,2.71 (3.55)
+"Net return (2), 40/50 bps (t)",P1_M0_D1,2.64 (3.45)
+"Net return (2), 40/50 bps (t)",P1_M0_D2,2.73 (3.59)
+"Net return (2), 40/50 bps (t)",P1_M2_D0,3.29 (2.94)
+"Net return (2), 40/50 bps (t)",P1_M2_D1,3.16 (2.84)
+"Net return (2), 40/50 bps (t)",P1_M2_D2,3.16 (2.89)
+"Net return (2), 40/50 bps (t)",P1_M1_D0,-1.13 (-0.52)
+"Net return (2), 40/50 bps (t)",P1_M1_D1,1.51 (1.74)
+"Net return (2), 40/50 bps (t)",P1_M1_D2,1.33 (1.48)
+"Net return (3), 50/60 bps (t)",paper,2.35 (3.16)
+"Net return (3), 50/60 bps (t)",P0_M0_D0,2.39 (3.14)
+"Net return (3), 50/60 bps (t)",P0_M0_D1,2.37 (3.12)
+"Net return (3), 50/60 bps (t)",P0_M0_D2,2.32 (3.03)
+"Net return (3), 50/60 bps (t)",P0_M2_D0,2.82 (2.57)
+"Net return (3), 50/60 bps (t)",P0_M2_D1,2.65 (2.43)
+"Net return (3), 50/60 bps (t)",P0_M2_D2,2.72 (2.50)
+"Net return (3), 50/60 bps (t)",P0_M1_D0,-1.41 (-0.65)
+"Net return (3), 50/60 bps (t)",P0_M1_D1,1.23 (1.42)
+"Net return (3), 50/60 bps (t)",P0_M1_D2,1.08 (1.19)
+"Net return (3), 50/60 bps (t)",P1_M0_D0,2.44 (3.20)
+"Net return (3), 50/60 bps (t)",P1_M0_D1,2.36 (3.10)
+"Net return (3), 50/60 bps (t)",P1_M0_D2,2.46 (3.24)
+"Net return (3), 50/60 bps (t)",P1_M2_D0,3.03 (2.71)
+"Net return (3), 50/60 bps (t)",P1_M2_D1,2.89 (2.60)
+"Net return (3), 50/60 bps (t)",P1_M2_D2,2.89 (2.65)
+"Net return (3), 50/60 bps (t)",P1_M1_D0,-1.41 (-0.65)
+"Net return (3), 50/60 bps (t)",P1_M1_D1,1.24 (1.43)
+"Net return (3), 50/60 bps (t)",P1_M1_D2,1.06 (1.18)
+Displayed turnover,paper,68.46
+Displayed turnover,P0_M0_D0,67.42
+Displayed turnover,P0_M0_D1,67.58
+Displayed turnover,P0_M0_D2,67.10
+Displayed turnover,P0_M2_D0,66.35
+Displayed turnover,P0_M2_D1,66.30
+Displayed turnover,P0_M2_D2,65.65
+Displayed turnover,P0_M1_D0,68.25
+Displayed turnover,P0_M1_D1,67.23
+Displayed turnover,P0_M1_D2,67.56
+Displayed turnover,P1_M0_D0,67.52
+Displayed turnover,P1_M0_D1,67.85
+Displayed turnover,P1_M0_D2,66.98
+Displayed turnover,P1_M2_D0,66.39
+Displayed turnover,P1_M2_D1,66.45
+Displayed turnover,P1_M2_D2,65.84
+Displayed turnover,P1_M1_D0,68.35
+Displayed turnover,P1_M1_D1,67.23
+Displayed turnover,P1_M1_D2,67.59
+Table 9 Largest-100 H-L gross return (t),paper,3.40 (4.48)
+Table 9 Largest-100 H-L gross return (t),P0_M0_D0,2.93 (3.56)
+Table 9 Largest-100 H-L gross return (t),P0_M0_D1,2.96 (3.60)
+Table 9 Largest-100 H-L gross return (t),P0_M0_D2,3.25 (4.44)
+Table 9 Largest-100 H-L gross return (t),P0_M2_D0,3.99 (3.85)
+Table 9 Largest-100 H-L gross return (t),P0_M2_D1,3.99 (3.84)
+Table 9 Largest-100 H-L gross return (t),P0_M2_D2,4.24 (4.07)
+Table 9 Largest-100 H-L gross return (t),P0_M1_D0,1.00 (0.80)
+Table 9 Largest-100 H-L gross return (t),P0_M1_D1,2.50 (3.28)
+Table 9 Largest-100 H-L gross return (t),P0_M1_D2,2.34 (3.09)
+Table 9 Largest-100 H-L gross return (t),P1_M0_D0,2.96 (3.59)
+Table 9 Largest-100 H-L gross return (t),P1_M0_D1,2.94 (3.57)
+Table 9 Largest-100 H-L gross return (t),P1_M0_D2,3.53 (4.79)
+Table 9 Largest-100 H-L gross return (t),P1_M2_D0,4.12 (3.94)
+Table 9 Largest-100 H-L gross return (t),P1_M2_D1,4.17 (3.99)
+Table 9 Largest-100 H-L gross return (t),P1_M2_D2,4.28 (4.08)
+Table 9 Largest-100 H-L gross return (t),P1_M1_D0,0.98 (0.78)
+Table 9 Largest-100 H-L gross return (t),P1_M1_D1,2.50 (3.28)
+Table 9 Largest-100 H-L gross return (t),P1_M1_D2,2.32 (3.06)
+Table 9 Largest-100 net return (1) (t),paper,2.45 (3.22)
+Table 9 Largest-100 net return (1) (t),P0_M0_D0,1.96 (2.38)
+Table 9 Largest-100 net return (1) (t),P0_M0_D1,1.99 (2.42)
+Table 9 Largest-100 net return (1) (t),P0_M0_D2,2.29 (3.11)
+Table 9 Largest-100 net return (1) (t),P0_M2_D0,3.05 (2.93)
+Table 9 Largest-100 net return (1) (t),P0_M2_D1,3.04 (2.92)
+Table 9 Largest-100 net return (1) (t),P0_M2_D2,3.31 (3.17)
+Table 9 Largest-100 net return (1) (t),P0_M1_D0,0.10 (0.08)
+Table 9 Largest-100 net return (1) (t),P0_M1_D1,1.62 (2.12)
+Table 9 Largest-100 net return (1) (t),P0_M1_D2,1.45 (1.91)
+Table 9 Largest-100 net return (1) (t),P1_M0_D0,1.99 (2.40)
+Table 9 Largest-100 net return (1) (t),P1_M0_D1,1.97 (2.39)
+Table 9 Largest-100 net return (1) (t),P1_M0_D2,2.56 (3.48)
+Table 9 Largest-100 net return (1) (t),P1_M2_D0,3.18 (3.04)
+Table 9 Largest-100 net return (1) (t),P1_M2_D1,3.22 (3.08)
+Table 9 Largest-100 net return (1) (t),P1_M2_D2,3.35 (3.18)
+Table 9 Largest-100 net return (1) (t),P1_M1_D0,0.08 (0.06)
+Table 9 Largest-100 net return (1) (t),P1_M1_D1,1.62 (2.11)
+Table 9 Largest-100 net return (1) (t),P1_M1_D2,1.43 (1.88)
+Table 2 significant H-L cells (absolute t >= 1.96),paper,17/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M0_D0,18/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M0_D1,18/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M0_D2,18/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M2_D0,7/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M2_D1,12/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M2_D2,11/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M1_D0,3/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M1_D1,15/28
+Table 2 significant H-L cells (absolute t >= 1.96),P0_M1_D2,14/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M0_D0,18/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M0_D1,18/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M0_D2,18/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M2_D0,8/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M2_D1,10/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M2_D2,10/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M1_D0,3/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M1_D1,15/28
+Table 2 significant H-L cells (absolute t >= 1.96),P1_M1_D2,14/28
+Own finite H-L weeks,paper,371
+Own finite H-L weeks,P0_M0_D0,349
+Own finite H-L weeks,P0_M0_D1,349
+Own finite H-L weeks,P0_M0_D2,349
+Own finite H-L weeks,P0_M2_D0,353
+Own finite H-L weeks,P0_M2_D1,353
+Own finite H-L weeks,P0_M2_D2,353
+Own finite H-L weeks,P0_M1_D0,337
+Own finite H-L weeks,P0_M1_D1,337
+Own finite H-L weeks,P0_M1_D2,337
+Own finite H-L weeks,P1_M0_D0,349
+Own finite H-L weeks,P1_M0_D1,349
+Own finite H-L weeks,P1_M0_D2,349
+Own finite H-L weeks,P1_M2_D0,353
+Own finite H-L weeks,P1_M2_D1,353
+Own finite H-L weeks,P1_M2_D2,353
+Own finite H-L weeks,P1_M1_D0,337
+Own finite H-L weeks,P1_M1_D1,337
+Own finite H-L weeks,P1_M1_D2,337

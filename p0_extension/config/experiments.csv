@@ -1,0 +1,10 @@
+sequence,experiment_id,preprocessing_id,method_id,data_id,method_engine,exclusion_file,run_policy
+1,P0_M0_D0,P0,M0,D0,engines/P0_M0/base,config/exclusions/D0.csv,new_run_required
+2,P0_M0_D1,P0,M0,D1,engines/P0_M0/base,config/exclusions/D1.csv,new_run_required
+3,P0_M0_D2,P0,M0,D2,engines/P0_M0/base,config/exclusions/D2.csv,new_run_required
+4,P0_M1_D0,P0,M1,D0,engines/M1/base,config/exclusions/D0.csv,new_run_required
+5,P0_M1_D1,P0,M1,D1,engines/M1/base,config/exclusions/D1.csv,new_run_required
+6,P0_M1_D2,P0,M1,D2,engines/M1/base,config/exclusions/D2.csv,new_run_required
+7,P0_M2_D0,P0,M2,D0,engines/M2/base,config/exclusions/D0.csv,new_run_required
+8,P0_M2_D1,P0,M2,D1,engines/M2/base,config/exclusions/D1.csv,new_run_required
+9,P0_M2_D2,P0,M2,D2,engines/M2/base,config/exclusions/D2.csv,new_run_required

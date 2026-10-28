@@ -1,0 +1,40 @@
+function Y = lagmatrix(X, lags)
+%LAGMATRIX Compatibility implementation for numeric matrices.
+%   Positive lags move observations down; negative lags move observations up.
+%   Missing introduced observations are filled with NaN.
+
+if nargin ~= 2
+    error('lagmatrix requires exactly two inputs.');
+end
+if ~isnumeric(X) && ~islogical(X)
+    error('X must be numeric or logical.');
+end
+if ~isnumeric(lags) || isempty(lags)
+    error('lags must be a non-empty numeric vector.');
+end
+
+lags = lags(:)';
+[nObs, nCols] = size(X);
+Y = NaN(nObs, nCols * numel(lags));
+
+for iLag = 1:numel(lags)
+    lag = lags(iLag);
+    if lag ~= fix(lag)
+        error('lags must contain integer values.');
+    end
+
+    cols = (1:nCols) + (iLag - 1) * nCols;
+    if lag > 0
+        if lag < nObs
+            Y((lag + 1):nObs, cols) = X(1:(nObs - lag), :);
+        end
+    elseif lag < 0
+        lead = -lag;
+        if lead < nObs
+            Y(1:(nObs - lead), cols) = X((lead + 1):nObs, :);
+        end
+    else
+        Y(:, cols) = X;
+    end
+end
+end

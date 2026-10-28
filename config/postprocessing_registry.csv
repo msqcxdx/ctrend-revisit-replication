@@ -1,0 +1,8 @@
+item,producer_step,required_output,description
+Nine-method weekly panel,b19,nine_method_weekly_returns.csv,Union calendar with nine returns and strict all-nine mask
+Own-support summary,b19,nine_method_own_support_summary.csv,Each method on its own finite weeks
+All-nine common summary,b19,nine_method_all_common_summary.csv,All methods on one identical finite-week intersection
+Within-D common summary,b19,nine_method_by_data_axis_common_summary.csv,M0 M2 and M1 compared on one support for each D treatment
+Within-M common summary,b19,nine_method_by_method_common_summary.csv,D0 D1 and D2 compared on one support for each method
+Pairwise common summary,b19,nine_method_pairwise_common_week_summary.csv,All 36 pairwise finite-week comparisons
+Audit object,b19,nine_method_common_week_audit.mat,Path-free aligned data and masks for deterministic reconstruction

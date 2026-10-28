@@ -1,0 +1,9 @@
+# Known limitations
+
+- **Availability and exits:** the frozen mechanical exit calendar is a retrospective proxy for announcements or equivalent advance knowledge, not a database of announcement timestamps. It cannot establish that a trader actually knew every exit at formation. Reinvestment is an accounting convention, not executed trade evidence.
+- **Price reliability:** CMC aggregates sources. Market-wide event timing, exchange-specific transitions and vendor anomalies cannot always be converted into a unique asset-level split adjustment. D1 and D2 therefore remove named assets over their entire histories as *sensitivity analyses*.
+- **Portfolio feasibility:** quoted endpoints, volume/cap proxies and modeled costs do not verify order-book depth, borrow availability, margin, exchange access, tax or execution. Gross returns are not net realizable profits.
+- **Samples and inference:** method bundles can have different finite-week support. Use the common-week comparison when attributing changes to methods; do not treat eighteen cells or 3,072 designs as independent draws.
+- **Table 6:** each method's own-week Sharpe is availability-conditioned. Pairwise common-week and balanced-cell comparisons answer different questions; an own-week rank alone is not a causal estimator comparison.
+- **Data and software:** the public source subset lacks licensed market inputs and two external MATLAB helpers. Its quick check does not validate a new clean-room full MATLAB run. E12 remains paused; no independent second historical quote source is claimed.
+- **Attribution:** the original `delay` output-index error and the revisit M1 Table 7 direction error have different origins. The latter was repaired at the relevant presentation/statistic layer without claiming that all 3,072 model combinations were retrained.

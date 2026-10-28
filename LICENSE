@@ -1,0 +1,14 @@
+CTREND Revisit public repository rights statement
+
+The original research code and public documents created for the CTREND Revisit
+project are copyright their respective authors. Except where a specific file
+or source package carries a separate license, all rights are reserved. Public
+access to this GitHub repository permits reading and downloading under
+GitHub's terms; it does not grant a general right to modify, redistribute,
+commercialize, or sublicense this project's original materials.
+
+The referenced Fieberg et al. Harvard Dataverse dataset is identified there
+as CC0 1.0. Embedded third-party source, including Sven Thies's fGRS helper,
+retains its own copyright and license notice. CoinMarketCap and auxiliary
+data, MATLAB, its toolboxes, and externally supplied helpers are not licensed
+by this statement. See NOTICE and THIRD_PARTY_MATERIALS.csv.

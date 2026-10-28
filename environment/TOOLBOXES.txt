@@ -1,0 +1,10 @@
+MATLAB
+Econometrics Toolbox
+Financial Toolbox
+Optimization Toolbox
+Parallel Computing Toolbox
+Statistics and Machine Learning Toolbox
+
+Required function gate: lagmatrix, hac, lasso, tiedrank, parcluster, and parpool.
+An installation that can run only M1 but lacks Econometrics Toolbox does not
+satisfy the eighteen-experiment reproduction contract.

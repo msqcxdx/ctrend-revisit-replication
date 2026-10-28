@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+runtime/
+outputs/
+data/raw/
+*.mat
+*.fig
+*.png
+*.zip
+!reference/dataverse_files.zip

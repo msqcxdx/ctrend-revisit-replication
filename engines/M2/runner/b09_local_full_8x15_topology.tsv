@@ -1,0 +1,9 @@
+source_label	logical_shard	execution_site	first_combo	last_combo
+shard1/subshard1	1	local	1	384
+shard1/subshard2	1	local	385	768
+shard1/subshard3	1	local	769	1152
+shard1/subshard4	1	local	1153	1536
+shard1/subshard5	1	local	1537	1920
+shard1/subshard6	1	local	1921	2304
+shard1/subshard7	1	local	2305	2688
+shard1/subshard8	1	local	2689	3072

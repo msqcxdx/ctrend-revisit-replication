@@ -1,0 +1,10 @@
+host,sequence,experiment_id,notes
+main,1,M1_D0,main retains the frozen M1 sequence; one experiment at a time
+main,2,M1_D1,wait for explicit authorization
+main,3,M1_D2,wait for explicit authorization
+main,4,M2_D0,run only after the frozen M1 sequence or on another authorized host
+main,5,M2_D1,wait for explicit authorization
+main,6,M2_D2,wait for explicit authorization
+worker,1,M0_D0,worker retains the frozen M0 sequence; one experiment at a time
+worker,2,M0_D1,wait for explicit authorization
+worker,3,M0_D2,wait for explicit authorization

@@ -1,0 +1,17 @@
+This is the rights-screened public companion to a controlled CTREND Revisit
+research project. It originates from controlled source commit
+58c8bad72d318eb7f17610084cc826bfbbbe9511. The controlled repository,
+licensed inputs, detailed per-asset outputs and full production run trees are
+not included. No access to the controlled repository is implied.
+
+Fieberg, Liedtke, Poddig, Walker and Zaremba's original code and CTREND
+workbook are from Harvard Dataverse doi:10.7910/DVN/NTIVT8, whose dataset
+metadata lists CC0 1.0. The original package contains a separately noticed
+BSD-licensed fGRS implementation by Sven Thies. This attribution does not
+transfer rights in CMC data, auxiliary factors or MathWorks software.
+
+The MATLAB helper files regstats2.m and parfor_wait.m, present in the
+controlled project, have been omitted from this public export pending a
+file-specific redistribution determination. CMC raw price, volume and market
+capitalization matrices have likewise been omitted. See DATA_AVAILABILITY.md
+and THIRD_PARTY_MATERIALS.csv for the disposition of each material class.

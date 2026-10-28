@@ -4,11 +4,11 @@ This is a clean-history, rights-screened public companion to the CTREND revisit.
 
 The main information-set problem in the published CTREND program is a weekly fallback that can read an observation later than the week being constructed. The revisit separates that timing correction (M2) from the broader statistical and portfolio-accounting audit (M1). Fixing the identified future-data channels alone does not erase the principal gross mean in these experiments; risk, sample support, asset exposure and other definitions matter. These are paired designs on one historical vendor snapshot, not independent samples or evidence of executable trading profits.
 
-Start with [PAPER_REPLICATION.md](PAPER_REPLICATION.md) for the research question and result map, [QUICKSTART.md](QUICKSTART.md) for a clean-clone check, and [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md) before attempting a full run. [README_CN.md](README_CN.md) is the Chinese overview. [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) states interpretation limits.
+Start with [PAPER_REPLICATION.md](PAPER_REPLICATION.md) for the research question and result map, [QUICKSTART.md](QUICKSTART.md) for tested commands, and [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md) before attempting a full run. [README_CN.md](README_CN.md) is the Chinese overview. [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) states interpretation limits; [PUBLIC_VALIDATION.md](docs/PUBLIC_VALIDATION.md) records what was actually tested in a fresh export.
 
 ## What is here
 
-- `engines/`, `config/`, `scripts/`, `postprocessing/`, `analysis/`, `tests/`: the frozen method code and orchestration copied from controlled source commit `58c8bad72d318eb7f17610084cc826bfbbbe9511` (file hashes in `provenance/SOURCE_FILE_MAP.csv`).
+- `engines/`, `config/`, `scripts/`, `postprocessing/`, `analysis/`, `tests/`: the frozen scientific method code plus public-checkout orchestration from controlled source commit `58c8bad72d318eb7f17610084cc826bfbbbe9511`. `provenance/SOURCE_FILE_MAP.csv` records both hashes for every copied file; the three public-only preflight/test/documentation substitutions are explicit in `public_overrides/`.
 - `reference/dataverse_files.zip`: the original author-deposited comparison package from [Harvard Dataverse, doi:10.7910/DVN/NTIVT8](https://doi.org/10.7910/DVN/NTIVT8), whose dataset metadata identifies CC0 1.0. Its embedded `fGRS.m` retains a separate BSD notice. This reference is not our input-market-data license.
 - `results/comparisons/`: compact, non-asset-level comparison tables, the author-published factor series extracted from the reference workbook, and an inventory of figures. A figure inventory is **not** the figures themselves.
 - `provenance/`: a byte-level link to the controlled source and the accepted research-run IDs/hashes, without private run paths.
@@ -17,7 +17,7 @@ The `P` axis compares no added uniform missing-data fill (P0) with one documente
 
 ## Two levels of replication
 
-1. **Public quick check:** `python3 scripts/public_quickcheck.py`. This checks permitted files, identities, the paper factor moments and the 18-way summary without MATLAB or vendor data. It does not train the models or regenerate all paper tables.
-2. **Full re-estimation:** a separately authorized, matching input bundle, MATLAB R2023b Update 11 and the listed toolboxes are required. The controlled complete workflow uses `./reproduce_everything.sh`; see [QUICKSTART.md](QUICKSTART.md). The public source subset deliberately omits two externally supplied MATLAB helpers and raw vendor data, so the public checkout by itself cannot pass the full production preflight.
+1. **Public quick replication:** `python3 scripts/public_quickcheck.py` verifies export identity; `./reproduce_tables.sh` independently reads the author workbook, recalculates its H–L moments, checks the saved 18-cell aggregate evidence, and creates two clearly labelled diagnostic SVGs. It does **not** train models or recreate the original paper's figures.
+2. **Full re-estimation:** `./reproduce_everything.sh` is the one-command 18-cell route **after** separately authorized inputs and the exact required MATLAB helpers have been installed. The public checkout deliberately omits those third-party files. Production preflight fails if inputs, helpers, MATLAB or required tests are missing. A fresh full run from this public checkout has not been claimed as completed; see [QUICKSTART.md](QUICKSTART.md).
 
-The original controlled repository remains private and unchanged. No private Git history, run root, or restricted raw-data file was imported into this repository.
+The original controlled repository remains private and unchanged. No private Git history, run root, or restricted raw-data file was imported into this repository. The current mapping covers the published **original** paper; a final revisit-manuscript map and release tag await a frozen manuscript and author approval.

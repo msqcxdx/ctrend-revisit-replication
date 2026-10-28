@@ -12,7 +12,9 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import re
 import subprocess
+import sys
 from pathlib import Path
 
 EXPECTED_SOURCE_COMMIT = "58c8bad72d318eb7f17610084cc826bfbbbe9511"
@@ -30,14 +32,38 @@ SUMMARY_FILES = (
     "results/comparisons/source_tables/COMMON_WEEK_ABLATION_DECOMPOSITION.csv",
     "results/comparisons/paper_factor/PAPER_WEEKLY_RETURNS.csv",
     "results/comparisons/paper_factor/PAPER_FACTOR_PROVENANCE.json",
+    "results/comparisons/source_tables/CURATED_PAPER_BENCHMARKS.csv",
     "reference/dataverse_files.zip",
     "cmc_acquisition/bundle.py",
     "cmc_acquisition/requirements.txt",
     "data/RAW_INPUTS.sha256",
     "followup_research/published_results.py",
+    "docs/METHOD_BOUNDARIES.md",
+    "analysis/tests/test_compare_nine_methods_common_weeks.m",
+    "engines/M1/base/DesignChoices.mat",
 )
 SKIP_NAMES = {".git", "__pycache__", ".pytest_cache", "regstats2.m", "parfor_wait.m"}
 SKIP_SUFFIXES = {".mat", ".xlsx", ".xls", ".zip", ".gz", ".fig", ".png", ".jpg", ".pyc", ".pyo"}
+PUBLIC_OVERRIDES = {
+    Path("scripts/preflight.sh"),
+    Path("tests/run_tests.sh"),
+    Path("postprocessing/README.md"),
+}
+PUBLIC_ROOT_FILES = (
+    ".gitignore", "CITATION.cff", "DATA_AVAILABILITY.md", "KNOWN_LIMITATIONS.md",
+    "LICENSE", "NOTICE", "PAPER_REPLICATION.md", "PUBLIC_EXPORT_DECISIONS.md",
+    "QUICKSTART.md", "README.md", "README_CN.md", "SECURITY_REVIEW.md",
+    "TABLE_FIGURE_MAP.csv", "THIRD_PARTY_MATERIALS.csv", "reproduce_tables.sh",
+)
+PUBLIC_DIR_FILES = (
+    ".github/workflows/public-check.yml",
+    "docs/PUBLIC_VALIDATION.md",
+    "scripts/audit_controlled_history.py", "scripts/build_public_export.py",
+    "scripts/build_table_figure_map.py",
+    "scripts/make_public_manifest.py", "scripts/public_quickcheck.py",
+    "scripts/reproduce_public_tables.py", "tests/public_test_bundle.py",
+    "tests/public_test_tables.py",
+)
 
 
 def sha256(path: Path) -> str:
@@ -56,17 +82,35 @@ def copy_one(source: Path, target: Path, relative: Path, ledger: list[tuple[str,
     source_bytes = src.read_bytes()
     public_bytes = source_bytes
     if relative.as_posix() == "scripts/preflight.sh":
-        old = rb"|61\.162\.193\.19"
-        if source_bytes.count(old) != 1:
-            raise ValueError("expected exactly one legacy host-pattern literal")
-        public_bytes = source_bytes.replace(old, b"")
+        # The controlled scanner once embedded an internal host address. The
+        # public override replaces the whole preflight; never copy that literal.
+        if not re.search(rb"\|(?:[0-9]{1,3}\\\.){3}[0-9]{1,3}", source_bytes):
+            raise ValueError("expected controlled preflight host-pattern literal")
+    if relative in PUBLIC_OVERRIDES:
+        overlay = Path(__file__).resolve().parents[1] / "public_overrides" / relative
+        if not overlay.is_file():
+            raise ValueError(f"missing public override: {relative}")
+        public_bytes = overlay.read_bytes()
     public_digest = hashlib.sha256(public_bytes).hexdigest()
     if dst.exists():
         if public_digest != sha256(dst):
-            raise ValueError(f"refusing to replace changed target: {relative}")
+            previous = target / "provenance/SOURCE_FILE_MAP.csv"
+            previously_exported = set()
+            if previous.is_file():
+                with previous.open(newline="", encoding="utf-8") as handle:
+                    previously_exported = {
+                        row["public_sha256"] for row in csv.DictReader(handle)
+                        if row["public_path"] == relative.as_posix()
+                    }
+            if relative not in PUBLIC_OVERRIDES or sha256(dst) not in previously_exported | {sha256(src)}:
+                raise ValueError(f"refusing to replace changed target: {relative}")
+            dst.write_bytes(public_bytes)
     else:
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_bytes(public_bytes)
+    # A fresh export must preserve executable entry points. Without this,
+    # './run_all.sh' fails before even entering the documented preflight.
+    dst.chmod(src.stat().st_mode & 0o777)
     ledger.append((relative.as_posix(), sha256(src), public_digest, len(public_bytes)))
 
 
@@ -106,10 +150,28 @@ def main() -> None:
     output = target / "provenance" / "SOURCE_FILE_MAP.csv"
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.writer(handle)
+        writer = csv.writer(handle, lineterminator="\n")
         writer.writerow(("public_path", "controlled_source_sha256", "public_sha256", "public_size_bytes"))
         writer.writerows(ledger)
-    print(f"PUBLIC_EXPORT_OK source_commit={commit} files={len(ledger)} ledger={output}")
+    # Public-owned guides and adapters live beside this builder, not in the
+    # controlled scientific commit. Include them in a clean export verbatim.
+    public_root = Path(__file__).resolve().parents[1]
+    owned = [Path(name) for name in PUBLIC_ROOT_FILES + PUBLIC_DIR_FILES]
+    owned.extend(path.relative_to(public_root) for path in (public_root / "public_overrides").rglob("*") if path.is_file())
+    for relative in sorted(set(owned)):
+        src = public_root / relative
+        dst = target / relative
+        if src.is_symlink() or not src.is_file():
+            raise ValueError(f"refusing non-regular public file: {relative}")
+        if dst.exists():
+            if sha256(src) != sha256(dst):
+                raise ValueError(f"refusing to replace changed public-owned target: {relative}")
+        else:
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_bytes(src.read_bytes())
+        dst.chmod(src.stat().st_mode & 0o777)
+    subprocess.run([sys.executable, str(target / "scripts/make_public_manifest.py")], check=True)
+    print(f"PUBLIC_EXPORT_OK source_commit={commit} copied={len(ledger)} public_owned={len(owned)} ledger={output}")
 
 
 if __name__ == "__main__":

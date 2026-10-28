@@ -5,6 +5,7 @@ runtime/
 outputs/
 data/raw/
 *.mat
+!engines/M1/base/DesignChoices.mat
 *.fig
 *.png
 *.zip

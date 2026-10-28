@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Check the public export without access to CMC data or proprietary MATLAB."""
+"""Check public source and saved summaries without estimating any model."""
 
+import argparse
 import csv
 import hashlib
 import json
 import math
+import re
 import statistics
 import zipfile
 from pathlib import Path
@@ -25,29 +27,43 @@ def digest(path: Path) -> str:
     return h.hexdigest()
 
 
-def check_manifest() -> None:
+def check_manifest(installed_inputs: bool = False) -> None:
     manifest = ROOT / "provenance/PUBLIC_SHA256SUMS"
     lines = manifest.read_text(encoding="utf-8").splitlines()
     assert lines and len(lines) == len(set(lines)), "duplicate/empty public manifest"
     for line in lines:
         expected, relative = line.split("  ", 1)
+        if installed_inputs and relative == "data/RAW_INPUTS.sha256":
+            # Lawful installation writes a local manifest for the actual
+            # vendor snapshot; data_bundle.py checks that snapshot separately.
+            continue
         path = ROOT / relative
         assert path.is_file() and not path.is_symlink(), relative
         assert digest(path) == expected, f"changed public file: {relative}"
     assert all("data/raw/common" not in line for line in lines)
+    listed = {line.split("  ", 1)[1] for line in lines}
+    excluded = {".git", "outputs", "runtime", "__pycache__", ".pytest_cache", ".venv"}
+    actual = {path.relative_to(ROOT).as_posix() for path in ROOT.rglob("*")
+              if path.is_file() and not excluded.intersection(path.relative_to(ROOT).parts)
+              and path.relative_to(ROOT).parts[:2] != ("data", "raw")
+              and path != manifest}
+    assert listed == actual, f"public manifest coverage mismatch missing={sorted(actual-listed)} extra={sorted(listed-actual)}"
 
 
-def check_source_ledger() -> None:
+def check_source_ledger(installed_inputs: bool = False) -> None:
     source = rows("provenance/SOURCE_FILE_MAP.csv")
     assert len(source) > 600
     assert len(source) == len({item["public_path"] for item in source})
     for item in source:
+        if installed_inputs and item["public_path"] == "data/RAW_INPUTS.sha256":
+            continue
         path = ROOT / item["public_path"]
         assert digest(path) == item["public_sha256"]
         assert path.stat().st_size == int(item["public_size_bytes"])
-    assert not list(ROOT.rglob("regstats2.m"))
-    assert not list(ROOT.rglob("parfor_wait.m"))
-    assert not (ROOT / "data/raw/common").exists()
+    if not installed_inputs:
+        assert not list(ROOT.rglob("regstats2.m"))
+        assert not list(ROOT.rglob("parfor_wait.m"))
+        assert not (ROOT / "data/raw/common").exists()
 
 
 def check_public_results() -> None:
@@ -103,13 +119,43 @@ def check_rights() -> None:
     print(f"PUBLIC_RIGHTS_LEDGER_OK classes={len(ledger)}")
 
 
+def check_public_hygiene() -> None:
+    for relative in ("run_all.sh", "reproduce_everything.sh", "reproduce_tables.sh",
+                     "scripts/preflight.sh", "tests/run_tests.sh"):
+        assert (ROOT / relative).stat().st_mode & 0o111, f"entry point lacks execute permission: {relative}"
+    assert (ROOT / "engines/M1/base/DesignChoices.mat").stat().st_size > 0, "M1 design configuration missing"
+    sensitive = (
+        re.compile(rb"/home/[A-Za-z0-9_-]+/"),
+        re.compile(rb"/(?:data[0-9]+|mnt)/[A-Za-z0-9_-]+/"),
+        re.compile(rb"(?<![0-9])(?:[0-9]{1,3}\.){3}[0-9]{1,3}(?![0-9])"),
+        re.compile(rb"ghp_[A-Za-z0-9]{20,}"),
+        re.compile(rb"-----BEGIN (?:RSA |OPENSSH |EC |DSA )?PRIVATE KEY-----"),
+    )
+    for path in ROOT.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in {".sh", ".py", ".md", ".txt", ".csv", ".json", ".yml", ".cff"}:
+            continue
+        if {".git", "outputs", "runtime", "__pycache__"}.intersection(path.relative_to(ROOT).parts):
+            continue
+        if path.relative_to(ROOT).parts[:2] == ("data", "raw"):
+            continue
+        if any(pattern.search(path.read_bytes()) for pattern in sensitive):
+            raise AssertionError(f"public text has a sensitive path/address/key shape: {path.relative_to(ROOT)}")
+    print("PUBLIC_HYGIENE_OK executable_entries=5 current_text_sensitive_shapes=0")
+
+
 def main() -> None:
-    check_manifest()
-    check_source_ledger()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--installed-inputs", action="store_true",
+                        help="Allow only the local raw-input inventory to differ; the data gate must run separately")
+    args = parser.parse_args()
+    check_manifest(args.installed_inputs)
+    check_source_ledger(args.installed_inputs)
     check_public_results()
     check_author_factor()
     check_rights()
-    print("PUBLIC_QUICKCHECK_OK scope=export_integrity_and_saved_summaries_not_full_matlab")
+    check_public_hygiene()
+    print("PUBLIC_QUICKCHECK_OK scope=export_integrity_and_saved_summaries_not_full_matlab"
+          f" installed_inputs_mode={int(args.installed_inputs)}")
 
 
 if __name__ == "__main__":

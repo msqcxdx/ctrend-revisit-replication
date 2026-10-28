@@ -1,23 +1,25 @@
 # Public-export decision record
 
-Source identity: controlled repository commit `58c8bad72d318eb7f17610084cc826bfbbbe9511`. The deterministic copier is `scripts/build_public_export.py`; its 717 copied files are listed with controlled and public hashes in `provenance/SOURCE_FILE_MAP.csv`. A separate all-public-file inventory is `provenance/PUBLIC_SHA256SUMS`. Original 18-run `RUN_COMPLETE`, acceptance receipts, research run IDs and results were not edited.
+Source identity: controlled repository commit `58c8bad72d318eb7f17610084cc826bfbbbe9511`. The deterministic copier is `scripts/build_public_export.py`; its 721 copied files are listed with controlled and public hashes in `provenance/SOURCE_FILE_MAP.csv`. The public-owned guides/adapters and all copied files are covered by `provenance/PUBLIC_SHA256SUMS`. The copier preserves executable file modes and records its three explicit public overrides. Original 18-run `RUN_COMPLETE`, acceptance receipts, research run IDs and results were not edited.
+
+A clean export from an authorized local copy of the controlled commit can be built with `python3 scripts/build_public_export.py --source /absolute/controlled/repository --target /absolute/fresh/public-export`. The source must be clean and at the exact commit. No Git history, raw vendor data or private output tree is imported. Scientific MATLAB engine files are byte-identical to the controlled commit, excluding the separately withheld third-party helpers.
 
 ## Included
 
-- P/M/D MATLAB and orchestration source, configuration, analysis code and source-level tests. One preflight regex literal was redacted; it has no numerical role.
+- P/M/D MATLAB and orchestration source, configuration, analysis code, source-level tests, and the 12-KB, design-only `engines/M1/base/DesignChoices.mat` required for M1 runtime packaging. The public preflight/test scripts replace the controlled release gates so they never claim to run withheld acquisition or annotation suites; `postprocessing/README.md` also explains the absence of accepted private baselines. These three override pairs have different source/public hashes in the ledger and do not change any model calculation.
 - The original Fieberg et al. Dataverse ZIP, under its dataset-specific CC0 metadata and the embedded third-party notice. Its 68 regular ZIP members were compared byte-for-byte by MD5 against all 68 file checksums returned by the Harvard Dataverse dataset API on 2026-10-28: zero missing, modified or extra members.
 - Author-published factor returns and compact, non-asset-level saved research summaries, including the paper-item table/figure inventory and the 18 run IDs with hashes.
-- Lightweight checks that run without MATLAB or licensed inputs.
+- A tested quick-replication command that decodes the author workbook again, recalculates its moments, checks and reshapes saved aggregate cells, and emits two explicitly diagnostic SVGs without MATLAB or vendor inputs.
 
 ## Excluded
 
 - All original CMC price/volume/market-cap matrices, auxiliary LTW/Fama–French/UCRY files, and downloader code whose collection route needs channel-specific authorization review.
 - Detailed per-asset positions and returns, source-price panels, complete MATLAB run roots, logs, runtime directories, large follow-up payloads, and internal path receipts.
 - Controlled copies of `regstats2.m` and `parfor_wait.m`: file-specific redistribution rights for these exact copies were not established. A full user must obtain them under the upstream terms.
-- The controlled repository's Git history and duplicate annotated source mirrors. Their omission reduces rights and history risk but means this public subset is not a turnkey source archive for complete MATLAB re-estimation.
+- The controlled repository's Git history and duplicate annotated source mirrors. These mirrors are not runtime dependencies; the public source-plus-data route still requires the external inputs, exact helper versions, MATLAB and substantial computing resources. No full clean-room rerun is claimed.
 
 ## Scope of validation
 
-`python3 scripts/public_quickcheck.py` checks this export and saved summaries only. It does not make a fresh empirical estimate. `results/comparisons/source_tables/RUN_IDENTITIES_18.csv` references accepted controlled runs by identity/hash, not by public download URL. No public DOI, permission to redistribute CMC raw data, or claim of real executable investment returns is implied.
+`python3 scripts/public_quickcheck.py` checks this export and saved summaries only. `./reproduce_tables.sh` makes one fresh author-factor calculation, but only redraws/transcribes experimental saved aggregates; it does not retrain the 18 models. `./run_all.sh preflight` is a different gate and fails until real licensed inputs, exact helpers and MATLAB are installed. `results/comparisons/source_tables/RUN_IDENTITIES_18.csv` references accepted controlled runs by identity/hash, not by public download URL. No public DOI, permission to redistribute CMC raw data, or claim of real executable investment returns is implied.
 
 The current `TABLE_FIGURE_MAP.csv` maps the published original CTREND paper (19 tables, seven figures). The taskbook mentions 26 tables and five figures for a manuscript draft, but the accessible draft/archived source inventory did not support assigning those identifiers reliably. A final revisit-manuscript map remains pending its frozen table/figure list; no identifiers were invented.

@@ -1,0 +1,269 @@
+paper_item,paper_location,metric,paper_value,disclosure_scope,experiment_row_label,experiment_row_occurrence,experiment_column_index
+Table 1,PDF p.7（期刊 p.3122）,资产数,"3,245（正文另写 3,244）",论文明确披露,Full,1,1
+Table 1,PDF p.7（期刊 p.3122）,平均市值，USD mn,746.54,论文明确披露,Full,1,2
+Table 1,PDF p.7（期刊 p.3122）,中位市值，USD mn,8.48,论文明确披露,Full,1,3
+Table 1,PDF p.7（期刊 p.3122）,平均成交量，USD th,"107,365.52",论文明确披露,Full,1,4
+Table 1,PDF p.7（期刊 p.3122）,中位成交量，USD th,245.42,论文明确披露,Full,1,5
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,rsi,3.52 (5.41),论文明确披露,rsi,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,stochRSI,1.30 (1.78),论文明确披露,stochRSI,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,stochK,3.96 (5.73),论文明确披露,stochK,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,stochD,2.89 (4.06),论文明确披露,stochD,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,cci,3.80 (5.03),论文明确披露,cci,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,sma_3d,-0.89 (-1.11),论文明确披露,sma_3d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,sma_5d,-2.90 (-3.35),论文明确披露,sma_5d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,sma_10d,-2.37 (-2.90),论文明确披露,sma_10d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,sma_20d,-3.13 (-3.80),论文明确披露,sma_20d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,sma_50d,-2.49 (-2.88),论文明确披露,sma_50d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,sma_100d,-0.96 (-1.12),论文明确披露,sma_100d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,sma_200d,0.04 (0.05),论文明确披露,sma_200d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,macd,2.16 (2.50),论文明确披露,macd,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,macd_diff_signal,2.25 (2.46),论文明确披露,macd_diff_signal,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volsma_3d,-0.21 (-0.34),论文明确披露,volsma_3d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volsma_5d,-0.66 (-1.09),论文明确披露,volsma_5d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volsma_10d,-0.16 (-0.21),论文明确披露,volsma_10d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volsma_20d,-0.81 (-1.03),论文明确披露,volsma_20d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volsma_50d,-1.58 (-2.20),论文明确披露,volsma_50d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volsma_100d,-1.68 (-2.12),论文明确披露,volsma_100d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volsma_200d,-1.54 (-2.03),论文明确披露,volsma_200d,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volmacd,2.01 (2.38),论文明确披露,volmacd,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,volmacd_diff_signal,0.39 (0.46),论文明确披露,volmacd_diff_signal,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,chaikin,1.12 (1.68),论文明确披露,chaikin,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,boll_low,-2.08 (-2.28),论文明确披露,boll_low,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,boll_mid,-3.50 (-4.25),论文明确披露,boll_mid,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,boll_high,-2.41 (-3.01),论文明确披露,boll_high,1,6
+Table 2,PDF pp.10–11（期刊 pp.3125–3126）,boll_width,0.67 (0.72),论文明确披露,boll_width,1,6
+Table 3,PDF p.15（期刊 p.3130）,Avg (t),3.87 (5.19),论文明确披露,H-L,1,1
+Table 3,PDF p.15（期刊 p.3130）,Std,14.34,论文明确披露,H-L,1,2
+Table 3,PDF p.15（期刊 p.3130）,Annualized Sharpe,1.94,论文明确披露,H-L,1,3
+Table 3,PDF p.15（期刊 p.3130）,CCAPM alpha (t),3.80 (5.03),论文明确披露,H-L,1,4
+Table 3,PDF p.15（期刊 p.3130）,LTW alpha (t),2.62 (4.22),论文明确披露,H-L,1,6
+Table 4,PDF p.18（期刊 p.3133）,Spec 1,2.36 (5.00),论文明确披露,ctrend,1,1
+Table 4,PDF p.18（期刊 p.3133）,Spec 2,2.34 (4.82),论文明确披露,ctrend,1,2
+Table 4,PDF p.18（期刊 p.3133）,Spec 3,2.03 (3.64),论文明确披露,ctrend,1,3
+Table 4,PDF p.18（期刊 p.3133）,Spec 4,2.07 (3.79),论文明确披露,ctrend,1,4
+Table 4,PDF p.18（期刊 p.3133）,Spec 5,2.05 (3.76),论文明确披露,ctrend,1,5
+Table 4,PDF p.18（期刊 p.3133）,Spec 6,2.15 (4.06),论文明确披露,ctrend,1,6
+Table 4,PDF p.18（期刊 p.3133）,Spec 7,2.13 (4.05),论文明确披露,ctrend,1,7
+Table 4,PDF p.18（期刊 p.3133）,Spec 8,2.94 (4.67),论文明确披露,ctrend,1,8
+Table 4,PDF p.18（期刊 p.3133）,Spec 9,2.00 (3.20),论文明确披露,ctrend,1,9
+Table 4,PDF p.18（期刊 p.3133）,Spec 10,2.56 (4.27),论文明确披露,ctrend,1,10
+Table 4,PDF p.18（期刊 p.3133）,Spec 11,2.74 (4.87),论文明确披露,ctrend,1,11
+Table 4,PDF p.18（期刊 p.3133）,Spec 12,2.62 (3.93),论文明确披露,ctrend,1,12
+Table 5,PDF p.20（期刊 p.3135）,First half,4.47 (3.50),论文明确披露,First half,1,6
+Table 5,PDF p.20（期刊 p.3135）,Second half,3.26 (4.25),论文明确披露,Second half,1,6
+Table 5,PDF p.20（期刊 p.3135）,Low volatility,5.46 (5.08),论文明确披露,Low volatility,1,6
+Table 5,PDF p.20（期刊 p.3135）,High volatility,2.27 (2.22),论文明确披露,High volatility,1,6
+Table 5,PDF p.20（期刊 p.3135）,Low uncertainty,4.22 (3.04),论文明确披露,Low uncertainty,1,6
+Table 5,PDF p.20（期刊 p.3135）,High uncertainty,3.59 (4.71),论文明确披露,High uncertainty,1,6
+Table 5,PDF p.20（期刊 p.3135）,Bear market,3.25 (3.36),论文明确披露,Bear market,1,6
+Table 5,PDF p.20（期刊 p.3135）,Bull market,4.49 (3.95),论文明确披露,Bull market,1,6
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Outlier: truncation 0.5%,1.27,论文明确披露,Outlier treatment,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Outlier: truncation 1%,1.43,论文明确披露,Outlier treatment,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Outlier: winsorization 0.5%,1.23,论文明确披露,Outlier treatment,3,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Outlier: winsorization 1%,1.42,论文明确披露,Outlier treatment,4,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Stablecoins: exclude,1.34,论文明确披露,Stablecoins,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Stablecoins: include,1.34,论文明确披露,Stablecoins,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,MCAP >= USD 0m,1.37,论文明确披露,MCAP filter,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,MCAP >= USD 1m,1.30,论文明确披露,MCAP filter,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,MCAP >= USD 2m,1.37,论文明确披露,MCAP filter,3,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Price >= USD 0,1.64,论文明确披露,Price filter,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Price >= USD 1,1.13,论文明确披露,Price filter,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Expanding window,1.40,论文明确披露,Estimation window,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Rolling window,1.29,论文明确披露,Estimation window,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,In-sample 26,1.25,论文明确披露,In-sample observations,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,In-sample 52,1.38,论文明确披露,In-sample observations,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,In-sample 78,1.36,论文明确披露,In-sample observations,3,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,In-sample 104,1.39,论文明确披露,In-sample observations,4,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Implementation lag 0,1.46,论文明确披露,Implementation lag,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Implementation lag 1,1.24,论文明确披露,Implementation lag,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Quintiles,1.34,论文明确披露,Breakpoints,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Tertiles,1.35,论文明确披露,Breakpoints,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Equally weighted,1.47,论文明确披露,Weighting,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Value weighted,1.17,论文明确披露,Weighting,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Exclude volume indicators,1.39,论文明确披露,Volume indicators,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Include volume indicators,1.30,论文明确披露,Volume indicators,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Validation: no,1.47,论文明确披露,Validation sample,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Validation: yes,1.19,论文明确披露,Validation sample,2,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Forecast: theta weighted,1.30,论文明确披露,Forecast weight,1,4
+Table 6,PDF pp.22–23（期刊 pp.3137–3138）,Forecast: equal weighted,1.37,论文明确披露,Forecast weight,2,4
+Table 7,PDF p.26（期刊 p.3141）,CMKT / CTREND,0.91 (2.07),论文明确披露,CMKT,1,1
+Table 7,PDF p.26（期刊 p.3141）,CSMB / CTREND,1.70 (2.60),论文明确披露,CSMB,1,1
+Table 7,PDF p.26（期刊 p.3141）,CSMB / CMKT+CTREND,1.50 (2.93),论文明确披露,CSMB,1,2
+Table 7,PDF p.26（期刊 p.3141）,CMOM / CTREND,0.20 (0.55),论文明确披露,CMOM,1,1
+Table 7,PDF p.26（期刊 p.3141）,CMOM / CMKT+CTREND,0.23 (0.63),论文明确披露,CMOM,1,2
+Table 7,PDF p.26（期刊 p.3141）,CMOM / CMKT+CSMB+CTREND,0.37 (1.02),论文明确披露,CMOM,1,3
+Table 7,PDF p.26（期刊 p.3141）,CTREND / LTW,2.77 (3.80),论文明确披露,CTREND,1,4
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Largest 50%,3.84 (5.00),论文明确披露,H-L,1,1
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Largest 30%,3.46 (4.17),论文明确披露,H-L,1,2
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Largest 20%,2.74 (2.94),论文明确披露,H-L,1,3
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Largest 10%,2.51 (3.01),论文明确披露,H-L,1,4
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Largest Top 100,3.39 (4.49),论文明确披露,H-L,1,5
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Most liquid 50%,4.36 (5.62),论文明确披露,H-L,1,6
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Most liquid 30%,3.65 (4.21),论文明确披露,H-L,1,7
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Most liquid 20%,2.83 (2.87),论文明确披露,H-L,1,8
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Most liquid 10%,2.20 (2.76),论文明确披露,H-L,1,9
+Table 8,PDF pp.30–31（期刊 pp.3145–3146）,Most liquid Top 100,3.30 (4.36),论文明确披露,H-L,1,10
+Table 9,PDF p.32（期刊 p.3147）,Full H-L: Gross (t),3.87 (5.19),论文明确披露,H-L,1,1
+Table 9,PDF p.32（期刊 p.3147）,Full H-L: Net 30/40 bps,2.90 (3.89),论文明确披露,H-L,1,2
+Table 9,PDF p.32（期刊 p.3147）,Full H-L: Net 40/50 bps,2.62 (3.53),论文明确披露,H-L,1,3
+Table 9,PDF p.32（期刊 p.3147）,Full H-L: Net 50/60 bps,2.35 (3.16),论文明确披露,H-L,1,4
+Table 9,PDF p.32（期刊 p.3147）,Full H-L: Displayed turnover,68.46,论文明确披露,H-L,1,5
+Table 9,PDF p.32（期刊 p.3147）,Full H-L: BETC,1.41,论文明确披露,H-L,1,6
+Table 9,PDF p.32（期刊 p.3147）,Full H-L: BETC 5%,0.88,论文明确披露,H-L,1,7
+Table 9,PDF p.32（期刊 p.3147）,Largest-100 H-L: Gross (t),3.40 (4.48),论文明确披露,H-L,2,1
+Table 9,PDF p.32（期刊 p.3147）,Largest-100 H-L: Net 30/40 bps,2.45 (3.22),论文明确披露,H-L,2,2
+Table 9,PDF p.32（期刊 p.3147）,Largest-100 H-L: Net 40/50 bps,2.17 (2.86),论文明确披露,H-L,2,3
+Table 9,PDF p.32（期刊 p.3147）,Largest-100 H-L: Net 50/60 bps,1.90 (2.50),论文明确披露,H-L,2,4
+Table 9,PDF p.32（期刊 p.3147）,Largest-100 H-L: Displayed turnover,68.21,论文明确披露,H-L,2,5
+Table 9,PDF p.32（期刊 p.3147）,Largest-100 H-L: BETC,1.25,论文明确披露,H-L,2,6
+Table 9,PDF p.32（期刊 p.3147）,Largest-100 H-L: BETC 5%,0.70,论文明确披露,H-L,2,7
+Table B.1,Appendix Table B.1,Characteristic definitions,定义表,论文定义,,,
+Table B.2,Appendix Table B.2,CMKT Avg,主文未逐项披露,主文未逐项披露,CMKT,1,1
+Table B.2,Appendix Table B.2,CMKT Std,主文未逐项披露,主文未逐项披露,CMKT,1,2
+Table B.2,Appendix Table B.2,CMKT Sharpe,主文未逐项披露,主文未逐项披露,CMKT,1,3
+Table B.2,Appendix Table B.2,CSMB Avg,主文未逐项披露,主文未逐项披露,CSMB,1,1
+Table B.2,Appendix Table B.2,CSMB Std,主文未逐项披露,主文未逐项披露,CSMB,1,2
+Table B.2,Appendix Table B.2,CSMB Sharpe,主文未逐项披露,主文未逐项披露,CSMB,1,3
+Table B.2,Appendix Table B.2,CMOM Avg,主文未逐项披露,主文未逐项披露,CMOM,1,1
+Table B.2,Appendix Table B.2,CMOM Std,主文未逐项披露,主文未逐项披露,CMOM,1,2
+Table B.2,Appendix Table B.2,CMOM Sharpe,主文未逐项披露,主文未逐项披露,CMOM,1,3
+Table B.2,Appendix Table B.2,CTREND Avg,3.87,明确披露,CTREND,1,1
+Table B.2,Appendix Table B.2,CTREND Std,14.34,明确披露,CTREND,1,2
+Table B.2,Appendix Table B.2,CTREND Sharpe,1.94,明确披露,CTREND,1,3
+Table B.3,Appendix Table B.3,beta,正文披露范围 1.42–3.10，称均显著,论文仅披露范围,beta,1,4
+Table B.3,Appendix Table B.3,mcap,正文披露范围 1.42–3.10，称均显著,论文仅披露范围,mcap,1,4
+Table B.3,Appendix Table B.3,illiq,正文披露范围 1.42–3.10，称均显著,论文仅披露范围,illiq,1,4
+Table B.3,Appendix Table B.3,ivol,正文披露范围 1.42–3.10，称均显著,论文仅披露范围,ivol,1,4
+Table B.3,Appendix Table B.3,ret_1_0,正文披露范围 1.42–3.10，称均显著,论文仅披露范围,ret_1_0,1,4
+Table B.3,Appendix Table B.3,ret_2_0,正文披露范围 1.42–3.10，称均显著,论文仅披露范围,ret_2_0,1,4
+Table B.3,Appendix Table B.3,ret_3_0,正文披露范围 1.42–3.10，称均显著,论文仅披露范围,ret_3_0,1,4
+Table B.3,Appendix Table B.3,ret_4_0,正文披露范围 1.42–3.10，称均显著,论文仅披露范围,ret_4_0,1,4
+Table B.4,Appendix Table B.4,Full,3.87 (5.19),正文基准值,H-L,1,1
+Table B.4,Appendix Table B.4,Coins,主文未逐项披露,主文仅称定性稳健,H-L,1,2
+Table B.4,Appendix Table B.4,Tokens,主文未逐项披露,主文仅称定性稳健,H-L,1,3
+Table B.5,Appendix Table B.5,age,主文未逐项披露,论文分类为不显著 anomalies,age,1,6
+Table B.5,Appendix Table B.5,ret_8_0,主文未逐项披露,论文分类为不显著 anomalies,ret_8_0,1,6
+Table B.5,Appendix Table B.5,ret_16_0,主文未逐项披露,论文分类为不显著 anomalies,ret_16_0,1,6
+Table B.5,Appendix Table B.5,ret_50_0,主文未逐项披露,论文分类为不显著 anomalies,ret_50_0,1,6
+Table B.5,Appendix Table B.5,ret_100_0,主文未逐项披露,论文分类为不显著 anomalies,ret_100_0,1,6
+Table B.5,Appendix Table B.5,volume,主文未逐项披露,论文分类为不显著 anomalies,volume,1,6
+Table B.5,Appendix Table B.5,illiq,主文未逐项披露,论文分类为不显著 anomalies,illiq,1,6
+Table B.5,Appendix Table B.5,beta,主文未逐项披露,论文分类为不显著 anomalies,beta,1,6
+Table B.5,Appendix Table B.5,beta2,主文未逐项披露,论文分类为不显著 anomalies,beta2,1,6
+Table B.5,Appendix Table B.5,ivol,主文未逐项披露,论文分类为不显著 anomalies,ivol,1,6
+Table B.5,Appendix Table B.5,iskew,主文未逐项披露,论文分类为不显著 anomalies,iskew,1,6
+Table B.5,Appendix Table B.5,retvol,主文未逐项披露,论文分类为不显著 anomalies,retvol,1,6
+Table B.5,Appendix Table B.5,skew2,主文未逐项披露,论文分类为不显著 anomalies,skew2,1,6
+Table B.5,Appendix Table B.5,maxret,主文未逐项披露,论文分类为不显著 anomalies,maxret,1,6
+Table B.5,Appendix Table B.5,delay,主文未逐项披露,论文分类为不显著 anomalies,delay,1,6
+Table B.5,Appendix Table B.5,var90d,主文未逐项披露,论文分类为不显著 anomalies,var90d,1,6
+Table B.5,Appendix Table B.5,es90d,主文未逐项披露,论文分类为不显著 anomalies,es90d,1,6
+Table B.5,Appendix Table B.5,ppt,主文未逐项披露,论文分类为不显著 anomalies,ppt,1,6
+Table B.5,Appendix Table B.5,stv,主文未逐项披露,论文分类为不显著 anomalies,stv,1,6
+Table B.5,Appendix Table B.5,skew1,主文未逐项披露,论文分类为不显著 anomalies,skew1,1,6
+Table B.5,Appendix Table B.5,ptv,主文未逐项披露,论文分类为不显著 anomalies,ptv,1,6
+Table B.6,Appendix Table B.6,Outlier: truncation 0.5%,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Outlier treatment,1,4
+Table B.6,Appendix Table B.6,Outlier: truncation 1%,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Outlier treatment,2,4
+Table B.6,Appendix Table B.6,Outlier: winsorization 0.5%,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Outlier treatment,3,4
+Table B.6,Appendix Table B.6,Outlier: winsorization 1%,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Outlier treatment,4,4
+Table B.6,Appendix Table B.6,Stablecoins: exclude,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Stablecoins,1,4
+Table B.6,Appendix Table B.6,Stablecoins: include,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Stablecoins,2,4
+Table B.6,Appendix Table B.6,MCAP >= USD 0m,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,MCAP filter,1,4
+Table B.6,Appendix Table B.6,MCAP >= USD 1m,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,MCAP filter,2,4
+Table B.6,Appendix Table B.6,MCAP >= USD 2m,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,MCAP filter,3,4
+Table B.6,Appendix Table B.6,Price >= USD 0,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Price filter,1,4
+Table B.6,Appendix Table B.6,Price >= USD 1,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Price filter,2,4
+Table B.6,Appendix Table B.6,Expanding window,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Estimation window,1,4
+Table B.6,Appendix Table B.6,Rolling window,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Estimation window,2,4
+Table B.6,Appendix Table B.6,In-sample 26,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,In-sample observations,1,4
+Table B.6,Appendix Table B.6,In-sample 52,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,In-sample observations,2,4
+Table B.6,Appendix Table B.6,In-sample 78,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,In-sample observations,3,4
+Table B.6,Appendix Table B.6,In-sample 104,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,In-sample observations,4,4
+Table B.6,Appendix Table B.6,Implementation lag 0,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Implementation lag,1,4
+Table B.6,Appendix Table B.6,Implementation lag 1,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Implementation lag,2,4
+Table B.6,Appendix Table B.6,Quintiles,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Breakpoints,1,4
+Table B.6,Appendix Table B.6,Tertiles,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Breakpoints,2,4
+Table B.6,Appendix Table B.6,Value weighted,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Weighting,1,4
+Table B.6,Appendix Table B.6,Exclude volume indicators,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Volume indicators,1,4
+Table B.6,Appendix Table B.6,Include volume indicators,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Volume indicators,2,4
+Table B.6,Appendix Table B.6,Validation: no,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Validation sample,1,4
+Table B.6,Appendix Table B.6,Validation: yes,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Validation sample,2,4
+Table B.6,Appendix Table B.6,Forecast: theta weighted,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Forecast weight,1,4
+Table B.6,Appendix Table B.6,Forecast: equal weighted,主文未逐行披露；称多数 Sharpe 位于 0.5–2,论文定性范围,Forecast weight,2,4
+Table B.7,Appendix Table B.7,H-L LTW alpha (t),2.61，1% 显著,论文明确披露,H-L,1,6
+Table B.8,Appendix Table B.8,mcap,正文分类为显著；未逐项披露,论文定性分类,mcap,1,6
+Table B.8,Appendix Table B.8,prc,正文分类为显著；未逐项披露,论文定性分类,prc,1,6
+Table B.8,Appendix Table B.8,maxdprc,正文分类为显著；未逐项披露,论文定性分类,maxdprc,1,6
+Table B.8,Appendix Table B.8,ret_1_0,正文分类为显著；未逐项披露,论文定性分类,ret_1_0,1,6
+Table B.8,Appendix Table B.8,ret_2_0,正文分类为显著；未逐项披露,论文定性分类,ret_2_0,1,6
+Table B.8,Appendix Table B.8,ret_3_0,正文分类为显著；未逐项披露,论文定性分类,ret_3_0,1,6
+Table B.8,Appendix Table B.8,ret_4_0,正文分类为显著；未逐项披露,论文定性分类,ret_4_0,1,6
+Table B.8,Appendix Table B.8,ret_4_1,正文分类为显著；未逐项披露,论文定性分类,ret_4_1,1,6
+Table B.8,Appendix Table B.8,prcvol,正文分类为显著；未逐项披露,论文定性分类,prcvol,1,6
+Table B.8,Appendix Table B.8,volscaled,正文分类为显著；未逐项披露,论文定性分类,volscaled,1,6
+Table B.8,Appendix Table B.8,stdprcvol,正文分类为显著；未逐项披露,论文定性分类,stdprcvol,1,6
+Table B.8,Appendix Table B.8,skew1,正文分类为显著；未逐项披露,论文定性分类,skew1,1,6
+Table B.8,Appendix Table B.8,ret_100_0,主文未逐项披露,主文未逐项披露,ret_100_0,1,6
+Table B.8,Appendix Table B.8,volume,主文未逐项披露,主文未逐项披露,volume,1,6
+Table B.8,Appendix Table B.8,illiq,主文未逐项披露,主文未逐项披露,illiq,1,6
+Table B.8,Appendix Table B.8,ivol,主文未逐项披露,主文未逐项披露,ivol,1,6
+Table B.9,Appendix Table B.9,mcap,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,mcap,1,1
+Table B.9,Appendix Table B.9,prc,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,prc,1,1
+Table B.9,Appendix Table B.9,maxdprc,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,maxdprc,1,1
+Table B.9,Appendix Table B.9,ret_1_0,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,ret_1_0,1,1
+Table B.9,Appendix Table B.9,ret_2_0,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,ret_2_0,1,1
+Table B.9,Appendix Table B.9,ret_3_0,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,ret_3_0,1,1
+Table B.9,Appendix Table B.9,ret_4_0,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,ret_4_0,1,1
+Table B.9,Appendix Table B.9,ret_4_1,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,ret_4_1,1,1
+Table B.9,Appendix Table B.9,prcvol,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,prcvol,1,1
+Table B.9,Appendix Table B.9,volscaled,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volscaled,1,1
+Table B.9,Appendix Table B.9,stdprcvol,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,stdprcvol,1,1
+Table B.9,Appendix Table B.9,rsi,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,rsi,1,1
+Table B.9,Appendix Table B.9,stochRSI,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,stochRSI,1,1
+Table B.9,Appendix Table B.9,stochK,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,stochK,1,1
+Table B.9,Appendix Table B.9,stochD,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,stochD,1,1
+Table B.9,Appendix Table B.9,cci,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,cci,1,1
+Table B.9,Appendix Table B.9,sma_3d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,sma_3d,1,1
+Table B.9,Appendix Table B.9,sma_5d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,sma_5d,1,1
+Table B.9,Appendix Table B.9,sma_10d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,sma_10d,1,1
+Table B.9,Appendix Table B.9,sma_20d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,sma_20d,1,1
+Table B.9,Appendix Table B.9,sma_50d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,sma_50d,1,1
+Table B.9,Appendix Table B.9,sma_100d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,sma_100d,1,1
+Table B.9,Appendix Table B.9,sma_200d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,sma_200d,1,1
+Table B.9,Appendix Table B.9,macd,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,macd,1,1
+Table B.9,Appendix Table B.9,macd_diff_signal,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,macd_diff_signal,1,1
+Table B.9,Appendix Table B.9,volsma_3d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volsma_3d,1,1
+Table B.9,Appendix Table B.9,volsma_5d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volsma_5d,1,1
+Table B.9,Appendix Table B.9,volsma_10d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volsma_10d,1,1
+Table B.9,Appendix Table B.9,volsma_20d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volsma_20d,1,1
+Table B.9,Appendix Table B.9,volsma_50d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volsma_50d,1,1
+Table B.9,Appendix Table B.9,volsma_100d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volsma_100d,1,1
+Table B.9,Appendix Table B.9,volsma_200d,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volsma_200d,1,1
+Table B.9,Appendix Table B.9,volmacd,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volmacd,1,1
+Table B.9,Appendix Table B.9,volmacd_diff_signal,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,volmacd_diff_signal,1,1
+Table B.9,Appendix Table B.9,chaikin,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,chaikin,1,1
+Table B.9,Appendix Table B.9,boll_low,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,boll_low,1,1
+Table B.9,Appendix Table B.9,boll_mid,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,boll_mid,1,1
+Table B.9,Appendix Table B.9,boll_high,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,boll_high,1,1
+Table B.9,Appendix Table B.9,boll_width,主文未逐项披露；正文称最终主要剩 mcap 与 stochastic K,论文定性结论,boll_width,1,1
+Table B.10,Appendix Table B.10,Holding 1 week(s),3.87,论文明确值或定性披露,CTREND,1,1
+Table B.10,Appendix Table B.10,Holding 2 week(s),2.34,论文明确值或定性披露,CTREND,1,2
+Table B.10,Appendix Table B.10,Holding 3 week(s),正文称显著,论文明确值或定性披露,CTREND,1,3
+Table B.10,Appendix Table B.10,Holding 4 week(s),正文称显著,论文明确值或定性披露,CTREND,1,4
+Table B.10,Appendix Table B.10,Holding 5 week(s),主文未逐项披露,论文明确值或定性披露,CTREND,1,5
+Table B.10,Appendix Table B.10,Holding 6 week(s),主文未逐项披露,论文明确值或定性披露,CTREND,1,6
+Figure 3,正文 anomaly-alpha 图及其数值底稿,CCAPM Avg abs(alpha),2.69,论文明确披露,Avg ||,1,3
+Figure 3,正文 anomaly-alpha 图及其数值底稿,CCAPM Avg abs(t),3.40,论文明确披露,Avg |t|,1,3
+Figure 3,正文 anomaly-alpha 图及其数值底稿,CCAPM Nsig,20,论文明确披露,N_sig,1,3
+Figure 3,正文 anomaly-alpha 图及其数值底稿,CCAPM Delta,0.221,论文明确披露,,1,3
+Figure 3,正文 anomaly-alpha 图及其数值底稿,CCAPM GRS p(%),0.00,论文明确披露,GRS (p),1,3
+Figure 3,正文 anomaly-alpha 图及其数值底稿,LTW Avg abs(alpha),1.44,论文明确披露,Avg ||,1,7
+Figure 3,正文 anomaly-alpha 图及其数值底稿,LTW Avg abs(t),2.11,论文明确披露,Avg |t|,1,7
+Figure 3,正文 anomaly-alpha 图及其数值底稿,LTW Nsig,11,论文明确披露,N_sig,1,7
+Figure 3,正文 anomaly-alpha 图及其数值底稿,LTW Delta,0.159,论文明确披露,,1,7
+Figure 3,正文 anomaly-alpha 图及其数值底稿,LTW GRS p(%),0.38,论文明确披露,GRS (p),1,7
+Figure 3,正文 anomaly-alpha 图及其数值底稿,TREND Avg abs(alpha),0.68,论文明确披露,Avg ||,1,11
+Figure 3,正文 anomaly-alpha 图及其数值底稿,TREND Avg abs(t),1.13,论文明确披露,Avg |t|,1,11
+Figure 3,正文 anomaly-alpha 图及其数值底稿,TREND Nsig,2,论文明确披露,N_sig,1,11
+Figure 3,正文 anomaly-alpha 图及其数值底稿,TREND Delta,0.112,论文明确披露,,1,11
+Figure 3,正文 anomaly-alpha 图及其数值底稿,TREND GRS p(%),8.02,论文明确披露,GRS (p),1,11

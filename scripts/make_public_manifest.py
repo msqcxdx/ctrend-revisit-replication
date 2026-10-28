@@ -6,6 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "provenance/PUBLIC_SHA256SUMS"
+EXCLUDED_DIRS = {".git", "__pycache__", ".pytest_cache", ".venv", "runtime", "outputs"}
 
 
 def digest(path: Path) -> str:
@@ -19,7 +20,8 @@ def digest(path: Path) -> str:
 def main() -> None:
     rows = []
     for path in sorted(ROOT.rglob("*")):
-        if not path.is_file() or path == OUTPUT or ".git" in path.relative_to(ROOT).parts or "__pycache__" in path.parts:
+        parts = path.relative_to(ROOT).parts
+        if not path.is_file() or path == OUTPUT or EXCLUDED_DIRS.intersection(parts) or parts[:2] == ("data", "raw"):
             continue
         if path.is_symlink():
             raise SystemExit(f"refusing symlink: {path}")

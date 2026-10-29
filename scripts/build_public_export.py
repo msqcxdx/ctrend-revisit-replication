@@ -17,7 +17,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-EXPECTED_SOURCE_COMMIT = "e634a51d53cfb56dccd35d16ce2009bb824cef18"
+EXPECTED_SOURCE_COMMIT = "7bdad8d53b622cb97850fc6710cc67bf48b32c57"
 SOURCE_DIRS = ("config", "engines", "environment", "p0_extension", "postprocessing", "scripts", "tests")
 SOURCE_ROOT_FILES = ("run_all.sh", "run_all.m", "run_all.bat", "reproduce_everything.sh")
 ANALYSIS_SUFFIXES = (".m", ".py")

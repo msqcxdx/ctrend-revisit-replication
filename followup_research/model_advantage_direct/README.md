@@ -10,8 +10,8 @@ Read [RESULTS_CN.md](RESULTS_CN.md) for the findings and
 specification is P0/D0 with the externally published LTW series; P1, D1/D2,
 and the corresponding M1/E01 reconstructed LTW are sensitivities. A reconstructed
 benchmark is held fixed across M0/M2/M1, not changed with each method.
-The [validation record](VALIDATION.md) distinguishes the checks performed here
-from the controlled repository's separate historical-manifest checks.
+The [validation record](VALIDATION.md) distinguishes numerical recomputation,
+historical source identities and checked compatibility of portable adapters.
 
 ## Main findings
 

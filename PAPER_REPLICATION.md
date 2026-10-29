@@ -8,6 +8,11 @@ Read the public results in this order:
 2. `results/comparisons/source_tables/EIGHTEEN_EXPERIMENT_ALL_TABLE_CELLS.csv`: saved experiment-side cells for paper tables. A blank cell means no exported value, not zero.
 3. `results/comparisons/source_tables/EIGHTEEN_EXPERIMENT_FIGURE_INVENTORY.csv`: identities and hashes of accepted figures held in the controlled archive. The public checkout does not contain every PNG/FIG.
 4. `results/comparisons/paper_factor/PAPER_WEEKLY_RETURNS.csv`: the author's published H–L factor series, derived from the CC0 Dataverse workbook. Its 371 finite weeks, mean, standard deviation, t statistic and annualized Sharpe are recalculated by the quick check. This is the author's actual series, not a surrogate M0 series.
+5. [Direct relative-model comparison](followup_research/model_advantage_direct/README.md):
+   paired M0→M2→M1 changes in TREND's advantage over LTW, incremental-information
+   decomposition, fixed-asset pricing errors and rolling opportunity portfolios.
+   This independent analysis has its own inferential limits and does not alter
+   the original paper-item mapping or the eighteen baselines.
 
 The table/figure-to-code/permission mapping for the **published CTREND paper** is [TABLE_FIGURE_MAP.csv](TABLE_FIGURE_MAP.csv). It covers nine main tables, three main figures, ten appendix tables and four appendix figures (19 tables and seven figures). The internal release taskbook's separate estimate of “26 tables and five figures” does not match this published-paper inventory, and no final revisit manuscript with that numbering was available for a defensible row-by-row map. Do not represent this CSV as a final-revisit-manuscript map; update it when that manuscript is frozen.
 

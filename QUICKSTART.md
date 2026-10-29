@@ -12,6 +12,18 @@ python3 scripts/public_quickcheck.py
 
 The first command verifies public-file hashes, 18 experiment identities, headline/long-table agreement and the original-paper item map. The second executes actual offline source and table-reproduction tests. The third creates a fresh `outputs/public_tables/` directory with: recalculated moments from the original author workbook; checked and reshaped saved experimental headline/main-table cells; two *new diagnostic* SVGs; and input/output SHA-256 inventories. It does not recompute the eighteen model fits or the paper's original figures. To repeat it, pass another fresh output directory. CI runs this lightweight scope.
 
+The offline suite also checks the saved direct-model comparison summaries. Its
+separate numerical suite uses synthetic data and needs NumPy and SciPy:
+
+```bash
+python3 -m pip install 'numpy>=1.24,<3' 'scipy>=1.10,<2'
+python3 followup_research/model_advantage_direct/test_analysis.py
+```
+
+Full recalculation of that follow-up requires separately authorized saved
+factor/test-portfolio panels; see its [guide](followup_research/model_advantage_direct/README.md).
+The public clone contains aggregate results, not those restricted inputs.
+
 ## Full model re-estimation
 
 The full model workflow is `./reproduce_everything.sh`. It is a separate, expensive operation and must not be confused with the commands above. It requires:

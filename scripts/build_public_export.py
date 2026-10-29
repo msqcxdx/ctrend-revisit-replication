@@ -17,7 +17,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-EXPECTED_SOURCE_COMMIT = "58c8bad72d318eb7f17610084cc826bfbbbe9511"
+EXPECTED_SOURCE_COMMIT = "e634a51d53cfb56dccd35d16ce2009bb824cef18"
 SOURCE_DIRS = ("config", "engines", "environment", "p0_extension", "postprocessing", "scripts", "tests")
 SOURCE_ROOT_FILES = ("run_all.sh", "run_all.m", "run_all.bat", "reproduce_everything.sh")
 ANALYSIS_SUFFIXES = (".m", ".py")
@@ -196,6 +196,16 @@ def main() -> None:
             relatives.add(path.relative_to(source))
     for path in (source / "followup_research" / "scripts").rglob("*"):
         if path.is_file() and path.suffix in ANALYSIS_SUFFIXES and "__pycache__" not in path.parts:
+            relatives.add(path.relative_to(source))
+    # Export only the direct-comparison source, guides and aggregate tables.
+    # Isolated NPZ inputs, parent paths and all raw factor/test-asset panels
+    # remain private, even if another file type is added there later.
+    direct = source / "followup_research/model_advantage_direct"
+    for path in direct.iterdir():
+        if path.is_file() and path.suffix in {".py", ".md"}:
+            relatives.add(path.relative_to(source))
+    for path in (direct / "results").iterdir():
+        if path.is_file() and path.suffix in {".csv", ".json"}:
             relatives.add(path.relative_to(source))
     relatives.update(Path(item) for item in SOURCE_ROOT_FILES + SUMMARY_FILES)
 

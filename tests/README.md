@@ -20,6 +20,8 @@ download data. It checks:
   part of the public distribution.
 - Saved aggregate consistency, paper-item coverage, and the author's factor
   series decoded from the original workbook.
+- Direct model-comparison summary identities and their input/script/output
+  receipts, without loading restricted derived input panels.
 
 Success is reported as `PUBLIC_OFFLINE_TESTS_OK`. It means these checks passed;
 it does not mean that the eighteen MATLAB experiments were rerun, that their
@@ -48,6 +50,19 @@ code-only checkout cannot pass this production preflight.
 their result inventories. It is intended for completed local runs, not for a
 fresh checkout containing only the public aggregate CSVs. See `QUICKSTART.md`
 for inputs, software and execution settings.
+
+## Direct model-comparison numerical tests
+
+With NumPy and SciPy installed, run:
+
+```bash
+python3 followup_research/model_advantage_direct/test_analysis.py
+```
+
+This synthetic suite exercises statistical and economic counterexamples,
+including calendar holes, covariance singularity, model-difference identities
+and future-training perturbations. CI runs it separately from the standard-
+library offline suite. It uses neither vendor inputs nor a MATLAB installation.
 
 ## Additional audit utilities
 

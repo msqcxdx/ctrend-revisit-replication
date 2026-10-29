@@ -1,6 +1,6 @@
 # Public-export decision record
 
-Source identity: controlled repository commit `58c8bad72d318eb7f17610084cc826bfbbbe9511`. The deterministic copier is `scripts/build_public_export.py`; its 717 copied files are listed with controlled and public hashes in `provenance/SOURCE_FILE_MAP.csv`. The public-owned guides/adapters and all copied files are covered by `provenance/PUBLIC_SHA256SUMS`. The public checkout uses `ctrend`/`CTREND` consistently, preserves executable file modes, and lists its public-only overrides. The original author's reference ZIP and the accepted 18-run results are separate, unmodified evidence.
+Source identity: controlled repository commit `e634a51d53cfb56dccd35d16ce2009bb824cef18`. The deterministic copier is `scripts/build_public_export.py`; its copied files are listed with controlled and public hashes in `provenance/SOURCE_FILE_MAP.csv`. The public-owned guides/adapters and all copied files are covered by `provenance/PUBLIC_SHA256SUMS`. The public checkout uses `ctrend`/`CTREND` consistently, preserves executable file modes, and lists its public-only overrides. The original author's reference ZIP and the accepted 18-run results are separate, unmodified evidence.
 
 A clean export from an authorized local copy of the controlled commit can be built with `python3 scripts/build_public_export.py --source /absolute/controlled/repository --target /absolute/fresh/public-export`. The source must be clean and at the exact commit. No Git history, raw vendor data or private output tree is imported. The copier applies the documented public namespace, listed overrides and matching base-file inventories; it does not change model calculations. The original 18-run hashes identify archived research outputs and are not expected to equal public source-file hashes.
 
@@ -10,11 +10,18 @@ A clean export from an authorized local copy of the controlled commit can be bui
 - The original Fieberg et al. Dataverse ZIP, under its dataset-specific CC0 metadata and the embedded third-party notice. Its 68 regular ZIP members were compared byte-for-byte by MD5 against all 68 file checksums returned by the Harvard Dataverse dataset API on 2026-10-28: zero missing, modified or extra members.
 - Author-published factor returns and compact, non-asset-level saved research summaries, including the paper-item table/figure inventory and the 18 run IDs with hashes.
 - A tested quick-replication command that decodes the author workbook again, recalculates its moments, checks and reshapes saved aggregate cells, and emits two explicitly diagnostic SVGs without MATLAB or vendor inputs.
+- Direct model-comparison code, guides, aggregate estimates, date-only support
+  audits and path-free receipts in `followup_research/model_advantage_direct/`.
+  The exporter explicitly selects top-level Python/Markdown files and
+  `results/` CSV/JSON files, never its private input directory.
 
 ## Excluded
 
 - All original CMC price/volume/market-cap matrices, auxiliary LTW/Fama–French/UCRY files, and downloader code whose collection route needs channel-specific authorization review.
 - Detailed per-asset positions and returns, source-price panels, complete MATLAB run roots, logs, runtime directories, large follow-up payloads, and internal path receipts.
+- Direct-comparison NPZ inputs and factor/test-asset return panels. Their hashes
+  identify authorized inputs but do not provide the observations or permission
+  to redistribute them.
 - Controlled copies of `regstats2.m` and `parfor_wait.m`: file-specific redistribution rights for these exact copies were not established. A full user must obtain them under the upstream terms.
 - The controlled repository's Git history and duplicate annotated source mirrors. These mirrors are not runtime dependencies; the public source-plus-data route still requires the external inputs, exact helper versions, MATLAB and substantial computing resources. No full clean-room rerun is claimed.
 

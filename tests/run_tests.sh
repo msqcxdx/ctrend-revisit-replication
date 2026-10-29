@@ -39,4 +39,5 @@ python3 "$ROOT/tests/public_test_installed_inputs.py"
 "$ROOT/tests/integration/test_cpu_capacity_detection.sh"
 "$ROOT/p0_extension/tests/test_preprocessing_derivation.sh"
 python3 "$ROOT/tests/public_test_tables.py"
+python3 "$ROOT/followup_research/model_advantage_direct/verify_results.py"
 echo 'PUBLIC_OFFLINE_TESTS_OK scope=source_contracts_author_workbook_saved_aggregates_no_matlab'

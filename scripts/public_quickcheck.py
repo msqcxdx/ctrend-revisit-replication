@@ -12,6 +12,8 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+HELPER_METHODS = ("M0", "M1", "M2", "P0_M0")
+HELPER_NAMES = ("regstats2.m", "parfor_wait.m")
 
 
 def rows(relative: str) -> list[dict[str, str]]:
@@ -47,6 +49,22 @@ def check_manifest(installed_inputs: bool = False) -> None:
               if path.is_file() and not excluded.intersection(path.relative_to(ROOT).parts)
               and path.relative_to(ROOT).parts[:2] != ("data", "raw")
               and path != manifest}
+    if installed_inputs:
+        # The documented setup adds these separately supplied files after
+        # download. Check their versions against the verified engine inventory
+        # and keep them separate from files distributed in the public package.
+        helper_inventory = ROOT / "engines/P0_M0/base/PACKAGE_FILES.sha256"
+        expected_helpers = dict(line.split("  ", 1)[::-1]
+                                for line in helper_inventory.read_text(encoding="utf-8").splitlines())
+        for method in HELPER_METHODS:
+            for name in HELPER_NAMES:
+                relative = f"engines/{method}/base/Utils/{name}"
+                path = ROOT / relative
+                if not (path.exists() or path.is_symlink()):
+                    continue
+                assert path.is_file() and not path.is_symlink(), f"invalid installed helper: {relative}"
+                assert digest(path) == expected_helpers[f"Utils/{name}"], f"installed helper version differs: {relative}"
+                actual.discard(relative)
     assert listed == actual, f"public manifest coverage mismatch missing={sorted(actual-listed)} extra={sorted(listed-actual)}"
 
 
@@ -146,7 +164,7 @@ def check_public_hygiene() -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--installed-inputs", action="store_true",
-                        help="Allow only the local raw-input inventory to differ; the data gate must run separately")
+                        help="Allow the local raw-input inventory and exact required helpers; the data bundle is checked separately")
     args = parser.parse_args()
     check_manifest(args.installed_inputs)
     check_source_ledger(args.installed_inputs)

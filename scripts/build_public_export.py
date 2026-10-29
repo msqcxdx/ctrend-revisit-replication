@@ -55,6 +55,7 @@ SKIP_SUFFIXES = {".mat", ".xlsx", ".xls", ".zip", ".gz", ".fig", ".png", ".jpg",
 PUBLIC_OVERRIDES = {
     Path("scripts/preflight.sh"),
     Path("tests/run_tests.sh"),
+    Path("tests/README.md"),
     Path("postprocessing/README.md"),
 }
 PUBLIC_ROOT_FILES = (
@@ -70,6 +71,7 @@ PUBLIC_DIR_FILES = (
     "scripts/build_table_figure_map.py",
     "scripts/make_public_manifest.py", "scripts/public_quickcheck.py",
     "scripts/reproduce_public_tables.py", "tests/public_test_bundle.py",
+    "tests/public_test_installed_inputs.py",
     "tests/public_test_tables.py",
 )
 

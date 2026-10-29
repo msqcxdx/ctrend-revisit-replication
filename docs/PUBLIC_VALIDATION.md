@@ -17,7 +17,10 @@ The following commands were run in the **fresh export**:
 Both exited successfully. The offline suite reported `PUBLIC_OFFLINE_TESTS_OK`,
 including nine-cell source materialization, engine/topology and M1 inventory
 guards, P0/M2 volume and consumer contracts, a synthetic data-bundle interface
-test, and the public table-reproduction test. The second command independently
+test, the locally installed helper-file contract, and the public table-reproduction
+test. The helper test covers the eight documented installation paths, rejects
+incorrect helper versions and changed public source, and uses synthetic bytes
+without distributing third-party files. The second command independently
 decoded the original author workbook and recalculated its 371 finite weekly
 returns, mean, t statistic and annualized Sharpe. It checked and rearranged
 894 saved main-table cells for the eighteen experiments and produced two new

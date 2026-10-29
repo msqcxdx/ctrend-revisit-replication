@@ -14,7 +14,15 @@ while IFS= read -r path; do bash -n "$path"; done < <(
     ! -path "$ROOT/runtime/*" ! -path "$ROOT/outputs/*" | LC_ALL=C sort
 )
 
-if [[ -d "$ROOT/data/raw/common" ]]; then
+installed_inputs=0
+[[ ! -d "$ROOT/data/raw/common" ]] || installed_inputs=1
+for method in M0 M1 M2 P0_M0; do
+  for helper in regstats2.m parfor_wait.m; do
+    path="$ROOT/engines/$method/base/Utils/$helper"
+    if [[ -e "$path" || -L "$path" ]]; then installed_inputs=1; fi
+  done
+done
+if [[ "$installed_inputs" == 1 ]]; then
   python3 "$ROOT/scripts/public_quickcheck.py" --installed-inputs
 else
   python3 "$ROOT/scripts/public_quickcheck.py"
@@ -27,6 +35,7 @@ test -s "$ROOT/engines/M1/base/DesignChoices.mat"
 python3 "$ROOT/tests/integration/test_p0_m2_volume_policy.py"
 python3 "$ROOT/tests/integration/test_m2_consumer_matrix.py"
 python3 "$ROOT/tests/public_test_bundle.py"
+python3 "$ROOT/tests/public_test_installed_inputs.py"
 "$ROOT/tests/integration/test_cpu_capacity_detection.sh"
 "$ROOT/p0_extension/tests/test_preprocessing_derivation.sh"
 python3 "$ROOT/tests/public_test_tables.py"

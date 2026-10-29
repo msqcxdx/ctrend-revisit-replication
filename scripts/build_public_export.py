@@ -182,6 +182,10 @@ def main() -> None:
         for path in (source / directory).rglob("*"):
             if any(part in SKIP_NAMES for part in path.relative_to(source).parts):
                 continue
+            # The public export has one complete root inventory, not separate
+            # top-level extension inventories.
+            if path.parent == source / "p0_extension" and path.suffix.lower() == ".sha256":
+                continue
             if path.suffix.lower() in SKIP_SUFFIXES or not path.is_file():
                 continue
             relatives.add(path.relative_to(source))

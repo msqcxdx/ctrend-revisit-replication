@@ -91,7 +91,7 @@ def main():
     rows=list(csv.DictReader((ROOT/'outputs/E11/accepted_run_paths.csv').open()))
     identity=next(r for r in rows if r['experiment_id']==args.experiment)
     parent=Path(identity['accepted_run_root']);results=Path(identity['result_root'])
-    source=parent/'runtime/cttrend_lookahead_only_pipeline'
+    source=parent/'runtime/ctrend_lookahead_only_pipeline'
     data=parent/'data.staging'
     if not data.is_dir():data=parent/'data'
     if sha(parent/'RUN_COMPLETE')!=identity['run_complete_sha256']:raise ValueError('Parent changed')

@@ -31,7 +31,7 @@ done < "$RUN_ROOT/run.env"
 : "${research_run_id:?run.env lacks research_run_id}"
 : "${matlab_bin:?run.env lacks matlab_bin}"
 shard_dir="$RUN_ROOT/shard$SHARD"
-code_dir="$shard_dir/extract/cttrend_corrected_pipeline"
+code_dir="$shard_dir/extract/ctrend_corrected_pipeline"
 [[ -d "$code_dir" ]] || { echo "missing staged code: $code_dir" >&2; exit 2; }
 
 if [[ -f "$shard_dir/supervisor.pid" ]]; then

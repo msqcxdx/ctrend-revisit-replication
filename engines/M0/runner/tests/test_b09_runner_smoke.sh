@@ -11,7 +11,7 @@ grep -F 'pool_start_retries=$POOL_START_RETRIES' \
 grep -F 'pool_retry_delay_seconds=$POOL_RETRY_DELAY_SECONDS' \
   "$RUNNER_DIR/launch_b09_shards.sh" >/dev/null
 MATLAB_BIN="${MATLAB_BIN:-$(command -v matlab 2>/dev/null || true)}"
-ROOT="$(mktemp -d /tmp/cttrend_old_v2_b09_smoke_XXXXXX)"
+ROOT="$(mktemp -d /tmp/ctrend_old_v2_b09_smoke_XXXXXX)"
 CODE_DIR="$ROOT/code"
 SHARD_ROOT="$ROOT/shard"
 LOG_DIR="$SHARD_ROOT/logs"

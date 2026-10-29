@@ -21,7 +21,7 @@ RUN_ROOT="$(readlink -f -- "$RUN_ROOT")"
 "$EXT_ROOT/tests/verify_completed_run.sh" "$ID" "$RUN_ROOT"
 ACCEPTANCE="$RUN_ROOT/P0_EXPERIMENT_ACCEPTANCE.env"
 ACCEPTANCE_HASH_FIELD=p0_experiment_acceptance_sha256
-REGISTRATION_FORMAT=cttrend-p0-experiment-registration-v1
+REGISTRATION_FORMAT=ctrend-p0-experiment-registration-v1
 PROVENANCE_COMPATIBILITY="$RUN_ROOT/P0_EXPERIMENT_PROVENANCE_COMPATIBILITY.env"
 [[ -s "$ACCEPTANCE" ]] || exit 1
 
@@ -83,8 +83,8 @@ if [[ -e "$PROVENANCE_COMPATIBILITY" ]]; then
   PROVENANCE_COMPATIBILITY_MODE="$(awk -F= '$1=="mode"{print $2;exit}' \
     "$PROVENANCE_COMPATIBILITY")"
   case "$PROVENANCE_COMPATIBILITY_FORMAT:$PROVENANCE_COMPATIBILITY_MODE" in
-    cttrend-m1-legacy-inventory-compatibility-v1:tests_subdirectory_shell_omission_v1) ;;
-    cttrend-m1-dynamic-figure-b2-recovery-compatibility-v1:dynamic_figure_b2_validator_recovery_v1) ;;
+    ctrend-m1-legacy-inventory-compatibility-v1:tests_subdirectory_shell_omission_v1) ;;
+    ctrend-m1-dynamic-figure-b2-recovery-compatibility-v1:dynamic_figure_b2_validator_recovery_v1) ;;
     *) echo 'unrecognized provenance compatibility mode' >&2; exit 1 ;;
   esac
   [[ "$(awk -F= '$1=="experiment_id"{print $2;exit}' \

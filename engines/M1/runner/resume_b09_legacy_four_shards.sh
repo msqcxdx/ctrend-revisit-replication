@@ -63,7 +63,7 @@ export NUMEXPR_NUM_THREADS=1
 export POOL_START_RETRIES="${POOL_START_RETRIES:-3}"
 export POOL_RETRY_DELAY_SECONDS="${POOL_RETRY_DELAY_SECONDS:-20}"
 export B09_JOB_STORAGE_ROOT="$JOB_STORAGE_ROOT/shards"
-cttrend_prepare_temp_dir "$JOB_STORAGE_ROOT" "$JOB_STORAGE_ALLOWED_ROOT" \
+ctrend_prepare_temp_dir "$JOB_STORAGE_ROOT" "$JOB_STORAGE_ALLOWED_ROOT" \
   "b09_recovery_$research_run_id"
 declare -a pids=()
 
@@ -91,7 +91,7 @@ cleanup_resume() {
   local rc=$?
   trap - EXIT INT TERM
   stop_resume_shards
-  cttrend_safe_remove_temp_dir "$JOB_STORAGE_ROOT" \
+  ctrend_safe_remove_temp_dir "$JOB_STORAGE_ROOT" \
     "$JOB_STORAGE_ALLOWED_ROOT" || rc=1
   exit "$rc"
 }
@@ -147,7 +147,7 @@ cmp -s "$PLAN_DIR/missing_before.txt" "$PLAN_DIR/planned_combos.txt" || {
 log_event "START phase=b09_resume missing=$(wc -l < "$PLAN_DIR/missing_before.txt") workers=4x$RECOVERY_WORKERS persistent=1"
 for shard in 1 2 3 4; do
   shard_dir="$RUN_ROOT/shard$shard"
-  code_dir="$shard_dir/extract/cttrend_corrected_pipeline"
+  code_dir="$shard_dir/extract/ctrend_corrected_pipeline"
   log_dir="$PLAN_DIR/shard$shard"
   mkdir -p "$log_dir"
   B09_SHARD_ID="resume$shard" \

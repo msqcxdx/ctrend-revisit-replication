@@ -50,7 +50,7 @@ OBSERVED_STATIC_GUARD_SHA="$(inventory_sha "$OBSERVED" "$STATIC_GUARD")"
 # Normalize only the two declared validator paths.  Exact equality after this
 # substitution proves that no scientific MATLAB file, runner, or other test
 # differs between the immutable run and the current frozen engine.
-TEMP="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_m1_figure_b2_compat_XXXXXX")"
+TEMP="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_m1_figure_b2_compat_XXXXXX")"
 cleanup() { rm -rf -- "$TEMP"; }
 trap cleanup EXIT
 awk -v figure="$FIGURE_TEST" -v figure_sha="$EXPECTED_FIGURE_SHA" \
@@ -75,7 +75,7 @@ for pair in "$FIGURE_TEST:$OLD_FIGURE_SHA" \
     "$STATIC_GUARD:$OLD_STATIC_GUARD_SHA"; do
   relative="${pair%%:*}"
   expected_old_sha="${pair##*:}"
-  runtime_file="$RUN_ROOT/runtime/cttrend_corrected_pipeline/$relative"
+  runtime_file="$RUN_ROOT/runtime/ctrend_corrected_pipeline/$relative"
   [[ -f "$runtime_file" && ! -L "$runtime_file" && \
      "$(sha256sum "$runtime_file" | awk '{print $1}')" == \
        "$expected_old_sha" ]] || exit 1
@@ -115,7 +115,7 @@ RESULT_LOG="$RUN_ROOT/logs/result_invariants/pipeline.log"
 RESULT_SEAL="$RUN_ROOT/logs/result_invariants/phase.complete.env"
 [[ -s "$RECOVERY" && -s "$RESULT_LOG" && -s "$RESULT_SEAL" ]] || exit 1
 [[ "$(value "$RECOVERY" format)" == \
-     cttrend-m1-dynamic-figure-b2-post-b09-recovery-v1 && \
+     ctrend-m1-dynamic-figure-b2-post-b09-recovery-v1 && \
    "$(value "$RECOVERY" research_run_id)" == "$RUN_ID" && \
    "$(value "$RECOVERY" rerun_b00_b09)" == 0 && \
    "$(value "$RECOVERY" verified_b09_payloads)" == 3072 && \
@@ -148,7 +148,7 @@ rg -q 'Figure B\.2 does not disclose the expected zero-increment gap segments' \
 
 # Emit normalized compatibility evidence for the caller to seal into the run root.
 printf '%s\n' \
-  'format=cttrend-m1-dynamic-figure-b2-recovery-compatibility-v1' \
+  'format=ctrend-m1-dynamic-figure-b2-recovery-compatibility-v1' \
   'mode=dynamic_figure_b2_validator_recovery_v1' \
   "changed_relative_paths=$FIGURE_TEST,$STATIC_GUARD" \
   "old_figure_validator_sha256=$OBSERVED_FIGURE_SHA" \

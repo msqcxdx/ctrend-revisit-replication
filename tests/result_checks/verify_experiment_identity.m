@@ -1,15 +1,15 @@
 % CTREND_REVISIT_FILE_PURPOSE: Check that a saved b01 checkpoint matches its declared M method and D data treatment.
 function verify_experiment_identity()
-% Inputs arrive through CTTREND_VERIFY_* environment variables so the shell
+% Inputs arrive through CTREND_VERIFY_* environment variables so the shell
 % acceptance gate can inspect a run without editing it. The function checks
 % D-axis exclusion identities, method-specific raw-correction provenance, and
 % M1 DesignChoices content. It writes no result and fails on any mismatch.
 
-sRoot = getenv('CTTREND_VERIFY_PACKAGE_ROOT');
-sID = getenv('CTTREND_VERIFY_EXPERIMENT_ID');
-sDataFile = getenv('CTTREND_VERIFY_DATA_FILE');
-sDesignFile = getenv('CTTREND_VERIFY_DESIGN_CHOICES_FILE');
-sExpectedDesignFile = getenv('CTTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE');
+sRoot = getenv('CTREND_VERIFY_PACKAGE_ROOT');
+sID = getenv('CTREND_VERIFY_EXPERIMENT_ID');
+sDataFile = getenv('CTREND_VERIFY_DATA_FILE');
+sDesignFile = getenv('CTREND_VERIFY_DESIGN_CHOICES_FILE');
+sExpectedDesignFile = getenv('CTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE');
 assert(isfolder(sRoot) && isfile(sDataFile));
 assert(any(strcmp(sID,{'M0_D0','M0_D1','M0_D2', ...
     'M1_D0','M1_D1','M1_D2', ...

@@ -62,11 +62,11 @@ done
 created_runtime_root=0
 RUNTIME_TEMP_ROOT="${CTREND_SUPPLEMENTARY_TEMP_ROOT:-}"
 if [[ -z "$RUNTIME_TEMP_ROOT" ]]; then
-  RUNTIME_TEMP_ROOT="$(mktemp -d /tmp/cttrend_supplementary_XXXXXX)"
+  RUNTIME_TEMP_ROOT="$(mktemp -d /tmp/ctrend_supplementary_XXXXXX)"
   # mktemp created the directory; remove it so preparation can prove
   # ownership by creating the marker before MATLAB writes anything.
   rmdir "$RUNTIME_TEMP_ROOT"
-  cttrend_prepare_temp_dir "$RUNTIME_TEMP_ROOT" /tmp supplementary
+  ctrend_prepare_temp_dir "$RUNTIME_TEMP_ROOT" /tmp supplementary
   created_runtime_root=1
 fi
 
@@ -83,10 +83,10 @@ cleanup_runtime() {
   local rc=$?
   trap - EXIT INT TERM
   if (( created_runtime_root == 1 )); then
-    cttrend_safe_remove_temp_dir "$RUNTIME_TEMP_ROOT" /tmp || rc=1
+    ctrend_safe_remove_temp_dir "$RUNTIME_TEMP_ROOT" /tmp || rc=1
   else
-    cttrend_safe_remove_temp_dir "$MATLAB_PREFDIR" "$RUNTIME_TEMP_ROOT" || rc=1
-    cttrend_safe_remove_temp_dir "$PIPELINE_JOB_STORAGE" "$RUNTIME_TEMP_ROOT" || rc=1
+    ctrend_safe_remove_temp_dir "$MATLAB_PREFDIR" "$RUNTIME_TEMP_ROOT" || rc=1
+    ctrend_safe_remove_temp_dir "$PIPELINE_JOB_STORAGE" "$RUNTIME_TEMP_ROOT" || rc=1
   fi
   exit "$rc"
 }
@@ -94,8 +94,8 @@ trap cleanup_runtime EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 
-cttrend_prepare_temp_dir "$MATLAB_PREFDIR" "$RUNTIME_TEMP_ROOT" matlab_preferences
-cttrend_prepare_temp_dir "$PIPELINE_JOB_STORAGE" "$RUNTIME_TEMP_ROOT" parallel_job_storage
+ctrend_prepare_temp_dir "$MATLAB_PREFDIR" "$RUNTIME_TEMP_ROOT" matlab_preferences
+ctrend_prepare_temp_dir "$PIPELINE_JOB_STORAGE" "$RUNTIME_TEMP_ROOT" parallel_job_storage
 
 export CODE_DIR MATLAB_BIN PARALLEL_WORKERS
 export OMP_NUM_THREADS=1

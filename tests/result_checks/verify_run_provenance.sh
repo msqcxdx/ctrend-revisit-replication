@@ -41,7 +41,7 @@ RUN_ID="$(value research_run_id "$MARKER")"
 
 FORMAT="$(value format "$MARKER")"
 # E1 is a portable reuse of an independently sealed M1_D0 full run.
-if [[ "$FORMAT" == cttrend-e1-full-complete-v1 ]]; then
+if [[ "$FORMAT" == ctrend-e1-full-complete-v1 ]]; then
   require_value "$MARKER" experiment_id E1_raw_cmc_retain_3787
   require_value "$MARKER" combo_count 3072
   require_value "$MARKER" combo_sidecar_count 3072
@@ -56,7 +56,7 @@ if [[ "$FORMAT" == cttrend-e1-full-complete-v1 ]]; then
      -s "$SCIENTIFIC_SNAPSHOT" ]] || {
     echo 'portable E1 reuse provenance is incomplete' >&2; exit 1;
   }
-  require_value "$REUSE" format cttrend-e1-reuse-provenance-v1
+  require_value "$REUSE" format ctrend-e1-reuse-provenance-v1
   require_value "$REUSE" target_experiment_id M1_D0
   require_value "$REUSE" source_experiment_id E1_raw_cmc_retain_3787
   require_value "$REUSE" research_run_id "$RUN_ID"
@@ -69,7 +69,7 @@ if [[ "$FORMAT" == cttrend-e1-full-complete-v1 ]]; then
     [[ "$(value "$field" "$REUSE")" == \
        "$(sha256sum "$file" | awk '{print $1}')" ]] || exit 1
   done
-  require_value "$CORE_SNAPSHOT" format cttrend-core-complete-v2
+  require_value "$CORE_SNAPSHOT" format ctrend-core-complete-v2
   require_value "$CORE_SNAPSHOT" experiment_id E1_raw_cmc_retain_3787
   require_value "$CORE_SNAPSHOT" engine corrected_v2
   require_value "$CORE_SNAPSHOT" raw_adjustment_mode none
@@ -89,7 +89,7 @@ if [[ "$FORMAT" == cttrend-e1-full-complete-v1 ]]; then
   [[ "$(value package_raw_inventory_sha256 "$REUSE")" == \
      "$(sha256sum "$ROOT/data/RAW_INPUTS.sha256" | awk '{print $1}')" ]] || exit 1
 
-  EXPECTED_PARENT="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_expected_e1_XXXXXX")"
+  EXPECTED_PARENT="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_expected_e1_XXXXXX")"
   cleanup_e1_expected() { rm -rf -- "$EXPECTED_PARENT"; }
   trap cleanup_e1_expected EXIT
   EXPECTED_SOURCE="$EXPECTED_PARENT/source"
@@ -119,7 +119,7 @@ fi
 # require the launch-time source inventory to match it exactly.  The E1 reuse
 # route is handled separately above because its historical control shell/tests
 # differ while its scientific MATLAB code is checked before reuse.
-EXPECTED_PARENT="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_expected_engine_XXXXXX")"
+EXPECTED_PARENT="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_expected_engine_XXXXXX")"
 cleanup_expected() { rm -rf -- "$EXPECTED_PARENT"; }
 trap cleanup_expected EXIT
 EXPECTED_SOURCE="$EXPECTED_PARENT/source"
@@ -154,13 +154,13 @@ if ! cmp -s "$EXPECTED_INVENTORY" "$OBSERVED_SOURCE_INVENTORY"; then
         "$EXPECTED_INVENTORY" "$OBSERVED_SOURCE_INVENTORY" "$RUN_ROOT" \
         > "$PROVENANCE_COMPATIBILITY_EVIDENCE"; then
       PROVENANCE_COMPATIBILITY_VALIDATOR="$ROOT/tests/result_checks/verify_m1_legacy_inventory_scope.sh"
-      PROVENANCE_COMPATIBILITY_FORMAT=cttrend-m1-legacy-inventory-compatibility-v1
+      PROVENANCE_COMPATIBILITY_FORMAT=ctrend-m1-legacy-inventory-compatibility-v1
       PROVENANCE_COMPATIBILITY_MODE=tests_subdirectory_shell_omission_v1
     elif "$ROOT/tests/result_checks/verify_m1_dynamic_figure_b2_recovery_scope.sh" \
         "$EXPECTED_INVENTORY" "$OBSERVED_SOURCE_INVENTORY" "$RUN_ROOT" \
         > "$PROVENANCE_COMPATIBILITY_EVIDENCE"; then
       PROVENANCE_COMPATIBILITY_VALIDATOR="$ROOT/tests/result_checks/verify_m1_dynamic_figure_b2_recovery_scope.sh"
-      PROVENANCE_COMPATIBILITY_FORMAT=cttrend-m1-dynamic-figure-b2-recovery-compatibility-v1
+      PROVENANCE_COMPATIBILITY_FORMAT=ctrend-m1-dynamic-figure-b2-recovery-compatibility-v1
       PROVENANCE_COMPATIBILITY_MODE=dynamic_figure_b2_validator_recovery_v1
     else
       echo "run executable source differs from frozen package engine for $ID" >&2
@@ -181,15 +181,15 @@ require_value "$STARTED" research_run_id "$RUN_ID"
 
 if [[ "$ID" == M0_* || "$ID" == M2_* ]]; then
   if [[ "$ID" == M0_* ]]; then
-    EXPECTED_COMPLETE_FORMAT=cttrend-published-method-run-complete-v1
-    EXPECTED_STARTED_FORMAT=cttrend-published-method-run-started-v1
+    EXPECTED_COMPLETE_FORMAT=ctrend-published-method-run-complete-v1
+    EXPECTED_STARTED_FORMAT=ctrend-published-method-run-started-v1
     EXPECTED_VARIANT=v1
-    EXPECTED_RUNTIME_ROOT=cttrend_old_pipeline
+    EXPECTED_RUNTIME_ROOT=ctrend_old_pipeline
   else
-    EXPECTED_COMPLETE_FORMAT=cttrend-lookahead-only-run-complete-v1
-    EXPECTED_STARTED_FORMAT=cttrend-lookahead-only-run-started-v1
+    EXPECTED_COMPLETE_FORMAT=ctrend-lookahead-only-run-complete-v1
+    EXPECTED_STARTED_FORMAT=ctrend-lookahead-only-run-started-v1
     EXPECTED_VARIANT=m2
-    EXPECTED_RUNTIME_ROOT=cttrend_lookahead_only_pipeline
+    EXPECTED_RUNTIME_ROOT=ctrend_lookahead_only_pipeline
   fi
   require_value "$MARKER" format "$EXPECTED_COMPLETE_FORMAT"
   require_value "$MARKER" complete 1
@@ -244,7 +244,7 @@ if [[ "$ID" == M0_* || "$ID" == M2_* ]]; then
   # Bind the merged grid to this run, package, DATA, and DesignChoices.
   [[ -s "$B09" && -s "$B09.sha256" ]] || exit 1
   (cd "$(dirname "$B09")" && sha256sum -c "$(basename "$B09").sha256" >/dev/null)
-  require_value "$B09" format cttrend-old-v2-complete-b09-manifest-v1
+  require_value "$B09" format ctrend-old-v2-complete-b09-manifest-v1
   require_value "$B09" research_run_id "$RUN_ID"
   require_value "$B09" combo_files 3072
   require_value "$B09" digest_files 3072
@@ -255,7 +255,7 @@ if [[ "$ID" == M0_* || "$ID" == M2_* ]]; then
   require_value "$B09" design_choices_sha256 "$(value design_choices_sha256 "$MARKER")"
 else
   # M1 records every phase, 8×15 topology, and atomic publication commitments.
-  require_value "$MARKER" format cttrend-run-complete-v1
+  require_value "$MARKER" format ctrend-run-complete-v1
   for key in unit_tests_rc core_phase_rc baseline_downstream_rc \
       canonical_combo1_rc b09_shards_rc b09_merge_rc b10_rc supplementary_rc; do
     require_value "$MARKER" "$key" 0
@@ -287,7 +287,7 @@ else
   require_value "$MARKER" result_file_count "$(wc -l < "$RUN_ROOT/results.sha256")"
 
   (cd "$RUN_ROOT" && sha256sum -c status_inventory.sha256 >/dev/null)
-  (cd "$RUN_ROOT/runtime/cttrend_corrected_pipeline" && \
+  (cd "$RUN_ROOT/runtime/ctrend_corrected_pipeline" && \
     sha256sum -c "$RUN_ROOT/runtime_code_inventory_at_publish.sha256" >/dev/null)
   DATA="$RUN_ROOT/data"; RESULTS="$RUN_ROOT/results"
   [[ -d "$DATA" && -d "$RESULTS" ]] || exit 1

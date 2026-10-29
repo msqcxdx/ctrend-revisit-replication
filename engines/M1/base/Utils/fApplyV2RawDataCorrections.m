@@ -59,7 +59,7 @@ sTransformerSHA256 = string(fFileSHA256(sTransformer));
 sRegistry = strtrim(string(getenv('CTREND_EVENT_REGISTRY_FILE')));
 
 rAudit = struct();
-rAudit.sFormat = 'cttrend-core-event-treatment-audit-v1';
+rAudit.sFormat = 'ctrend-core-event-treatment-audit-v1';
 rAudit.sExperimentID = char(sExperimentID);
 rAudit.sMode = char(sMode);
 rAudit.sTransformerSHA256 = char(sTransformerSHA256);

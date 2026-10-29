@@ -14,7 +14,7 @@ grep -Fq "find . -type f -printf '%P\\0'" <<< "$inventory_block"
 grep -Fq 'results_inventory_sha256=$(sha256sum "$RUN_ROOT/results_inventory.sha256"' \
   "$RUNNER"
 
-tmp="$(mktemp -d /tmp/cttrend_old_result_inventory_XXXXXX)"
+tmp="$(mktemp -d /tmp/ctrend_old_result_inventory_XXXXXX)"
 trap 'rm -rf -- "$tmp"' EXIT
 mkdir -p "$tmp/results/CTREND" "$tmp/unrelated"
 printf 'alpha\n' > "$tmp/results/CTREND/a.mat"

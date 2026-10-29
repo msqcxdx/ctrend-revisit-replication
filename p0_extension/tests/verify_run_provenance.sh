@@ -47,7 +47,7 @@ FORMAT="$(value format "$MARKER")"
 # require the launch-time source inventory to match it exactly.  The E1 reuse
 # route is handled separately above because its historical control shell/tests
 # differ while its scientific MATLAB code is checked before reuse.
-EXPECTED_PARENT="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_expected_engine_XXXXXX")"
+EXPECTED_PARENT="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_expected_engine_XXXXXX")"
 cleanup_expected() { rm -rf -- "$EXPECTED_PARENT"; }
 trap cleanup_expected EXIT
 EXPECTED_SOURCE="$EXPECTED_PARENT/source"
@@ -80,15 +80,15 @@ require_value "$STARTED" research_run_id "$RUN_ID"
 
 if [[ "$METHOD" == M0 || "$METHOD" == M2 ]]; then
   if [[ "$METHOD" == M0 ]]; then
-    EXPECTED_COMPLETE_FORMAT=cttrend-published-method-run-complete-v1
-    EXPECTED_STARTED_FORMAT=cttrend-published-method-run-started-v1
+    EXPECTED_COMPLETE_FORMAT=ctrend-published-method-run-complete-v1
+    EXPECTED_STARTED_FORMAT=ctrend-published-method-run-started-v1
     EXPECTED_VARIANT=v1
-    EXPECTED_RUNTIME_ROOT=cttrend_old_pipeline
+    EXPECTED_RUNTIME_ROOT=ctrend_old_pipeline
   else
-    EXPECTED_COMPLETE_FORMAT=cttrend-lookahead-only-run-complete-v1
-    EXPECTED_STARTED_FORMAT=cttrend-lookahead-only-run-started-v1
+    EXPECTED_COMPLETE_FORMAT=ctrend-lookahead-only-run-complete-v1
+    EXPECTED_STARTED_FORMAT=ctrend-lookahead-only-run-started-v1
     EXPECTED_VARIANT=m2
-    EXPECTED_RUNTIME_ROOT=cttrend_lookahead_only_pipeline
+    EXPECTED_RUNTIME_ROOT=ctrend_lookahead_only_pipeline
   fi
   require_value "$MARKER" format "$EXPECTED_COMPLETE_FORMAT"
   require_value "$MARKER" complete 1
@@ -141,7 +141,7 @@ if [[ "$METHOD" == M0 || "$METHOD" == M2 ]]; then
   B09="$RESULTS/CTREND/ResearchDesignRunManifest.env"
   [[ -s "$B09" && -s "$B09.sha256" ]] || exit 1
   (cd "$(dirname "$B09")" && sha256sum -c "$(basename "$B09").sha256" >/dev/null)
-  require_value "$B09" format cttrend-old-v2-complete-b09-manifest-v1
+  require_value "$B09" format ctrend-old-v2-complete-b09-manifest-v1
   require_value "$B09" research_run_id "$RUN_ID"
   require_value "$B09" combo_files 3072
   require_value "$B09" digest_files 3072
@@ -151,7 +151,7 @@ if [[ "$METHOD" == M0 || "$METHOD" == M2 ]]; then
   require_value "$B09" data_inputs_sha256 "$(value data_inputs_sha256 "$MARKER")"
   require_value "$B09" design_choices_sha256 "$(value design_choices_sha256 "$MARKER")"
 else
-  require_value "$MARKER" format cttrend-run-complete-v1
+  require_value "$MARKER" format ctrend-run-complete-v1
   for key in unit_tests_rc core_phase_rc baseline_downstream_rc \
       canonical_combo1_rc b09_shards_rc b09_merge_rc b10_rc supplementary_rc; do
     require_value "$MARKER" "$key" 0
@@ -183,7 +183,7 @@ else
   require_value "$MARKER" result_file_count "$(wc -l < "$RUN_ROOT/results.sha256")"
 
   (cd "$RUN_ROOT" && sha256sum -c status_inventory.sha256 >/dev/null)
-  (cd "$RUN_ROOT/runtime/cttrend_corrected_pipeline" && \
+  (cd "$RUN_ROOT/runtime/ctrend_corrected_pipeline" && \
     sha256sum -c "$RUN_ROOT/runtime_code_inventory_at_publish.sha256" >/dev/null)
   DATA="$RUN_ROOT/data"; RESULTS="$RUN_ROOT/results"
   [[ -d "$DATA" && -d "$RESULTS" ]] || exit 1

@@ -34,9 +34,9 @@ end
 
 % D1: one named asset disappears; every retained raw value stays bit exact.
 sD1 = fullfile(sPackageRoot,'config','exclusions','D1.csv');
-setenv('CTTREND_DATA_TREATMENT_ID','D1');
-setenv('CTTREND_ASSET_EXCLUSION_FILE',sD1);
-setenv('CTTREND_ASSET_EXCLUSION_SHA256',fFileSHA256(sD1));
+setenv('CTREND_DATA_TREATMENT_ID','D1');
+setenv('CTREND_ASSET_EXCLUSION_FILE',sD1);
+setenv('CTREND_ASSET_EXCLUSION_SHA256',fFileSHA256(sD1));
 vID = [1;3787;6539];
 rMeta = iMetadata(vID,["BTC";"INNBCL";"YAM"]);
 cPanel = iPanels(4,numel(vID));
@@ -56,9 +56,9 @@ assert(rAudit.iExcludedAssets == 1 && ...
 % D2: all 28 frozen rows disappear, while BTC, NPXS, PUNDIX and YAM remain.
 sD2 = fullfile(sPackageRoot,'config','exclusions','D2.csv');
 tD2 = readtable(sD2,'TextType','string','VariableNamingRule','preserve');
-setenv('CTTREND_DATA_TREATMENT_ID','D2');
-setenv('CTTREND_ASSET_EXCLUSION_FILE',sD2);
-setenv('CTTREND_ASSET_EXCLUSION_SHA256',fFileSHA256(sD2));
+setenv('CTREND_DATA_TREATMENT_ID','D2');
+setenv('CTREND_ASSET_EXCLUSION_FILE',sD2);
+setenv('CTREND_ASSET_EXCLUSION_SHA256',fFileSHA256(sD2));
 vID = [1;tD2.asset_id;2603;6539;9040];
 sSymbol = ["BTC";tD2.symbol;"NPXS";"YAM";"PUNDIX"];
 rMeta = iMetadata(vID,sSymbol);
@@ -102,7 +102,7 @@ rMeta.vStableCoin = false(numel(vID),1);
 end
 
 function iRestoreEnvironment()
-setenv('CTTREND_DATA_TREATMENT_ID','');
-setenv('CTTREND_ASSET_EXCLUSION_FILE','');
-setenv('CTTREND_ASSET_EXCLUSION_SHA256','');
+setenv('CTREND_DATA_TREATMENT_ID','');
+setenv('CTREND_ASSET_EXCLUSION_FILE','');
+setenv('CTREND_ASSET_EXCLUSION_SHA256','');
 end

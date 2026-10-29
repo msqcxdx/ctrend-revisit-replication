@@ -8,7 +8,7 @@ MATLAB_BIN="${MATLAB_BIN:-$(command -v matlab 2>/dev/null || true)}"
 }
 PREF_PARENT="${MATLAB_TEST_PREF_ROOT:-${TMPDIR:-/tmp}}"
 mkdir -p "$PREF_PARENT"
-PREF="$(mktemp -d "$PREF_PARENT/cttrend_3x3_matlab_pref_XXXXXX")"
+PREF="$(mktemp -d "$PREF_PARENT/ctrend_3x3_matlab_pref_XXXXXX")"
 cleanup() { rm -rf -- "$PREF"; }
 trap cleanup EXIT
 MATLAB_PREFDIR="$PREF" "$MATLAB_BIN" -licmode onlinelicensing \

@@ -232,7 +232,7 @@ M2_REASONS = {
         "All indicator formulas and strategy signs remain M0; terminal wealth stays invested in the same leg.",
     ),
     "b05CreateCTREND.m": (
-        "look-ahead-cttrend-fix",
+        "look-ahead-ctrend-fix",
         "Separates own-week historical label cleaning from raw OOS payoff, removes future Y from panel/rank support, and applies screens at formation.",
         "Retains M0 predictors, all-predictor joint support, models, hyperparameters, and selected-forecast combination rules.",
     ),
@@ -331,7 +331,7 @@ M1_REASONS = {
     "b02CalculateIndicators.m": ("data-layer-and-characteristic-fix", "Builds separate statistical-label and raw endpoint-P&L layers, corrected characteristics, market proxies, and bit-exact parallel chunks.", "Produces axis-aligned label, predictor, and economic-payoff artifacts with explicit provenance; parallel chunks must equal the serial definitions and therefore introduce no alternate estimand."),
     "b03Table1_ResearchSample.m": ("table1-and-publication-fix", "Uses the corrected synchronized sample and deterministic table publication.", "Table 1 counts and dates are recomputed from the authenticated corrected sample, while deterministic publication changes only file creation and formatting."),
     "b04Table2_TechnicalIndicatorStrategyReturns.m": ("table2-oos-accounting-fix", "Forms technical strategies ex ante and evaluates raw endpoint payoffs with corrected missing-data accounting.", "Table 2 membership is fixed from formation information and its reported returns use the separate economic-payoff layer rather than allowing target-payoff availability to define the sort."),
-    "b05CreateCTREND.m": ("cttrend-core-full-fix", "Implements predictor-own-support ranks, paper Eq. (7) weighting, causal outlier windows, Eq. (10) selection, Eq. (11) averaging, and raw endpoint P&L.", "The headline signal follows the paper-defined weighting, selection, and averaging sequence using historical labels only; portfolio evaluation consumes raw economic endpoint returns on the saved formation universe."),
+    "b05CreateCTREND.m": ("ctrend-core-full-fix", "Implements predictor-own-support ranks, paper Eq. (7) weighting, causal outlier windows, Eq. (10) selection, Eq. (11) averaging, and raw endpoint P&L.", "The headline signal follows the paper-defined weighting, selection, and averaging sequence using historical labels only; portfolio evaluation consumes raw economic endpoint returns on the saved formation universe."),
     "b06Table3_UnivariatePortfolioSorts.m": ("table3-paper-alignment", "Uses lagged weekly-average market cap, percent IVOL, and endpoint P&L with ex-ante sorts.", "Aligns Table 3 with the paper and economic accounting."),
     "b07Table4_CrossSectionalRegressions.m": ("table4-statistical-label-fix", "Retains the paper/old synchronized statistical-label regression while using strict OOS CTREND alignment and ex-ante screens.", "Explicitly does not substitute economic endpoint P&L."),
     "b08Table5_PerformanceInSubperiodsAndDifferentMarketStates.m": ("table5-consumer-fix", "Consumes the corrected H-L series, reconstructs only required middle quintiles, aligns dates/factors, and preserves the stated market-state definitions.", "Every Table 5 panel uses the same authenticated CTREND return/date axes as the headline result; the stage cannot silently rebuild H-L with a different support or portfolio rule."),
@@ -1307,7 +1307,7 @@ def main() -> int:
     # Materialize all three M0 data-axis variants outside the release tree so
     # annotations can distinguish inherited M0 adapters from true M0->M2
     # look-ahead corrections.
-    m0_temp = tempfile.TemporaryDirectory(prefix="cttrend_m0_annotation_reference_")
+    m0_temp = tempfile.TemporaryDirectory(prefix="ctrend_m0_annotation_reference_")
     m0_reference_root = Path(m0_temp.name)
     m0_references: dict[str, Path] = {}
     for data_id in ("D0", "D1", "D2"):

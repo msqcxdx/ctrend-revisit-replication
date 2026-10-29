@@ -31,8 +31,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 AUDITOR = ROOT / "native_failure_audit/audit_after_b05.m"
 IDENTITIES = ROOT / "outputs/E11/accepted_run_paths.csv"
-METHOD_DIR = {"M1": "cttrend_corrected_pipeline",
-              "M2": "cttrend_lookahead_only_pipeline"}
+METHOD_DIR = {"M1": "ctrend_corrected_pipeline",
+              "M2": "ctrend_lookahead_only_pipeline"}
 CODEBOOK = (
     "not_model_week", "stablecoin_filter", "formation_cap_filter",
     "formation_price_filter", "predictor_panel_not_formed",
@@ -156,7 +156,7 @@ def main() -> None:
         raise ValueError("Only the 12 accepted M1/M2 baseline cells are in scope")
     work.mkdir()
     manifest: dict = {
-        "format": "cttrend-e07-isolated-native-failure-audit-v1",
+        "format": "ctrend-e07-isolated-native-failure-audit-v1",
         "research_run_id": str(uuid.uuid4()),
         "status": "running", "scope": "baseline_only_no_b09",
         "experiments": chosen, "workers": args.workers,
@@ -213,11 +213,11 @@ def main() -> None:
             )
             env = {**os.environ, "MATLAB_PREFDIR": str(prefs),
                    "OMP_NUM_THREADS": "1", "MKL_NUM_THREADS": "1",
-                   "OPENBLAS_NUM_THREADS": "1", "CTTREND_E07_METHOD": method,
-                   "CTTREND_E07_PARENT_BASE": str(baseline),
-                   "CTTREND_E07_DERIVED_BASE": str(code / "Results/CTREND/CTREND_Base.mat"),
-                   "CTTREND_E07_OUTPUT": str(output),
-                   "CTTREND_E07_WINDOW_OUTPUT": str(window_output)}
+                   "OPENBLAS_NUM_THREADS": "1", "CTREND_E07_METHOD": method,
+                   "CTREND_E07_PARENT_BASE": str(baseline),
+                   "CTREND_E07_DERIVED_BASE": str(code / "Results/CTREND/CTREND_Base.mat"),
+                   "CTREND_E07_OUTPUT": str(output),
+                   "CTREND_E07_WINDOW_OUTPUT": str(window_output)}
             print(f"E07_NATIVE_START {eid} workers={args.workers}", flush=True)
             start = time.time()
             log = cell / "pipeline.log"

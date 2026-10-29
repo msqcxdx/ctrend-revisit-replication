@@ -8,7 +8,7 @@ RUN_ROOT="${2:-}"
 case "$ID" in
   P0_M0_D0|P0_M0_D1|P0_M0_D2|P0_M1_D0|P0_M1_D1|P0_M1_D2|P0_M2_D0|P0_M2_D1|P0_M2_D2)
     IFS=_ read -r PREPROCESSING_ID METHOD DATA_ID <<< "$ID"
-    EXPECTED_LAUNCH_FORMAT=cttrend-pmd-launch-v1
+    EXPECTED_LAUNCH_FORMAT=ctrend-pmd-launch-v1
     ;;
   *) exit 2 ;;
 esac
@@ -120,8 +120,8 @@ if [[ -e "$PROVENANCE_COMPATIBILITY" ]]; then
   PROVENANCE_COMPATIBILITY_FORMAT="$(value format "$PROVENANCE_COMPATIBILITY")"
   PROVENANCE_COMPATIBILITY_MODE="$(value mode "$PROVENANCE_COMPATIBILITY")"
   case "$PROVENANCE_COMPATIBILITY_FORMAT:$PROVENANCE_COMPATIBILITY_MODE" in
-    cttrend-m1-legacy-inventory-compatibility-v1:tests_subdirectory_shell_omission_v1) ;;
-    cttrend-m1-dynamic-figure-b2-recovery-compatibility-v1:dynamic_figure_b2_validator_recovery_v1) ;;
+    ctrend-m1-legacy-inventory-compatibility-v1:tests_subdirectory_shell_omission_v1) ;;
+    ctrend-m1-dynamic-figure-b2-recovery-compatibility-v1:dynamic_figure_b2_validator_recovery_v1) ;;
     *) echo 'unrecognized provenance compatibility mode' >&2; exit 1 ;;
   esac
   [[ "$(value experiment_id "$PROVENANCE_COMPATIBILITY")" == "$ID" && \
@@ -143,7 +143,7 @@ MATLAB_BIN="${MATLAB_BIN:-$(command -v matlab 2>/dev/null || true)}"
   echo "MATLAB_BIN is required for final experiment-identity acceptance" >&2
   exit 2
 }
-PREF="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_identity_pref_XXXXXX")"
+PREF="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_identity_pref_XXXXXX")"
 cleanup() { rm -rf -- "$PREF"; }
 trap cleanup EXIT
 IDENTITY_LOG="$RUN_ROOT/P0_EXPERIMENT_IDENTITY_CHECK.log"
@@ -153,7 +153,7 @@ if [[ "$METHOD" == M1 ]]; then
   EXPECTED_DESIGN_FILE="$ROOT/engines/M1/base/DesignChoices.mat"
   for candidate in "$RUN_ROOT/DesignChoices.mat" \
       "$RUN_ROOT/runtime/code/DesignChoices.mat" \
-      "$RUN_ROOT/runtime/cttrend_corrected_pipeline/DesignChoices.mat"; do
+      "$RUN_ROOT/runtime/ctrend_corrected_pipeline/DesignChoices.mat"; do
     if [[ -f "$candidate" ]]; then DESIGN_FILE="$candidate"; break; fi
   done
   [[ -n "$DESIGN_FILE" && -f "$EXPECTED_DESIGN_FILE" ]] || {
@@ -161,14 +161,14 @@ if [[ "$METHOD" == M1 ]]; then
     exit 1
   }
 fi
-CTTREND_VERIFY_PACKAGE_ROOT="$ROOT" \
-CTTREND_VERIFY_EXPERIMENT_ID="$ID" \
-CTTREND_VERIFY_DATA_FILE="$DATA/b0DataOLHC.mat" \
-CTTREND_VERIFY_DESIGN_CHOICES_FILE="$DESIGN_FILE" \
-CTTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE="$EXPECTED_DESIGN_FILE" \
+CTREND_VERIFY_PACKAGE_ROOT="$ROOT" \
+CTREND_VERIFY_EXPERIMENT_ID="$ID" \
+CTREND_VERIFY_DATA_FILE="$DATA/b0DataOLHC.mat" \
+CTREND_VERIFY_DESIGN_CHOICES_FILE="$DESIGN_FILE" \
+CTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE="$EXPECTED_DESIGN_FILE" \
 MATLAB_PREFDIR="$PREF" \
   "$MATLAB_BIN" -licmode onlinelicensing -nodisplay -nosplash -batch \
-  "addpath(fullfile(getenv('CTTREND_VERIFY_PACKAGE_ROOT'),'p0_extension','tests')); verify_experiment_identity; exit(0)" \
+  "addpath(fullfile(getenv('CTREND_VERIFY_PACKAGE_ROOT'),'p0_extension','tests')); verify_experiment_identity; exit(0)" \
   > "$IDENTITY_LOG" 2>&1 || {
     tail -80 "$IDENTITY_LOG" >&2 || true
     exit 1
@@ -176,7 +176,7 @@ MATLAB_PREFDIR="$PREF" \
 grep -F "EXPERIMENT_IDENTITY_TEST_OK experiment=$ID" "$IDENTITY_LOG" >/dev/null
 
 ACCEPTANCE="$RUN_ROOT/P0_EXPERIMENT_ACCEPTANCE.env"
-ACCEPTANCE_FORMAT=cttrend-p0-experiment-acceptance-v1
+ACCEPTANCE_FORMAT=ctrend-p0-experiment-acceptance-v1
 if [[ ! -e "$ACCEPTANCE" ]]; then
   TMP="${ACCEPTANCE}.tmp.$$"
   {

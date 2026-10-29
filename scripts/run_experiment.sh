@@ -79,9 +79,9 @@ BOOTSTRAP_RESULTS_ROOT="$WORK_BASE/bootstrap_results/$ID/$STAMP" \
 "$ROOT/scripts/build_runtime_package.sh" "$ID" "$SOURCE" "$PACKAGE"
 
 EXCLUSION="$ROOT/config/exclusions/$DATA_ID.csv"
-export CTTREND_DATA_TREATMENT_ID="$DATA_ID"
-export CTTREND_ASSET_EXCLUSION_FILE="$EXCLUSION"
-export CTTREND_ASSET_EXCLUSION_SHA256="$(sha256sum "$EXCLUSION" | awk '{print $1}')"
+export CTREND_DATA_TREATMENT_ID="$DATA_ID"
+export CTREND_ASSET_EXCLUSION_FILE="$EXCLUSION"
+export CTREND_ASSET_EXCLUSION_SHA256="$(sha256sum "$EXCLUSION" | awk '{print $1}')"
 export CTREND_RAW_ADJUSTMENT_MODE=none
 export CTREND_CORE_EXPERIMENT_ID="$ID"
 export CODE_DIR="$SOURCE"
@@ -91,7 +91,7 @@ export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
 LAUNCH_MANIFEST="$SOURCE/../LAUNCH_MANIFEST.env"
-LAUNCH_FORMAT=cttrend-nine-experiment-launch-v1
+LAUNCH_FORMAT=ctrend-nine-experiment-launch-v1
 RUN_LAUNCH_BASENAME=NINE_EXPERIMENT_LAUNCH_MANIFEST.env
 {
   echo "format=$LAUNCH_FORMAT"
@@ -100,7 +100,7 @@ RUN_LAUNCH_BASENAME=NINE_EXPERIMENT_LAUNCH_MANIFEST.env
   echo "data_id=$DATA_ID"
   echo "raw_adjustment_mode=none"
   echo "exclusion_file=$EXCLUSION"
-  echo "exclusion_sha256=$CTTREND_ASSET_EXCLUSION_SHA256"
+  echo "exclusion_sha256=$CTREND_ASSET_EXCLUSION_SHA256"
   echo "materialized_source=$SOURCE"
   echo "runtime_package=$PACKAGE"
   echo "runtime_package_sha256=$(sha256sum "$PACKAGE" | awk '{print $1}')"

@@ -9,7 +9,7 @@ command -v rg >/dev/null 2>&1 || {
   echo 'entrypoint path test requires ripgrep (rg)' >&2
   exit 2
 }
-TMP="$(mktemp -d /tmp/cttrend_3x3_entrypoint_test_XXXXXX)"
+TMP="$(mktemp -d /tmp/ctrend_3x3_entrypoint_test_XXXXXX)"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 
@@ -66,42 +66,42 @@ grep -F 'JOB_STORAGE_ROOT' "$TMP/assignment_guard.log" >/dev/null
 grep -F 'production topology requires at least 128 logical CPUs' \
   "$ROOT/scripts/run_experiment.sh" >/dev/null
 grep -F 'runtime_package_sha256' "$ROOT/scripts/run_experiment.sh" >/dev/null
-grep -F 'export CTTREND_DATA_TREATMENT_ID="$DATA_ID"' \
+grep -F 'export CTREND_DATA_TREATMENT_ID="$DATA_ID"' \
   "$ROOT/scripts/run_experiment.sh" >/dev/null
-grep -F 'export CTTREND_ASSET_EXCLUSION_FILE="$EXCLUSION"' \
+grep -F 'export CTREND_ASSET_EXCLUSION_FILE="$EXCLUSION"' \
   "$ROOT/scripts/run_experiment.sh" >/dev/null
-grep -F 'export CTTREND_ASSET_EXCLUSION_SHA256=' \
+grep -F 'export CTREND_ASSET_EXCLUSION_SHA256=' \
   "$ROOT/scripts/run_experiment.sh" >/dev/null
 if rg -n 'CTREND_(DATA_TREATMENT_ID|ASSET_EXCLUSION_(FILE|SHA256))' \
     "$ROOT/scripts/run_experiment.sh"; then
   echo 'run_experiment contains a misspelled single-T data/exclusion environment variable' >&2
   exit 1
 fi
-grep -F "getenv('CTTREND_DATA_TREATMENT_ID')" \
+grep -F "getenv('CTREND_DATA_TREATMENT_ID')" \
   "$ROOT/engines/M0/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
-grep -F "getenv('CTTREND_ASSET_EXCLUSION_FILE')" \
+grep -F "getenv('CTREND_ASSET_EXCLUSION_FILE')" \
   "$ROOT/engines/M0/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
-grep -F "getenv('CTTREND_ASSET_EXCLUSION_SHA256')" \
+grep -F "getenv('CTREND_ASSET_EXCLUSION_SHA256')" \
   "$ROOT/engines/M0/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
-grep -F "getenv('CTTREND_DATA_TREATMENT_ID')" \
+grep -F "getenv('CTREND_DATA_TREATMENT_ID')" \
   "$ROOT/engines/M1/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
-grep -F "getenv('CTTREND_ASSET_EXCLUSION_FILE')" \
+grep -F "getenv('CTREND_ASSET_EXCLUSION_FILE')" \
   "$ROOT/engines/M1/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
-grep -F "getenv('CTTREND_ASSET_EXCLUSION_SHA256')" \
+grep -F "getenv('CTREND_ASSET_EXCLUSION_SHA256')" \
   "$ROOT/engines/M1/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
-grep -F "getenv('CTTREND_DATA_TREATMENT_ID')" \
+grep -F "getenv('CTREND_DATA_TREATMENT_ID')" \
   "$ROOT/engines/M2/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
-grep -F "getenv('CTTREND_ASSET_EXCLUSION_FILE')" \
+grep -F "getenv('CTREND_ASSET_EXCLUSION_FILE')" \
   "$ROOT/engines/M2/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
-grep -F "getenv('CTTREND_ASSET_EXCLUSION_SHA256')" \
+grep -F "getenv('CTREND_ASSET_EXCLUSION_SHA256')" \
   "$ROOT/engines/M2/overlays/exclusion/Utils/fApplyConfiguredGlobalAssetExclusion.m" \
   >/dev/null
 grep -F 'launch manifest runtime package is not bound to RUN_COMPLETE' \
@@ -117,13 +117,13 @@ for pair in \
   scripts/run_experiment.sh:NINE_EXPERIMENT_LAUNCH_MANIFEST.env \
   scripts/write_portable_run_inventories.sh:NINE_EXPERIMENT_DATA_INVENTORY.sha256 \
   tests/result_checks/verify_completed_run.sh:NINE_EXPERIMENT_ACCEPTANCE.env \
-  scripts/register_completed_run.sh:cttrend-nine-experiment-registration-v1 \
+  scripts/register_completed_run.sh:ctrend-nine-experiment-registration-v1 \
   scripts/verify_all_registrations.sh:nine_experiment_acceptance_sha256; do
   file="${pair%%:*}"
   token="${pair#*:}"
   grep -F "$token" "$ROOT/$file" >/dev/null
 done
-if rg -n '(2X3|3X3|cttrend-(2x3|3x3|six-experiment))' \
+if rg -n '(2X3|3X3|ctrend-(2x3|3x3|six-experiment))' \
     "$ROOT/scripts/run_experiment.sh" \
     "$ROOT/scripts/write_portable_run_inventories.sh" \
     "$ROOT/tests/result_checks/verify_completed_run.sh" \

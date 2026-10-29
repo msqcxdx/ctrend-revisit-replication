@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # CTREND_REVISIT_FILE_PURPOSE: Decide whether an M1 b09 heartbeat observation is healthy, needs confirmation, or is safe to terminate.
 
-cttrend_b09_heartbeat_refresh_state() {
+ctrend_b09_heartbeat_refresh_state() {
   if [[ "$#" -ne 4 ]]; then
-    echo "usage: cttrend_b09_heartbeat_refresh_state OBSERVED_EPOCH CONFIRMED_EPOCH CONFIRMED_AGE STALE_LIMIT" >&2
+    echo "usage: ctrend_b09_heartbeat_refresh_state OBSERVED_EPOCH CONFIRMED_EPOCH CONFIRMED_AGE STALE_LIMIT" >&2
     return 2
   fi
   local observed_epoch="$1"
@@ -23,9 +23,9 @@ cttrend_b09_heartbeat_refresh_state() {
   fi
 }
 
-cttrend_b09_heartbeat_decision() {
+ctrend_b09_heartbeat_decision() {
   if [[ "$#" -ne 7 ]]; then
-    echo "usage: cttrend_b09_heartbeat_decision HEARTBEAT_AGE STALE_LIMIT OBSERVATIONS REQUIRED_OBSERVATIONS PROGRESS_AGE NO_PROGRESS_LIMIT MATLAB_LIVE" >&2
+    echo "usage: ctrend_b09_heartbeat_decision HEARTBEAT_AGE STALE_LIMIT OBSERVATIONS REQUIRED_OBSERVATIONS PROGRESS_AGE NO_PROGRESS_LIMIT MATLAB_LIVE" >&2
     return 2
   fi
 

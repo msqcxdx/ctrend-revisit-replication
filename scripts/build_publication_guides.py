@@ -360,8 +360,8 @@ their verified parallel schedules; serial I/O/merge cannot guarantee 100% CPU.
 
 ```bash
 export MATLAB_BIN=/absolute/path/to/R2023b/bin/matlab
-export WORK_BASE=/absolute/data_disk/cttrend_work
-export RUN_BASE=/absolute/data_disk/cttrend_runs
+export WORK_BASE=/absolute/data_disk/ctrend_work
+export RUN_BASE=/absolute/data_disk/ctrend_runs
 ./run_all.sh preflight
 ./run_all.sh plan
 
@@ -628,8 +628,8 @@ R2023b Update11及列出的工具箱，至少128个可用逻辑CPU；b09为8个c
 
 ```bash
 export MATLAB_BIN=/absolute/path/to/R2023b/bin/matlab
-export WORK_BASE=/absolute/data_disk/cttrend_work
-export RUN_BASE=/absolute/data_disk/cttrend_runs
+export WORK_BASE=/absolute/data_disk/ctrend_work
+export RUN_BASE=/absolute/data_disk/ctrend_runs
 ./run_all.sh preflight
 ./run_all.sh experiment P0_M0_D0 production
 # 分别改成 P0_M2_D0、P0_M1_D0 或任意其它完整 P/M/D ID

@@ -42,7 +42,15 @@ SUMMARY_FILES = (
     "analysis/tests/test_compare_nine_methods_common_weeks.m",
     "engines/M1/base/DesignChoices.mat",
 )
-SKIP_NAMES = {".git", "__pycache__", ".pytest_cache", "regstats2.m", "parfor_wait.m"}
+# The export applies the published project namespace consistently while
+# retaining a byte-level source/public mapping for the controlled archive.
+OLD_NAMESPACE = "ct" + "trend"
+NEW_NAMESPACE = "ctrend"
+OBSOLETE_ARCHIVE_LIST = OLD_NAMESPACE + "_package_sha256sums.txt"
+SKIP_NAMES = {
+    ".git", "__pycache__", ".pytest_cache", "regstats2.m", "parfor_wait.m",
+    OBSOLETE_ARCHIVE_LIST,
+}
 SKIP_SUFFIXES = {".mat", ".xlsx", ".xls", ".zip", ".gz", ".fig", ".png", ".jpg", ".pyc", ".pyo"}
 PUBLIC_OVERRIDES = {
     Path("scripts/preflight.sh"),
@@ -74,13 +82,21 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def public_spelling(data: bytes, relative: Path) -> bytes:
+    """Change our namespace spelling, leaving the original ZIP/MAT intact."""
+    if relative.suffix.lower() in {".zip", ".mat"}:
+        return data
+    return (data.replace(OLD_NAMESPACE.upper().encode(), NEW_NAMESPACE.upper().encode())
+                .replace(OLD_NAMESPACE.encode(), NEW_NAMESPACE.encode()))
+
+
 def copy_one(source: Path, target: Path, relative: Path, ledger: list[tuple[str, str, str, int]]) -> None:
     src = source / relative
     dst = target / relative
     if src.is_symlink() or not src.is_file():
         raise ValueError(f"refusing non-regular source: {relative}")
     source_bytes = src.read_bytes()
-    public_bytes = source_bytes
+    public_bytes = public_spelling(source_bytes, relative)
     if relative.as_posix() == "scripts/preflight.sh":
         # The controlled scanner once embedded an internal host address. The
         # public override replaces the whole preflight; never copy that literal.
@@ -90,7 +106,7 @@ def copy_one(source: Path, target: Path, relative: Path, ledger: list[tuple[str,
         overlay = Path(__file__).resolve().parents[1] / "public_overrides" / relative
         if not overlay.is_file():
             raise ValueError(f"missing public override: {relative}")
-        public_bytes = overlay.read_bytes()
+        public_bytes = public_spelling(overlay.read_bytes(), relative)
     public_digest = hashlib.sha256(public_bytes).hexdigest()
     if dst.exists():
         if public_digest != sha256(dst):
@@ -102,7 +118,7 @@ def copy_one(source: Path, target: Path, relative: Path, ledger: list[tuple[str,
                         row["public_sha256"] for row in csv.DictReader(handle)
                         if row["public_path"] == relative.as_posix()
                     }
-            if relative not in PUBLIC_OVERRIDES or sha256(dst) not in previously_exported | {sha256(src)}:
+            if sha256(dst) not in previously_exported | {sha256(src)}:
                 raise ValueError(f"refusing to replace changed target: {relative}")
             dst.write_bytes(public_bytes)
     else:
@@ -112,6 +128,39 @@ def copy_one(source: Path, target: Path, relative: Path, ledger: list[tuple[str,
     # './run_all.sh' fails before even entering the documented preflight.
     dst.chmod(src.stat().st_mode & 0o777)
     ledger.append((relative.as_posix(), sha256(src), public_digest, len(public_bytes)))
+
+
+def refresh_base_inventories(source: Path, target: Path,
+                             ledger: list[tuple[str, str, str, int]]) -> None:
+    """Match the distributed base-file hashes to their renamed public bytes."""
+    for variant in ("M0", "M2", "P0_M0"):
+        relative = Path("engines") / variant / "base" / "PACKAGE_FILES.sha256"
+        src = source / relative
+        dst = target / relative
+        base = dst.parent
+        rows = []
+        for line in src.read_text(encoding="utf-8").splitlines():
+            old_digest, old_path = line.split("  ", 1)
+            if old_path == OBSOLETE_ARCHIVE_LIST:
+                continue
+            new_path = public_spelling(old_path.encode(), Path(old_path)).decode()
+            public_file = base / new_path
+            if public_file.is_file():
+                digest = sha256(public_file)
+            elif new_path in {"Utils/regstats2.m", "Utils/parfor_wait.m"}:
+                # These two exact third-party copies are withheld. Their
+                # published checksums still identify the required helpers.
+                digest = old_digest
+            else:
+                raise ValueError(f"missing inventoried base file: {relative} -> {new_path}")
+            rows.append(f"{digest}  {new_path}")
+        dst.write_text("\n".join(rows) + "\n", encoding="utf-8")
+        for index, row in enumerate(ledger):
+            if row[0] == relative.as_posix():
+                ledger[index] = (row[0], row[1], sha256(dst), dst.stat().st_size)
+                break
+        else:
+            raise ValueError(f"base inventory not exported: {relative}")
 
 
 def main() -> None:
@@ -147,6 +196,7 @@ def main() -> None:
     ledger: list[tuple[str, str, str, int]] = []
     for relative in sorted(relatives):
         copy_one(source, target, relative, ledger)
+    refresh_base_inventories(source, target, ledger)
     output = target / "provenance" / "SOURCE_FILE_MAP.csv"
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", newline="", encoding="utf-8") as handle:

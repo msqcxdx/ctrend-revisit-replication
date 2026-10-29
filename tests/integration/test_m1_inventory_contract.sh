@@ -19,9 +19,9 @@ grep -F 'dynamic_figure_b2_validator_recovery_v1' \
   "$FIGURE_RECOVERY_HELPER" >/dev/null
 grep -F 'verify_m1_dynamic_figure_b2_recovery_scope.sh' \
   "$ROOT/tests/result_checks/verify_run_provenance.sh" >/dev/null
-grep -F 'cttrend-m1-dynamic-figure-b2-recovery-compatibility-v1' \
+grep -F 'ctrend-m1-dynamic-figure-b2-recovery-compatibility-v1' \
   "$ROOT/tests/result_checks/verify_completed_run.sh" >/dev/null
-grep -F 'cttrend-m1-dynamic-figure-b2-recovery-compatibility-v1' \
+grep -F 'ctrend-m1-dynamic-figure-b2-recovery-compatibility-v1' \
   "$ROOT/scripts/register_completed_run.sh" >/dev/null
 
 for runner in "${RUNNERS[@]}"; do
@@ -35,12 +35,12 @@ for runner in "${RUNNERS[@]}"; do
   fi
 done
 
-TEMP="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_m1_inventory_test_XXXXXX")"
+TEMP="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_m1_inventory_test_XXXXXX")"
 # Build a minimal immutable run fixture for adversarial compatibility checks.
 cleanup() { rm -rf -- "$TEMP"; }
 trap cleanup EXIT
 RUN="$TEMP/run"
-RUNTIME="$RUN/runtime/cttrend_corrected_pipeline"
+RUNTIME="$RUN/runtime/ctrend_corrected_pipeline"
 RELATIVE=tests/test_v2_static_guards.sh
 mkdir -p "$RUNTIME/tests"
 printf '%s\n' '#!/usr/bin/env bash' 'echo guard' > "$RUNTIME/$RELATIVE"
@@ -58,9 +58,9 @@ for inventory in source_code_inventory.sha256 runtime_code_inventory.sha256 \
   cp "$TEMP/observed.sha256" "$RUN/$inventory"
 done
 tar -C "$RUN/runtime" -czf "$RUN/runtime_package.tar.gz" \
-  cttrend_corrected_pipeline
+  ctrend_corrected_pipeline
 {
-  echo 'format=cttrend-run-complete-v1'
+  echo 'format=ctrend-run-complete-v1'
   echo "source_inventory_sha256=$(sha256sum "$TEMP/observed.sha256" | awk '{print $1}')"
   echo "runtime_inventory_sha256=$(sha256sum "$RUN/runtime_code_inventory.sha256" | awk '{print $1}')"
   echo "runtime_package_sha256=$(sha256sum "$RUN/runtime_package.tar.gz" | awk '{print $1}')"
@@ -69,7 +69,7 @@ tar -C "$RUN/runtime" -czf "$RUN/runtime_package.tar.gz" \
 # Positive case: exactly the historical one-file omission is admissible.
 "$HELPER" "$TEMP/expected.sha256" "$TEMP/observed.sha256" "$RUN" \
   > "$TEMP/evidence.env"
-grep -F 'format=cttrend-m1-legacy-inventory-compatibility-v1' \
+grep -F 'format=ctrend-m1-legacy-inventory-compatibility-v1' \
   "$TEMP/evidence.env" >/dev/null
 grep -F 'mode=tests_subdirectory_shell_omission_v1' \
   "$TEMP/evidence.env" >/dev/null
@@ -93,7 +93,7 @@ printf '%s\n' '#!/usr/bin/env bash' 'echo guard' > "$RUNTIME/$RELATIVE"
 
 printf '%s\n' 'mutated archive guard' > "$RUNTIME/$RELATIVE"
 tar -C "$RUN/runtime" -czf "$RUN/runtime_package.tar.gz" \
-  cttrend_corrected_pipeline
+  ctrend_corrected_pipeline
 printf '%s\n' '#!/usr/bin/env bash' 'echo guard' > "$RUNTIME/$RELATIVE"
 sed -i "s/^runtime_package_sha256=.*/runtime_package_sha256=$(sha256sum "$RUN/runtime_package.tar.gz" | awk '{print $1}')/" \
   "$RUN/RUN_COMPLETE"

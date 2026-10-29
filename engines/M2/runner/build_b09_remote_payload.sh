@@ -10,11 +10,11 @@ fi
 FULL_RUN_ROOT="$(readlink -f "$1")"
 OUTPUT="$(realpath -m "$2")"
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CODE_DIR="$FULL_RUN_ROOT/runtime/cttrend_old_v2_pipeline"
+CODE_DIR="$FULL_RUN_ROOT/runtime/ctrend_old_v2_pipeline"
 DATA_DIR="$FULL_RUN_ROOT/data.staging"
 PACKAGE="$FULL_RUN_ROOT/runtime_package.tar.gz"
 SHARD_ROOT="$FULL_RUN_ROOT/b09_shards"
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_old_v2_remote_payload_XXXXXX)"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_old_v2_remote_payload_XXXXXX)"
 
 cleanup() {
   local rc=$?
@@ -57,11 +57,11 @@ if [[ -f "$FULL_RUN_ROOT/design_choices_after_b00.sha256" ]]; then
   }
 fi
 
-PAYLOAD_ROOT="$TEMP_ROOT/cttrend_old_v2_b09_remote_payload"
+PAYLOAD_ROOT="$TEMP_ROOT/ctrend_old_v2_b09_remote_payload"
 INPUT_DIR="$PAYLOAD_ROOT/input"
 mkdir -p "$INPUT_DIR/runner" "$INPUT_DIR/DATA"
 cp -- "$PACKAGE" \
-  "$INPUT_DIR/cttrend_old_v2_pipeline.tar.gz"
+  "$INPUT_DIR/ctrend_old_v2_pipeline.tar.gz"
 cp -L -- "$CODE_DIR/DesignChoices.mat" "$INPUT_DIR/DesignChoices.mat"
 cp -aL -- "$DATA_DIR/." "$INPUT_DIR/DATA/"
 cp -- "$RUNNER_DIR/b09_two_shard_topology.tsv" "$INPUT_DIR/"
@@ -105,7 +105,7 @@ write_runtime_source_inventory "$CODE_DIR" \
     run_b09_remote_worker.sh stop_b09_remote_worker.sh
 ) > "$INPUT_DIR/remote_runner_inputs.sha256"
 {
-  printf 'format=cttrend-old-v2-b09-remote-payload-v1\n'
+  printf 'format=ctrend-old-v2-b09-remote-payload-v1\n'
   printf 'research_run_id=%s\n' "$research_run_id"
   printf 'expected_package_sha256=%s\n' "$package_sha"
   printf 'expected_design_choices_sha256=%s\n' "$design_sha"
@@ -123,7 +123,7 @@ write_runtime_source_inventory "$CODE_DIR" \
 mkdir -p "$(dirname "$OUTPUT")"
 temporary_output="${OUTPUT}.tmp.$$"
 tar -czf "$temporary_output" -C "$TEMP_ROOT" \
-  cttrend_old_v2_b09_remote_payload
+  ctrend_old_v2_b09_remote_payload
 archive_sha="$(sha256sum "$temporary_output" | awk '{print $1}')"
 mv -f -- "$temporary_output" "$OUTPUT"
 printf '%s  %s\n' "$archive_sha" "$(basename "$OUTPUT")" \

@@ -81,16 +81,16 @@ export B09_SHARD_RESULTS_ROOT="$results_root"
 export B09_RESEARCH_RUN_ID="$research_run_id"
 export B09_RUNNER_DIR="$RUNNER_DIR"
 export B09_NUM_SHARDS="$num_shards"
-MERGE_TEMP_ROOT="${B09_MERGE_TEMP_ROOT:-${b09_job_storage_root:-/tmp/cttrend_b09_merge}/merge_$$}"
+MERGE_TEMP_ROOT="${B09_MERGE_TEMP_ROOT:-${b09_job_storage_root:-/tmp/ctrend_b09_merge}/merge_$$}"
 MERGE_TEMP_ALLOWED_ROOT="${B09_MERGE_TEMP_ALLOWED_ROOT:-$(dirname "$MERGE_TEMP_ROOT")}"
-cttrend_prepare_temp_dir "$MERGE_TEMP_ROOT" "$MERGE_TEMP_ALLOWED_ROOT" \
+ctrend_prepare_temp_dir "$MERGE_TEMP_ROOT" "$MERGE_TEMP_ALLOWED_ROOT" \
   b09_merge
 export MATLAB_PREFDIR="$MERGE_TEMP_ROOT/matlab_pref"
 
 cleanup_merge_temp() {
   local rc=$?
   trap - EXIT INT TERM
-  cttrend_safe_remove_temp_dir "$MERGE_TEMP_ROOT" \
+  ctrend_safe_remove_temp_dir "$MERGE_TEMP_ROOT" \
     "$MERGE_TEMP_ALLOWED_ROOT" || rc=1
   exit "$rc"
 }

@@ -2,11 +2,11 @@
 function verify_experiment_identity()
 % Verify the saved b01 checkpoint against the declared M/D cell.
 
-sRoot = getenv('CTTREND_VERIFY_PACKAGE_ROOT');
-sID = getenv('CTTREND_VERIFY_EXPERIMENT_ID');
-sDataFile = getenv('CTTREND_VERIFY_DATA_FILE');
-sDesignFile = getenv('CTTREND_VERIFY_DESIGN_CHOICES_FILE');
-sExpectedDesignFile = getenv('CTTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE');
+sRoot = getenv('CTREND_VERIFY_PACKAGE_ROOT');
+sID = getenv('CTREND_VERIFY_EXPERIMENT_ID');
+sDataFile = getenv('CTREND_VERIFY_DATA_FILE');
+sDesignFile = getenv('CTREND_VERIFY_DESIGN_CHOICES_FILE');
+sExpectedDesignFile = getenv('CTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE');
 assert(isfolder(sRoot) && isfile(sDataFile));
 assert(any(strcmp(sID,{'M0_D0','M0_D1','M0_D2', ...
     'M1_D0','M1_D1','M1_D2', ...

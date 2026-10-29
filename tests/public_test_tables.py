@@ -15,7 +15,7 @@ def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-with tempfile.TemporaryDirectory(prefix="cttrend_public_tables_") as temporary:
+with tempfile.TemporaryDirectory(prefix="ctrend_public_tables_") as temporary:
     output = Path(temporary) / "tables"
     command = [str(ROOT / "reproduce_tables.sh"), str(output)]
     completed = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=True)

@@ -4,7 +4,7 @@
 # exclusion helper and b01 call site recorded by the materialization diff.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-TMP="$(mktemp -d /tmp/cttrend_3x3_materialization_test_XXXXXX)"
+TMP="$(mktemp -d /tmp/ctrend_3x3_materialization_test_XXXXXX)"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 

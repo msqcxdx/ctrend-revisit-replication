@@ -32,10 +32,10 @@ ANCHOR = "vUnifiedDateKey = year(dtDate)*10000 + month(dtDate)*100 + day(dtDate)
 INJECTION = """% E05 AUDIT ONLY: same source in control and shocked runs.
 % Parent raw CSV bytes and dates are never changed; the future availability
 % intervention occurs after input validation and before P1 preprocessing.
-if strcmp(getenv('CTTREND_E05_AVAILABILITY_SCENARIO'),'future_terminal')
-    iE05Asset = find(vAssetID_Close == str2double(getenv('CTTREND_E05_TARGET_ID')));
+if strcmp(getenv('CTREND_E05_AVAILABILITY_SCENARIO'),'future_terminal')
+    iE05Asset = find(vAssetID_Close == str2double(getenv('CTREND_E05_TARGET_ID')));
     assert(isscalar(iE05Asset),'E05 target CMCID must occur once');
-    iE05Cutoff = str2double(getenv('CTTREND_E05_CUTOFF'));
+    iE05Cutoff = str2double(getenv('CTREND_E05_CUTOFF'));
     lE05Future = year(dtDate)*10000+month(dtDate)*100+day(dtDate) >= iE05Cutoff;
     assert(any(lE05Future) && any(~lE05Future),'E05 cutoff outside panel');
     mOpen(lE05Future,iE05Asset)=NaN;
@@ -46,7 +46,7 @@ if strcmp(getenv('CTTREND_E05_AVAILABILITY_SCENARIO'),'future_terminal')
     mVolume(lE05Future,iE05Asset)=NaN;
     fprintf('E05_IN_MEMORY_FUTURE_TERMINAL cmcid=%d cutoff=%d rows=%d\\n', ...
         vAssetID_Close(iE05Asset),iE05Cutoff,nnz(lE05Future));
-elseif ~strcmp(getenv('CTTREND_E05_AVAILABILITY_SCENARIO'),'control')
+elseif ~strcmp(getenv('CTREND_E05_AVAILABILITY_SCENARIO'),'control')
     error('Unknown E05 availability scenario');
 end
 
@@ -158,7 +158,7 @@ def main() -> None:
     with (ROOT / "outputs/E11/accepted_run_paths.csv").open(newline="") as f:
         identity = next(r for r in csv.DictReader(f) if r["experiment_id"] == "P1_M1_D1")
     parent = Path(identity["accepted_run_root"])
-    source = parent / "runtime/cttrend_corrected_pipeline"
+    source = parent / "runtime/ctrend_corrected_pipeline"
     accepted_result = Path(identity["result_root"]) / "CTREND/CTREND_Base.mat"
     protected = [parent / "RUN_COMPLETE", source / "b01ReadData.m",
                  source / "b02CalculateIndicators.m", source / "b05CreateCTREND.m",
@@ -191,12 +191,12 @@ def main() -> None:
                     "run('b05CreateCTREND.m');delete(gcp('nocreate'));"
                     "fprintf('E05_RAW_TO_BASELINE_OK\\n');")
             env = {**os.environ, "MATLAB_PREFDIR": str(folder / "prefs"),
-                   "CTTREND_E05_AVAILABILITY_SCENARIO": variant,
-                   "CTTREND_E05_TARGET_ID": str(args.target_id),
-                   "CTTREND_E05_CUTOFF": str(args.cutoff),
-                   "CTTREND_DATA_TREATMENT_ID": "D1",
-                   "CTTREND_ASSET_EXCLUSION_FILE": str(REPO / "config/exclusions/D1.csv"),
-                   "CTTREND_ASSET_EXCLUSION_SHA256": digest(REPO / "config/exclusions/D1.csv"),
+                   "CTREND_E05_AVAILABILITY_SCENARIO": variant,
+                   "CTREND_E05_TARGET_ID": str(args.target_id),
+                   "CTREND_E05_CUTOFF": str(args.cutoff),
+                   "CTREND_DATA_TREATMENT_ID": "D1",
+                   "CTREND_ASSET_EXCLUSION_FILE": str(REPO / "config/exclusions/D1.csv"),
+                   "CTREND_ASSET_EXCLUSION_SHA256": digest(REPO / "config/exclusions/D1.csv"),
                    "CTREND_RAW_ADJUSTMENT_MODE": "none",
                    "CTREND_CORE_EXPERIMENT_ID": "P1_M1_D1_E05_AUDIT_ONLY",
                    "PIPELINE_SCOPE": "baseline",

@@ -15,7 +15,7 @@ B09_REMOTE_FIRST_COMBO=1537
 B09_REMOTE_LAST_COMBO=3072
 B09_TOTAL_COMBOS=3072
 
-cttrend_b09_validate_topology() {
+ctrend_b09_validate_topology() {
   local topology_file="$1"
   local expected_file="$2"
   [[ -f "$topology_file" && -f "$expected_file" ]] || {
@@ -28,7 +28,7 @@ cttrend_b09_validate_topology() {
   }
 }
 
-cttrend_b09_topology_template() {
+ctrend_b09_topology_template() {
   local mode="$1"
   local runner_dir="$2"
   case "$mode" in
@@ -38,18 +38,18 @@ cttrend_b09_topology_template() {
   esac
 }
 
-cttrend_b09_source_rows() {
+ctrend_b09_source_rows() {
   local topology_file="$1"
   tail -n +2 "$topology_file"
 }
 
-cttrend_b09_local_rows() {
+ctrend_b09_local_rows() {
   local topology_file="$1"
   awk -F '\t' 'NR > 1 && $2 == 1 && $3 == "local" { print }' \
     "$topology_file"
 }
 
-cttrend_b09_remote_rows() {
+ctrend_b09_remote_rows() {
   local topology_file="$1"
   awk -F '\t' 'NR > 1 && $2 == 2 && $3 == "remote" { print }' \
     "$topology_file"

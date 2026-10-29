@@ -4,8 +4,8 @@ set -euo pipefail
 
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$RUNNER_DIR/.." && pwd)"
-OUTPUT="${1:-$PROJECT_DIR/cttrend_old_v2_runner.tar.gz}"
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_old_v2_runner_package_XXXXXX)"
+OUTPUT="${1:-$PROJECT_DIR/ctrend_old_v2_runner.tar.gz}"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_old_v2_runner_package_XXXXXX)"
 ROOT="$TEMP_ROOT/b09_parallel_runner_old_v2"
 
 cleanup() {

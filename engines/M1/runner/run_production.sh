@@ -12,7 +12,7 @@ SOURCE_CODE_DIR_BOOTSTRAP="$(realpath -m -- \
 # hashed before and after the copy; the bound snapshot is the only suite
 # executed for the remainder of the run.
 if [[ "${CTREND_RUNNER_BOUND:-0}" != "1" ]]; then
-  runner_snapshot_root="$(mktemp -d /tmp/cttrend_bound_runner_XXXXXX)"
+  runner_snapshot_root="$(mktemp -d /tmp/ctrend_bound_runner_XXXXXX)"
   runner_snapshot_dir="$runner_snapshot_root/b09_parallel_runner"
   mkdir -p "$runner_snapshot_dir"
   source_inventory_before="$runner_snapshot_root/source_before.sha256"
@@ -70,7 +70,7 @@ RUN_ROOT="$(realpath -m -- \
   "${RUN_ROOT:-$RUN_BASE/corrected_v2_$RUN_STAMP}")"
 LOG_ROOT="$RUN_ROOT/logs"
 RUNTIME_EXTRACT_ROOT="$RUN_ROOT/runtime"
-CODE_DIR="$RUNTIME_EXTRACT_ROOT/cttrend_corrected_pipeline"
+CODE_DIR="$RUNTIME_EXTRACT_ROOT/ctrend_corrected_pipeline"
 STAGING_DATA="$RUN_ROOT/data.staging"
 PUBLISHED_DATA="$RUN_ROOT/data"
 STAGING_RESULTS="$RUN_ROOT/results.staging"
@@ -116,7 +116,7 @@ source "$RUNNER_DIR/b09_heartbeat_policy.sh"
 remove_bound_runner_snapshot() {
   local resolved
   resolved="$(readlink -f "$RUNNER_SNAPSHOT_ROOT" 2>/dev/null || true)"
-  [[ "$resolved" == /tmp/cttrend_bound_runner_* &&
+  [[ "$resolved" == /tmp/ctrend_bound_runner_* &&
      -d "$resolved/b09_parallel_runner" ]] || {
     echo "Refusing to remove invalid runner snapshot: $RUNNER_SNAPSHOT_ROOT" >&2
     return 1
@@ -188,7 +188,7 @@ if [[ "${CTREND_RUNNER_PREFLIGHT_ONLY:-0}" == "1" ]]; then
     echo "Runtime package changed during preflight extraction" >&2
     exit 2
   }
-  preflight_code="$preflight_extract/cttrend_corrected_pipeline"
+  preflight_code="$preflight_extract/ctrend_corrected_pipeline"
   [[ -d "$preflight_code" &&
      -f "$preflight_code/DesignChoices.mat" &&
      ! -e "$preflight_code/DATA" &&
@@ -329,21 +329,21 @@ ensure_canonical_bundle_layout() {
     cp -L -- "$SOURCE_CODE_DIR/DesignChoices.mat" \
       "$bootstrap_dir/DesignChoices.mat"
     {
-      printf 'format=cttrend-canonical-bootstrap-v1\n'
+      printf 'format=ctrend-canonical-bootstrap-v1\n'
       printf 'created_at=%s\n' "$(date -Is)"
       printf 'legacy_data=%s\n' "$legacy_data"
       printf 'legacy_results=%s\n' "$legacy_results"
     } > "$bootstrap_dir/BOOTSTRAP.env"
-    cttrend_atomic_symlink "$bootstrap_dir" "$CANONICAL_CURRENT_LINK"
+    ctrend_atomic_symlink "$bootstrap_dir" "$CANONICAL_CURRENT_LINK"
   fi
 
   # DATA, Results, and DesignChoices are stable aliases through one
   # atomically replaceable bundle pointer.  A successful publication swaps
   # only .canonical/current, so readers can never observe a mixed vintage.
-  cttrend_atomic_symlink "$CANONICAL_DATA_ALIAS" "$SOURCE_CODE_DIR/DATA"
-  cttrend_atomic_symlink "$CANONICAL_RESULTS_ALIAS" \
+  ctrend_atomic_symlink "$CANONICAL_DATA_ALIAS" "$SOURCE_CODE_DIR/DATA"
+  ctrend_atomic_symlink "$CANONICAL_RESULTS_ALIAS" \
     "$SOURCE_CODE_DIR/Results"
-  cttrend_atomic_symlink "$CANONICAL_DESIGN_ALIAS" \
+  ctrend_atomic_symlink "$CANONICAL_DESIGN_ALIAS" \
     "$SOURCE_CODE_DIR/DesignChoices.mat"
 
   [[ "$(readlink "$SOURCE_CODE_DIR/DATA")" == "$CANONICAL_DATA_ALIAS" &&
@@ -373,7 +373,7 @@ cp -- "$RUNNER_SNAPSHOT_ROOT/source_before.sha256" \
   "$RUN_ROOT/runner_source_inventory.sha256"
 cp -- "$RUNNER_SNAPSHOT_ROOT/snapshot.sha256" \
   "$RUN_ROOT/runner_snapshot_inventory.sha256"
-cttrend_prepare_temp_dir "$JOB_STORAGE_ROOT" "$JOB_STORAGE_ALLOWED_ROOT" \
+ctrend_prepare_temp_dir "$JOB_STORAGE_ROOT" "$JOB_STORAGE_ALLOWED_ROOT" \
   "corrected_pipeline_$RUN_STAMP"
 JOB_STORAGE_CLEANED=0
 
@@ -381,7 +381,7 @@ cleanup_runtime_only() {
   local rc=$?
   trap - EXIT INT TERM
   if (( JOB_STORAGE_CLEANED == 0 )); then
-    cttrend_safe_remove_temp_dir "$JOB_STORAGE_ROOT" \
+    ctrend_safe_remove_temp_dir "$JOB_STORAGE_ROOT" \
       "$JOB_STORAGE_ALLOWED_ROOT" || rc=1
   fi
   remove_bound_runner_snapshot || rc=1
@@ -431,7 +431,7 @@ verify_runtime_package() {
 }
 verify_runtime_package
 
-cttrend_atomic_write_pointer \
+ctrend_atomic_write_pointer \
   "$SOURCE_CODE_DIR/logs/latest_started_run_path.txt" "$RUN_ROOT"
 
 write_source_inventory() {
@@ -453,7 +453,7 @@ write_source_inventory() {
 
 tar -xzf "$RUNTIME_PACKAGE" -C "$RUNTIME_EXTRACT_ROOT"
 [[ -d "$CODE_DIR" ]] || {
-  echo "Runtime package must contain cttrend_corrected_pipeline/" >&2
+  echo "Runtime package must contain ctrend_corrected_pipeline/" >&2
   exit 2
 }
 write_source_inventory "$SOURCE_CODE_DIR" \
@@ -696,7 +696,7 @@ PHASE_WRAPPER_PIDS=()
 
 phase_group_exists() {
   local pgid="$1"
-  cttrend_process_group_exists "$pgid"
+  ctrend_process_group_exists "$pgid"
 }
 
 terminate_owned_phase_group() {
@@ -781,7 +781,7 @@ cleanup_all() {
   terminate_all_phases || true
   terminate_all_shards || true
   if (( JOB_STORAGE_CLEANED == 0 )); then
-    cttrend_safe_remove_temp_dir "$JOB_STORAGE_ROOT" \
+    ctrend_safe_remove_temp_dir "$JOB_STORAGE_ROOT" \
       "$JOB_STORAGE_ALLOWED_ROOT" || rc=1
   fi
   remove_bound_runner_snapshot || rc=1
@@ -822,7 +822,7 @@ prepare_phase_owner() {
   local temporary="$phase_dir/phase.owner.env.tmp.$$"
   rm -f -- "$phase_dir/phase.complete.env"
   {
-    printf 'format=cttrend-owned-process-v1\n'
+    printf 'format=ctrend-owned-process-v1\n'
     printf 'state=launching\n'
     printf 'owner_token=%s\n' "$owner_token"
     printf 'phase=%s\n' "$phase"
@@ -840,7 +840,7 @@ seal_phase_completion() {
   local group_empty="$4"
   local temporary="$phase_dir/phase.complete.env.tmp.$$"
   {
-    printf 'format=cttrend-phase-complete-v1\n'
+    printf 'format=ctrend-phase-complete-v1\n'
     printf 'pgid=%s\n' "$pgid"
     printf 'rc=%s\n' "$rc"
     printf 'group_empty=%s\n' "$group_empty"
@@ -892,13 +892,13 @@ run_matlab_phase() {
       -batch "cd(getenv('PIPELINE_CODE_DIR')); run_full_pipeline_corrected" \
       >> "$phase_dir/pipeline.log" 2>&1 &
   phase_pid=$!
-  cttrend_atomic_write_pointer "$phase_dir/phase.pid" "$phase_pid"
+  ctrend_atomic_write_pointer "$phase_dir/phase.pid" "$phase_pid"
   set +e
   wait "$phase_pid"
   rc=$?
   set -e
   if (( rc == 0 )) && phase_group_exists "$phase_pid"; then
-    cttrend_wait_for_process_group_exit \
+    ctrend_wait_for_process_group_exit \
       "$phase_pid" "$PHASE_EXIT_GRACE_SECONDS" || residual_group=1
   elif phase_group_exists "$phase_pid"; then
     residual_group=1
@@ -940,13 +940,13 @@ run_unit_tests_phase() {
       -batch "try, cd(getenv('PIPELINE_CODE_DIR')); addpath('./Utils'); addpath('./tests'); run_corrected_unit_tests; exit(0); catch ME, disp(getReport(ME,'extended','hyperlinks','off')); exit(1); end" \
       > "$phase_dir/pipeline.log" 2>&1 &
   phase_pid=$!
-  cttrend_atomic_write_pointer "$phase_dir/phase.pid" "$phase_pid"
+  ctrend_atomic_write_pointer "$phase_dir/phase.pid" "$phase_pid"
   set +e
   wait "$phase_pid"
   rc=$?
   set -e
   if (( rc == 0 )) && phase_group_exists "$phase_pid"; then
-    cttrend_wait_for_process_group_exit \
+    ctrend_wait_for_process_group_exit \
       "$phase_pid" "$PHASE_EXIT_GRACE_SECONDS" || residual_group=1
   elif phase_group_exists "$phase_pid"; then
     residual_group=1
@@ -984,13 +984,13 @@ run_external_phase() {
     "$phase" env PIPELINE_CODE_DIR="$CODE_DIR" "$@" \
     > "$phase_dir/pipeline.log" 2>&1 &
   phase_pid=$!
-  cttrend_atomic_write_pointer "$phase_dir/phase.pid" "$phase_pid"
+  ctrend_atomic_write_pointer "$phase_dir/phase.pid" "$phase_pid"
   set +e
   wait "$phase_pid"
   rc=$?
   set -e
   if (( rc == 0 )) && phase_group_exists "$phase_pid"; then
-    cttrend_wait_for_process_group_exit \
+    ctrend_wait_for_process_group_exit \
       "$phase_pid" "$PHASE_EXIT_GRACE_SECONDS" || residual_group=1
   elif phase_group_exists "$phase_pid"; then
     residual_group=1
@@ -1125,7 +1125,7 @@ while true; do
       updated_epoch 2>/dev/null || true)"
     started_epoch="$(<"$shard_dir/supervisor.started_epoch")"
     now_epoch="$(date +%s)"
-    combo_dir="$shard_dir/extract/cttrend_corrected_pipeline/Results/CTREND"
+    combo_dir="$shard_dir/extract/ctrend_corrected_pipeline/Results/CTREND"
 
     if is_expected_shard_process "$pid" "$shard_dir"; then
       heartbeat_stale=0
@@ -1161,7 +1161,7 @@ while true; do
           confirmed_heartbeat_age=$((confirmed_now_epoch - started_epoch))
         fi
 
-        refresh_state="$(cttrend_b09_heartbeat_refresh_state \
+        refresh_state="$(ctrend_b09_heartbeat_refresh_state \
           "$observed_epoch" "${confirmed_heartbeat_epoch:-missing}" \
           "$confirmed_heartbeat_age" "$B09_HEARTBEAT_STALE_SECONDS")"
         if [[ "$refresh_state" == "REFRESHED" ]]; then
@@ -1189,7 +1189,7 @@ while true; do
               kill -0 "$matlab_pid" 2>/dev/null; then
             matlab_live=1
           fi
-          stale_decision="$(cttrend_b09_heartbeat_decision \
+          stale_decision="$(ctrend_b09_heartbeat_decision \
             "$confirmed_heartbeat_age" "$B09_HEARTBEAT_STALE_SECONDS" \
             "${b09_stale_observation_count[$shard]}" \
             "$B09_STALE_CONFIRMATIONS" "$progress_age" \
@@ -1517,7 +1517,7 @@ fi
 # snapshots. A stable snapshot alone cannot establish the required
 # publication-time state of the source files.
 raw_sources_at_publish="$RUN_ROOT/raw_input_sources_at_publish.sha256"
-cttrend_verify_source_map "$RUN_ROOT/raw_input_sources.tsv" \
+ctrend_verify_source_map "$RUN_ROOT/raw_input_sources.tsv" \
   "$raw_sources_at_publish" "${#raw_input_files[@]}"
 
 find -L "$CODE_DIR/DATA" -maxdepth 1 -type f -print0 |
@@ -1598,11 +1598,11 @@ awk '$0 ~ /^matlab_(version|release|product)=/' \
 completed_at="$(date -Is)"
 verify_runtime_package
 verify_design_choices
-cttrend_verify_sha256_inventory \
+ctrend_verify_sha256_inventory \
   "$RUN_ROOT/status_inventory.sha256" "$RUN_ROOT"
 run_complete_pending="$RUN_ROOT/RUN_COMPLETE.pending.$$"
 {
-  printf 'format=cttrend-run-complete-v1\n'
+  printf 'format=ctrend-run-complete-v1\n'
   printf 'run_stamp=%s\n' "$RUN_STAMP"
   printf 'research_run_id=%s\n' "$RESEARCH_RUN_ID"
   printf 'data_build_id=%s\n' "$DATA_BUILD_ID"
@@ -1697,12 +1697,12 @@ run_complete_pending="$RUN_ROOT/RUN_COMPLETE.pending.$$"
 }
 mv -- "$STAGING_DATA" "$PUBLISHED_DATA"
 mv -- "$STAGING_RESULTS" "$PUBLISHED_RESULTS"
-cttrend_atomic_symlink "$PUBLISHED_DATA" "$CODE_DIR/DATA"
-cttrend_atomic_symlink "$PUBLISHED_RESULTS" "$CODE_DIR/Results"
+ctrend_atomic_symlink "$PUBLISHED_DATA" "$CODE_DIR/DATA"
+ctrend_atomic_symlink "$PUBLISHED_RESULTS" "$CODE_DIR/Results"
 
 # Remove all preference/job-storage credentials before publishing a success
 # marker.  A cleanup failure leaves the prior canonical bundle untouched.
-cttrend_safe_remove_temp_dir "$JOB_STORAGE_ROOT" \
+ctrend_safe_remove_temp_dir "$JOB_STORAGE_ROOT" \
   "$JOB_STORAGE_ALLOWED_ROOT"
 JOB_STORAGE_CLEANED=1
 
@@ -1711,20 +1711,20 @@ JOB_STORAGE_CLEANED=1
 # completed-but-unpublished bundle and receives RUN_PUBLICATION_FAILED;
 # the prior canonical bundle remains active.
 mv -f -- "$run_complete_pending" "$RUN_ROOT/RUN_COMPLETE"
-cttrend_verify_sha256_inventory \
+ctrend_verify_sha256_inventory \
   "$RUN_ROOT/status_inventory.sha256" "$RUN_ROOT"
 
 # DATA, Results, and DesignChoices all live under the already sealed
 # RUN_ROOT.  Swapping this one pointer publishes the complete triple
 # atomically; canonical can never point at a bundle lacking RUN_COMPLETE.
-cttrend_atomic_symlink "$RUN_ROOT" "$CANONICAL_CURRENT_LINK"
+ctrend_atomic_symlink "$RUN_ROOT" "$CANONICAL_CURRENT_LINK"
 if [[ "$(readlink -f "$SOURCE_CODE_DIR/DATA")" != "$PUBLISHED_DATA" ||
       "$(readlink -f "$SOURCE_CODE_DIR/Results")" != "$PUBLISHED_RESULTS" ||
       "$(readlink -f "$SOURCE_CODE_DIR/DesignChoices.mat")" != \
         "$RUN_ROOT/DesignChoices.mat" ]]; then
   # Activation is the only post-seal mutation of canonical state. Restore
   # the exact previous bundle atomically if its resolution check fails.
-  cttrend_atomic_symlink "$CANONICAL_START_BUNDLE" \
+  ctrend_atomic_symlink "$CANONICAL_START_BUNDLE" \
     "$CANONICAL_CURRENT_LINK" || true
   [[ "$(readlink -f "$CANONICAL_CURRENT_LINK")" == \
       "$CANONICAL_START_BUNDLE" ]] || {
@@ -1738,16 +1738,16 @@ fi
 # Latest-successful pointers are conveniences layered on the atomic
 # canonical pointer and are advanced only after activation succeeds.
 pointer_update_failed=0
-cttrend_atomic_write_pointer \
+ctrend_atomic_write_pointer \
   "$SOURCE_CODE_DIR/logs/latest_successful_run_path.txt" "$RUN_ROOT" ||
   pointer_update_failed=1
-cttrend_atomic_write_pointer \
+ctrend_atomic_write_pointer \
   "$SOURCE_CODE_DIR/logs/latest_successful_data_path.txt" \
   "$PUBLISHED_DATA" || pointer_update_failed=1
-cttrend_atomic_write_pointer \
+ctrend_atomic_write_pointer \
   "$SOURCE_CODE_DIR/logs/latest_successful_results_path.txt" \
   "$PUBLISHED_RESULTS" || pointer_update_failed=1
-cttrend_atomic_write_pointer \
+ctrend_atomic_write_pointer \
   "$SOURCE_CODE_DIR/logs/latest_corrected_recompute_path.txt" "$RUN_ROOT" ||
   pointer_update_failed=1
 if (( pointer_update_failed != 0 )); then

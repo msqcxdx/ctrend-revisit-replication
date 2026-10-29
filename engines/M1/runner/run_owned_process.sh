@@ -32,7 +32,7 @@ command_path="$(command -v "$1" 2>/dev/null || true)"
 mkdir -p -- "$(dirname "$owner_file")"
 temporary="${owner_file}.tmp.$$"
 {
-  printf 'format=cttrend-owned-process-v1\n'
+  printf 'format=ctrend-owned-process-v1\n'
   printf 'state=running\n'
   printf 'owner_token=%s\n' "$owner_token"
   printf 'phase=%s\n' "$phase"

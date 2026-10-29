@@ -5,7 +5,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 EXT_ROOT="$ROOT/p0_extension"
 M2_STATIC_GUARD="$ROOT/engines/M2/runner/tests/test_m2_static_guards.sh"
-TMP="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_p0_derivation_XXXXXX")"
+TMP="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_p0_derivation_XXXXXX")"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 

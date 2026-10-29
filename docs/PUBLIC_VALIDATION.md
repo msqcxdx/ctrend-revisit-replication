@@ -1,9 +1,10 @@
 # Validation scope for this public checkout
 
-On 2026-10-28 UTC, the public export was generated into a new empty directory
+On 2026-10-29 UTC, the public export was generated into a new empty directory
 from controlled source commit `58c8bad72d318eb7f17610084cc826bfbbbe9511`.
 The generated `SOURCE_FILE_MAP.csv` and `PUBLIC_SHA256SUMS` matched the working
-public export byte-for-byte. The local test environment was Linux x86-64,
+public export byte-for-byte after the consistent `ctrend`/`CTREND` namespace
+normalization. The local test environment was Linux x86-64,
 Python 3.12.12, Bash 5.1.16 and ripgrep 15.2.0.
 
 The following commands were run in the **fresh export**:

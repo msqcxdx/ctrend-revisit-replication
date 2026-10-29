@@ -11,9 +11,9 @@ arguments
     sOutputDir (1,:) char
 end
 if strcmp(sMethod,'M0')
-    sRuntime = fullfile(sRunRoot,'runtime','cttrend_old_pipeline');
+    sRuntime = fullfile(sRunRoot,'runtime','ctrend_old_pipeline');
 else
-    sRuntime = fullfile(sRunRoot,'runtime','cttrend_lookahead_only_pipeline');
+    sRuntime = fullfile(sRunRoot,'runtime','ctrend_lookahead_only_pipeline');
 end
 addpath(fullfile(sRuntime,'Utils'));
 sData = fullfile(sRunRoot,'data');

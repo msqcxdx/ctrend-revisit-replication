@@ -4,7 +4,7 @@ This directory contains M1 operational tooling and remains outside the frozen
 M1 scientific source in `engines/M1/base`. The top-level runner self-binds its
 production scripts to a separate immutable snapshot before it takes the global
 lock or creates mutable run state. Runtime archives retain the established
-`cttrend_corrected_pipeline/` root only as an on-disk compatibility identifier
+`ctrend_corrected_pipeline/` root only as an on-disk compatibility identifier
 for completed-run provenance; it is not another method or experiment.
 
 It changes only scheduling and filesystem isolation. Forecast definitions,
@@ -75,10 +75,10 @@ For a direct internal M1 recomputation, use:
 
 ```bash
 ./build_runtime_package.sh \
-  <PROJECT_ROOT>/cttrend_m1_pipeline.tar.gz
+  <PROJECT_ROOT>/ctrend_m1_pipeline.tar.gz
 
 ./run_production.sh \
-  <PROJECT_ROOT>/cttrend_m1_pipeline.tar.gz
+  <PROJECT_ROOT>/ctrend_m1_pipeline.tar.gz
 ```
 
 The package builder excludes `DATA/`, `Results/`, logs, and MATLAB

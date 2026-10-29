@@ -4,7 +4,7 @@
 # This tests package identity only and does not produce research results.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-TMP="$(mktemp -d /tmp/cttrend_3x3_package_test_XXXXXX)"
+TMP="$(mktemp -d /tmp/ctrend_3x3_package_test_XXXXXX)"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 
@@ -28,9 +28,9 @@ for id in M0_D0 M0_D1 M0_D2 M1_D0 M1_D1 M1_D2 M2_D0 M2_D1 M2_D2; do
   "$ROOT/scripts/build_runtime_package.sh" "$id" "$src" "$pkg" >/dev/null
   (cd "$(dirname "$pkg")" && sha256sum -c "$(basename "$pkg").sha256" >/dev/null)
   case "$id" in
-    M0_*) expected=cttrend_old_pipeline ;;
-    M1_*) expected=cttrend_corrected_pipeline ;;
-    M2_*) expected=cttrend_lookahead_only_pipeline ;;
+    M0_*) expected=ctrend_old_pipeline ;;
+    M1_*) expected=ctrend_corrected_pipeline ;;
+    M2_*) expected=ctrend_lookahead_only_pipeline ;;
   esac
   test "$(tar -tzf "$pkg" | sed -n '1s#/$##p')" = "$expected"
   test -z "$(tar -tzf "$pkg" | grep -E '/(DATA|Results|logs|\.canonical|\.raw_input_seed)(/|$)' || true)"

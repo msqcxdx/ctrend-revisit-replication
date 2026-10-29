@@ -3,7 +3,7 @@
 #
 # This file intentionally contains no empirical or numerical choices.
 
-cttrend_prepare_temp_dir() {
+ctrend_prepare_temp_dir() {
   local target="$1"
   local allowed_root="$2"
   local purpose="${3:-runtime}"
@@ -30,14 +30,14 @@ cttrend_prepare_temp_dir() {
     return 2
   }
 
-  marker="$target_resolved/.cttrend_owned_temp"
+  marker="$target_resolved/.ctrend_owned_temp"
   if [[ -e "$target_resolved" && ! -f "$marker" ]]; then
     echo "refusing an unmarked pre-existing temporary directory: $target_resolved" >&2
     return 2
   fi
   mkdir -p -- "$target_resolved"
   {
-    printf 'format=cttrend-owned-temp-v1\n'
+    printf 'format=ctrend-owned-temp-v1\n'
     printf 'owner_uid=%s\n' "$(id -u)"
     printf 'allowed_root=%s\n' "$root_resolved"
     printf 'purpose=%s\n' "$purpose"
@@ -45,7 +45,7 @@ cttrend_prepare_temp_dir() {
   } > "$marker"
 }
 
-cttrend_safe_remove_temp_dir() {
+ctrend_safe_remove_temp_dir() {
   local target="$1"
   local allowed_root="$2"
   local target_resolved
@@ -67,7 +67,7 @@ cttrend_safe_remove_temp_dir() {
     echo "refusing temporary cleanup outside allowed root: $target_resolved" >&2
     return 2
   }
-  marker="$target_resolved/.cttrend_owned_temp"
+  marker="$target_resolved/.ctrend_owned_temp"
   [[ -f "$marker" && ! -L "$marker" ]] || {
     echo "refusing to remove unmarked temporary directory: $target_resolved" >&2
     return 2
@@ -81,7 +81,7 @@ cttrend_safe_remove_temp_dir() {
   rm -rf -- "$target_resolved"
 }
 
-cttrend_atomic_write_pointer() {
+ctrend_atomic_write_pointer() {
   local pointer="$1"
   local value="$2"
   local temporary="${pointer}.tmp.$$"
@@ -90,7 +90,7 @@ cttrend_atomic_write_pointer() {
   mv -f -- "$temporary" "$pointer"
 }
 
-cttrend_atomic_symlink() {
+ctrend_atomic_symlink() {
   local target="$1"
   local link_name="$2"
   local temporary="${link_name}.tmp.$$"
@@ -103,14 +103,14 @@ cttrend_atomic_symlink() {
   mv -Tf -- "$temporary" "$link_name"
 }
 
-cttrend_process_group_exists() {
+ctrend_process_group_exists() {
   local pgid="$1"
   [[ "$pgid" =~ ^[1-9][0-9]*$ ]] || return 1
   ps -eo pgid= | awk -v expected="$pgid" \
     '$1 == expected { found=1; exit } END { exit !found }'
 }
 
-cttrend_wait_for_process_group_exit() {
+ctrend_wait_for_process_group_exit() {
   local pgid="$1"
   local grace_seconds="$2"
   local deadline
@@ -120,14 +120,14 @@ cttrend_wait_for_process_group_exit() {
     return 2
   }
   deadline=$(( $(date +%s) + grace_seconds ))
-  while cttrend_process_group_exists "$pgid" &&
+  while ctrend_process_group_exists "$pgid" &&
       (( $(date +%s) < deadline )); do
     sleep 1
   done
-  ! cttrend_process_group_exists "$pgid"
+  ! ctrend_process_group_exists "$pgid"
 }
 
-cttrend_verify_source_map() {
+ctrend_verify_source_map() {
   local source_map="$1"
   local output_inventory="$2"
   local expected_count="$3"
@@ -168,7 +168,7 @@ cttrend_verify_source_map() {
   mv -f -- "$temporary" "$output_inventory"
 }
 
-cttrend_verify_sha256_inventory() {
+ctrend_verify_sha256_inventory() {
   local inventory="$1"
   local root="$2"
   [[ -f "$inventory" && ! -L "$inventory" && -d "$root" ]] || {

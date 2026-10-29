@@ -247,7 +247,7 @@ def main():
     # Review output is reproducible; only this generated directory is replaced.
     if OUT.exists():shutil.rmtree(OUT)
     OUT.mkdir();index=[];bodies=[];ordinary_index=[]
-    with tempfile.TemporaryDirectory(prefix='cttrend_pmd_annotations_') as tmp:
+    with tempfile.TemporaryDirectory(prefix='ctrend_pmd_annotations_') as tmp:
       temp=Path(tmp);trees={}
       for p in range(2):
        for m in range(3):

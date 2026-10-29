@@ -108,7 +108,7 @@ def main() -> None:
             "events": len(classified),
             "disposition_counts": dict(sorted(counts.items())),
         }
-    summary["format"] = "cttrend-v2-extreme-event-disposition-v1"
+    summary["format"] = "ctrend-v2-extreme-event-disposition-v1"
     summary["policy"] = (
         "magnitude triggers investigation only; unconfirmed events are preserved"
     )

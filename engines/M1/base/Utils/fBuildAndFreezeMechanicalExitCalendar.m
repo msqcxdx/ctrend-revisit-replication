@@ -79,7 +79,7 @@ assert(lMoved,'Could not publish mechanical exit calendar: %s',sMessage);
 clear rCleanup
 
 rAudit = struct();
-rAudit.sFormat = 'cttrend-mechanical-exit-calendar-v1';
+rAudit.sFormat = 'ctrend-mechanical-exit-calendar-v1';
 rAudit.sRule = [ ...
     'last original positive close before sample end is the frozen exit; ' ...
     'sample-end observations are right-censored'];

@@ -11,7 +11,7 @@ for id in M0_D0 M0_D1 M0_D2 M1_D0 M1_D1 M1_D2 M2_D0 M2_D1 M2_D2; do
   [[ -s "$reg" ]] || { echo "missing registration: $id" >&2; rm -f "$TMP"; exit 1; }
   value() { awk -F= -v key="$1" '$1==key{print substr($0,index($0,"=")+1);exit}' "$2"; }
   run="$(value run_root "$reg")"
-  expected_registration_format=cttrend-nine-experiment-registration-v1
+  expected_registration_format=ctrend-nine-experiment-registration-v1
   acceptance="$run/NINE_EXPERIMENT_ACCEPTANCE.env"
   acceptance_field=nine_experiment_acceptance_sha256
   [[ "$(value format "$reg")" == "$expected_registration_format" && \
@@ -33,7 +33,7 @@ for id in M0_D0 M0_D1 M0_D2 M1_D0 M1_D1 M1_D2 M2_D0 M2_D1 M2_D2; do
 done
 mv -Tf -- "$TMP" "$OUT"
 {
-  echo 'format=cttrend-nine-experiment-suite-complete-v1'
+  echo 'format=ctrend-nine-experiment-suite-complete-v1'
   echo 'clean_nine_experiment_run_complete=true'
   echo 'experiments=9'
   echo "acceptance_csv_sha256=$(sha256sum "$OUT" | awk '{print $1}')"

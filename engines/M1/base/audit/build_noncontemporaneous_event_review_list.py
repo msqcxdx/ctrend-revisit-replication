@@ -210,7 +210,7 @@ def main() -> None:
     assert digest(NEW_PROJECT_OUTPUT) == digest(SOURCE)
 
     summary = {
-        "format": "cttrend-v2-point-level-contemporaneous-event-filter-v1",
+        "format": "ctrend-v2-point-level-contemporaneous-event-filter-v1",
         "source": str(SOURCE.relative_to(PROJECT)),
         "source_rows": len(candidates),
         "prior_asset_level_kept_rows": len(prior_kept),

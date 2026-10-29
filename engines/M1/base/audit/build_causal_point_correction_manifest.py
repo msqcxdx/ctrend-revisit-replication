@@ -246,7 +246,7 @@ def main() -> None:
         cells,
     )
     summary = {
-        "format": "cttrend-v2-causal-point-external-disagreement-audit-v1",
+        "format": "ctrend-v2-causal-point-external-disagreement-audit-v1",
         "trigger_assets": len(triggers_by_id),
         "audited_target_cells": len(audit),
         "candidate_cells": len(cells),

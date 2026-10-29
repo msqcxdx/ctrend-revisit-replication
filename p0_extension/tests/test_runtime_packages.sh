@@ -4,7 +4,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 EXT_ROOT="$ROOT/p0_extension"
-TMP="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_p0_packages_XXXXXX")"
+TMP="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_p0_packages_XXXXXX")"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 
@@ -26,11 +26,11 @@ for method in M0 M1 M2; do
       sha256sum -c "$(basename "$archive").sha256" >/dev/null)
 
     if [[ "$method" == M1 ]]; then
-      package_name=cttrend_corrected_pipeline
+      package_name=ctrend_corrected_pipeline
     elif [[ "$method" == M2 ]]; then
-      package_name=cttrend_lookahead_only_pipeline
+      package_name=ctrend_lookahead_only_pipeline
     else
-      package_name=cttrend_old_pipeline
+      package_name=ctrend_old_pipeline
     fi
     extract="$TMP/extracted/$id"
     mkdir -p "$extract"

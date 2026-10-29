@@ -8,10 +8,10 @@ if [[ "$#" -ne 2 ]]; then
 fi
 OLD_ARCHIVE="$1"
 OLD_V2_SOURCE="$2"
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_old_v2_delta_XXXXXX)"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_old_v2_delta_XXXXXX)"
 trap 'rm -rf -- "$TEMP_ROOT"' EXIT
 tar -xzf "$OLD_ARCHIVE" -C "$TEMP_ROOT"
-OLD_SOURCE="$TEMP_ROOT/cttrend_old_pipeline"
+OLD_SOURCE="$TEMP_ROOT/ctrend_old_pipeline"
 
 for file in "$OLD_SOURCE"/*.m "$OLD_SOURCE"/*.sh; do
   name="$(basename "$file")"

@@ -4,14 +4,14 @@
 # This proves hashes bind relative content rather than a host-specific path.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-TMP="$(mktemp -d /tmp/cttrend_portable_inventory_XXXXXX)"
+TMP="$(mktemp -d /tmp/ctrend_portable_inventory_XXXXXX)"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 RUN_A="$TMP/worker_run"
 RUN_B="$TMP/main_run"
 RUN_C="$TMP/m2_run"
 mkdir -p "$RUN_A/data.staging"
-printf 'format=cttrend-published-method-run-complete-v1\n' > "$RUN_A/RUN_COMPLETE"
+printf 'format=ctrend-published-method-run-complete-v1\n' > "$RUN_A/RUN_COMPLETE"
 printf 'alpha\n' > "$RUN_A/data.staging/a.txt"
 mkdir "$RUN_A/data.staging/nested"
 printf 'beta\n' > "$RUN_A/data.staging/nested/b.txt"
@@ -30,7 +30,7 @@ if "$ROOT/scripts/write_portable_run_inventories.sh" M0_D0 "$RUN_B" \
 fi
 grep -F 'existing portable DATA inventory differs' "$TMP/tamper.err" >/dev/null
 mkdir -p "$RUN_C/data.staging"
-printf 'format=cttrend-lookahead-only-run-complete-v1\n' > "$RUN_C/RUN_COMPLETE"
+printf 'format=ctrend-lookahead-only-run-complete-v1\n' > "$RUN_C/RUN_COMPLETE"
 printf 'gamma\n' > "$RUN_C/data.staging/c.txt"
 "$ROOT/scripts/write_portable_run_inventories.sh" M2_D0 "$RUN_C" >/dev/null
 (cd "$RUN_C/data.staging" && sha256sum -c "$RUN_C/NINE_EXPERIMENT_DATA_INVENTORY.sha256" >/dev/null)

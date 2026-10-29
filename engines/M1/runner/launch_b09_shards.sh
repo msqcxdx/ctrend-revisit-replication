@@ -4,7 +4,7 @@ set -euo pipefail
 
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$RUNNER_DIR/.." && pwd)"
-PACKAGE="${CORRECTED_PACKAGE:-$PROJECT_DIR/cttrend_m1_pipeline.tar.gz}"
+PACKAGE="${CORRECTED_PACKAGE:-$PROJECT_DIR/ctrend_m1_pipeline.tar.gz}"
 CANONICAL_CODE_DIR="${CANONICAL_CODE_DIR:-$PROJECT_DIR/base}"
 MATLAB_BIN="${MATLAB_BIN:-$(command -v matlab 2>/dev/null || true)}"
 WORKERS_PER_SHARD="${WORKERS_PER_SHARD:-31}"
@@ -27,7 +27,7 @@ B09_ORCHESTRATOR_START_TICKS="${B09_ORCHESTRATOR_START_TICKS:-}"
 # shellcheck source=b09_profile_lib.sh
 source "$RUNNER_DIR/b09_profile_lib.sh"
 
-cttrend_b09_validate_profile "$NUM_SHARDS" "$WORKERS_PER_SHARD" \
+ctrend_b09_validate_profile "$NUM_SHARDS" "$WORKERS_PER_SHARD" \
   "$FIRST_COMBO" "$LAST_COMBO"
 [[ "$POOL_START_STAGGER_SECONDS" =~ ^[0-9]+$ ]] || {
   echo "invalid POOL_START_STAGGER_SECONDS" >&2
@@ -147,7 +147,7 @@ for shard in $(seq 1 "$NUM_SHARDS"); do
     exit 2
   }
   tar -xzf "$PACKAGE" -C "$shard_dir/extract"
-  code_dir="$shard_dir/extract/cttrend_corrected_pipeline"
+  code_dir="$shard_dir/extract/ctrend_corrected_pipeline"
   [[ -d "$code_dir" ]] || { echo "package root missing in shard $shard" >&2; exit 2; }
   write_runtime_source_inventory "$code_dir" \
     > "$shard_dir/package_matlab_sources.sha256"
@@ -181,7 +181,7 @@ done
 # single range here avoids all routine client/pool restarts.  Recovery plans
 # may still contain several disjoint ranges and use the same persistent
 # runner.
-cttrend_b09_write_contiguous_ranges "$NUM_SHARDS" "$FIRST_COMBO" \
+ctrend_b09_write_contiguous_ranges "$NUM_SHARDS" "$FIRST_COMBO" \
   "$LAST_COMBO" "$RUN_ROOT" || {
   echo "internal contiguous shard allocation error" >&2
   exit 2
@@ -230,7 +230,7 @@ export HEARTBEAT_INTERVAL_SECONDS
 
 for shard in $(seq 1 "$NUM_SHARDS"); do
   shard_dir="$RUN_ROOT/shard$shard"
-  code_dir="$shard_dir/extract/cttrend_corrected_pipeline"
+  code_dir="$shard_dir/extract/ctrend_corrected_pipeline"
   nohup setsid env \
     B09_SHARD_ID="$shard" \
     B09_SHARD_STATE_FILE="$shard_dir/state.env" \

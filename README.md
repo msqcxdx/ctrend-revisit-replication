@@ -8,7 +8,7 @@ Start with [PAPER_REPLICATION.md](PAPER_REPLICATION.md) for the research questio
 
 ## What is here
 
-- `engines/`, `config/`, `scripts/`, `postprocessing/`, `analysis/`, `tests/`: the frozen scientific method code plus public-checkout orchestration from controlled source commit `58c8bad72d318eb7f17610084cc826bfbbbe9511`. `provenance/SOURCE_FILE_MAP.csv` records both hashes for every copied file; the three public-only preflight/test/documentation substitutions are explicit in `public_overrides/`.
+- `engines/`, `config/`, `scripts/`, `postprocessing/`, `analysis/`, `tests/`: scientific method code plus public-checkout orchestration derived from controlled source commit `58c8bad72d318eb7f17610084cc826bfbbbe9511`. Internal identifiers consistently use `ctrend`/`CTREND`; `provenance/SOURCE_FILE_MAP.csv` records source and public hashes, and the public-only preflight/test/documentation substitutions are explicit in `public_overrides/`.
 - `reference/dataverse_files.zip`: the original author-deposited comparison package from [Harvard Dataverse, doi:10.7910/DVN/NTIVT8](https://doi.org/10.7910/DVN/NTIVT8), whose dataset metadata identifies CC0 1.0. Its embedded `fGRS.m` retains a separate BSD notice. This reference is not our input-market-data license.
 - `results/comparisons/`: compact, non-asset-level comparison tables, the author-published factor series extracted from the reference workbook, and an inventory of figures. A figure inventory is **not** the figures themselves.
 - `provenance/`: a byte-level link to the controlled source and the accepted research-run IDs/hashes, without private run paths.

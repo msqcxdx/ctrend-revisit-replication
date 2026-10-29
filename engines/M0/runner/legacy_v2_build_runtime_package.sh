@@ -10,9 +10,9 @@ fi
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$RUNNER_DIR/.." && pwd)"
 SOURCE_DIR="${1:-$PROJECT_DIR/old_code_v2}"
-OUTPUT="${2:-$PROJECT_DIR/cttrend_old_v2_pipeline.tar.gz}"
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_old_v2_package_XXXXXX)"
-PACKAGE_ROOT="$TEMP_ROOT/cttrend_old_v2_pipeline"
+OUTPUT="${2:-$PROJECT_DIR/ctrend_old_v2_pipeline.tar.gz}"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_old_v2_package_XXXXXX)"
+PACKAGE_ROOT="$TEMP_ROOT/ctrend_old_v2_pipeline"
 
 cleanup() {
   local rc=$?
@@ -60,7 +60,7 @@ cp -- "$TEMP_ROOT/package_files.sha256" "$PACKAGE_ROOT/PACKAGE_FILES.sha256"
 
 mkdir -p "$(dirname "$OUTPUT")"
 temporary_output="${OUTPUT}.tmp.$$"
-tar -czf "$temporary_output" -C "$TEMP_ROOT" cttrend_old_v2_pipeline
+tar -czf "$temporary_output" -C "$TEMP_ROOT" ctrend_old_v2_pipeline
 archive_sha="$(sha256sum "$temporary_output" | awk '{print $1}')"
 mv -f -- "$temporary_output" "$OUTPUT"
 printf '%s  %s\n' "$archive_sha" "$(basename "$OUTPUT")" \

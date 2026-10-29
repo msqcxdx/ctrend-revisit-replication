@@ -23,7 +23,7 @@ EXPECTED_SHA="$(awk -v relative="$RELATIVE" '$2==relative{print $1;exit}' \
   "$EXPECTED")"
 [[ "$EXPECTED_SHA" =~ ^[0-9a-f]{64}$ ]] || exit 1
 
-TEMP="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_m1_inventory_compat_XXXXXX")"
+TEMP="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_m1_inventory_compat_XXXXXX")"
 # Restore only the single omitted row before comparing sorted inventories.
 cleanup() { rm -rf -- "$TEMP"; }
 trap cleanup EXIT
@@ -41,7 +41,7 @@ for inventory in runtime_code_inventory.sha256 \
   cmp -s "$OBSERVED" "$RUN_ROOT/$inventory" || exit 1
 done
 
-RUNTIME_FILE="$RUN_ROOT/runtime/cttrend_corrected_pipeline/$RELATIVE"
+RUNTIME_FILE="$RUN_ROOT/runtime/ctrend_corrected_pipeline/$RELATIVE"
 [[ -f "$RUNTIME_FILE" && ! -L "$RUNTIME_FILE" ]] || exit 1
 [[ "$(sha256sum "$RUNTIME_FILE" | awk '{print $1}')" == "$EXPECTED_SHA" ]] || exit 1
 
@@ -66,7 +66,7 @@ value() {
    "$(sha256sum "$ARCHIVE" | awk '{print $1}')" ]] || exit 1
 
 printf '%s\n' \
-  'format=cttrend-m1-legacy-inventory-compatibility-v1' \
+  'format=ctrend-m1-legacy-inventory-compatibility-v1' \
   'mode=tests_subdirectory_shell_omission_v1' \
   "omitted_relative_path=$RELATIVE" \
   "omitted_sha256=$EXPECTED_SHA" \

@@ -17,11 +17,11 @@ INPUT_DIR="$REMOTE_ROOT/input"
 STATE_DIR="$REMOTE_ROOT/state"
 RESULTS_DIR="$REMOTE_ROOT/results"
 WORK_DIR="$REMOTE_ROOT/work"
-PACKAGE="$INPUT_DIR/cttrend_old_v2_pipeline.tar.gz"
+PACKAGE="$INPUT_DIR/ctrend_old_v2_pipeline.tar.gz"
 DESIGN_FILE="$INPUT_DIR/DesignChoices.mat"
 DATA_DIR="$INPUT_DIR/DATA"
 RUNNER_DIR="$INPUT_DIR/runner"
-CODE_DIR="$WORK_DIR/cttrend_old_v2_pipeline"
+CODE_DIR="$WORK_DIR/ctrend_old_v2_pipeline"
 JOB_STORAGE_ROOT="$REMOTE_ROOT/job_storage"
 
 [[ "$REMOTE_ROOT" == /* && "$REMOTE_ROOT" =~ ^[A-Za-z0-9_./-]+$ ]] || {

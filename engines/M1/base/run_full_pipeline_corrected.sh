@@ -45,7 +45,7 @@ LOG_DIR="$CODE_DIR/logs/corrected_pipeline_$RUN_ID"
 LOG_FILE="$LOG_DIR/pipeline.log"
 STATUS_FILE="$LOG_DIR/status.tsv"
 PID_FILE="$CODE_DIR/logs/corrected_pipeline_latest.pid"
-RUNTIME_TEMP_ROOT="${PIPELINE_RUNTIME_TEMP_ROOT:-${TMPDIR:-/tmp}/cttrend_pipeline_runtime_$RUN_ID}"
+RUNTIME_TEMP_ROOT="${PIPELINE_RUNTIME_TEMP_ROOT:-${TMPDIR:-/tmp}/ctrend_pipeline_runtime_$RUN_ID}"
 RUNTIME_TEMP_ALLOWED_ROOT="${PIPELINE_RUNTIME_TEMP_ALLOWED_ROOT:-$(dirname "$RUNTIME_TEMP_ROOT")}"
 PIPELINE_JOB_STORAGE="$RUNTIME_TEMP_ROOT/parallel_job_storage"
 export PIPELINE_JOB_STORAGE
@@ -62,7 +62,7 @@ cleanup_pid() {
   if [[ -f "$PID_FILE" ]] && [[ "$(<"$PID_FILE")" == "$$" ]]; then
     rm -f "$PID_FILE"
   fi
-  cttrend_safe_remove_temp_dir "$RUNTIME_TEMP_ROOT" \
+  ctrend_safe_remove_temp_dir "$RUNTIME_TEMP_ROOT" \
     "$RUNTIME_TEMP_ALLOWED_ROOT" || rc=1
   exit "$rc"
 }
@@ -80,11 +80,11 @@ export MKL_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 
-cttrend_prepare_temp_dir "$RUNTIME_TEMP_ROOT" \
+ctrend_prepare_temp_dir "$RUNTIME_TEMP_ROOT" \
   "$RUNTIME_TEMP_ALLOWED_ROOT" "corrected_pipeline_$RUN_ID"
-cttrend_prepare_temp_dir "$MATLAB_PREFDIR" \
+ctrend_prepare_temp_dir "$MATLAB_PREFDIR" \
   "$RUNTIME_TEMP_ROOT" matlab_preferences
-cttrend_prepare_temp_dir "$PIPELINE_JOB_STORAGE" \
+ctrend_prepare_temp_dir "$PIPELINE_JOB_STORAGE" \
   "$RUNTIME_TEMP_ROOT" parallel_job_storage
 
 {
@@ -152,7 +152,7 @@ if [[ "${PIPELINE_SCOPE,,}" == "full" &&
   completion_name=RUN_COMPLETE
 fi
 {
-  echo "format=cttrend-direct-invocation-complete-v1"
+  echo "format=ctrend-direct-invocation-complete-v1"
   echo "run_id=$RUN_ID"
   echo "pipeline_scope=${PIPELINE_SCOPE,,}"
   echo "parallel_workers=$PARALLEL_WORKERS"

@@ -4,7 +4,7 @@ set -euo pipefail
 
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CODE_DIR="$(cd "$RUNNER_DIR/../base" && pwd)"
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_runner_fault_test_XXXXXX)"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_runner_fault_test_XXXXXX)"
 
 # shellcheck source=/dev/null
 source "$CODE_DIR/run_safety.sh"
@@ -38,27 +38,27 @@ group_exists() {
 # termination. A refreshed heartbeat must cancel the stale decision, while a
 # confirmed stale heartbeat with no live client or no recent result must fail
 # closed.
-[[ "$(cttrend_b09_heartbeat_decision 301 300 1 2 121 5400 1)" == \
+[[ "$(ctrend_b09_heartbeat_decision 301 300 1 2 121 5400 1)" == \
    "WARN_STALE" ]] || {
   echo "first stale heartbeat was not treated as a warning" >&2
   exit 1
 }
-[[ "$(cttrend_b09_heartbeat_decision 301 300 2 2 121 5400 1)" == \
+[[ "$(ctrend_b09_heartbeat_decision 301 300 2 2 121 5400 1)" == \
    "DEFER_RECENT_PROGRESS" ]] || {
   echo "recent result progress did not protect a live shard" >&2
   exit 1
 }
-[[ "$(cttrend_b09_heartbeat_decision 0 300 2 2 121 5400 1)" == \
+[[ "$(ctrend_b09_heartbeat_decision 0 300 2 2 121 5400 1)" == \
    "HEALTHY" ]] || {
   echo "a refreshed heartbeat remained stale" >&2
   exit 1
 }
-[[ "$(cttrend_b09_heartbeat_decision 301 300 2 2 121 5400 0)" == \
+[[ "$(ctrend_b09_heartbeat_decision 301 300 2 2 121 5400 0)" == \
    "TERMINATE_CONFIRMED_STALE" ]] || {
   echo "a dead MATLAB client was not rejected after stale confirmation" >&2
   exit 1
 }
-[[ "$(cttrend_b09_heartbeat_decision 301 300 2 2 5401 5400 1)" == \
+[[ "$(ctrend_b09_heartbeat_decision 301 300 2 2 5401 5400 1)" == \
    "TERMINATE_CONFIRMED_STALE" ]] || {
   echo "confirmed heartbeat and result stagnation did not fail closed" >&2
   exit 1
@@ -71,12 +71,12 @@ printf 'updated_epoch=401\n' > "$heartbeat_race.tmp"
 mv -f -- "$heartbeat_race.tmp" "$heartbeat_race"
 confirmed_epoch="$(awk -F= '$1=="updated_epoch"{print $2;exit}' \
   "$heartbeat_race")"
-[[ "$(cttrend_b09_heartbeat_refresh_state "$observed_epoch" \
+[[ "$(ctrend_b09_heartbeat_refresh_state "$observed_epoch" \
     "$confirmed_epoch" 0 300)" == "REFRESHED" ]] || {
   echo "an atomic heartbeat refresh did not cancel the stale observation" >&2
   exit 1
 }
-[[ "$(cttrend_b09_heartbeat_refresh_state 100 100 301 300)" == \
+[[ "$(ctrend_b09_heartbeat_refresh_state 100 100 301 300)" == \
    "STILL_STALE" ]] || {
   echo "an unchanged stale heartbeat was falsely refreshed" >&2
   exit 1
@@ -158,7 +158,7 @@ setsid "$RUNNER_DIR/run_owned_process.sh" \
   bash -c 'sleep 1 & exit 0' &
 grace_leader=$!
 wait "$grace_leader"
-cttrend_wait_for_process_group_exit "$grace_leader" 5 || {
+ctrend_wait_for_process_group_exit "$grace_leader" 5 || {
   echo "bounded exit grace rejected a naturally draining child" >&2
   exit 1
 }
@@ -170,7 +170,7 @@ setsid "$RUNNER_DIR/run_owned_process.sh" \
   bash -c 'sleep 30 & exit 0' &
 persistent_leader=$!
 wait "$persistent_leader"
-if cttrend_wait_for_process_group_exit "$persistent_leader" 1; then
+if ctrend_wait_for_process_group_exit "$persistent_leader" 1; then
   echo "bounded exit grace accepted a persistent child group" >&2
   exit 1
 fi
@@ -412,7 +412,7 @@ fixture_package="$TEMP_ROOT/fixture_pipeline.tar.gz"
 fixture_extract="$TEMP_ROOT/fixture_extract"
 mkdir -p "$fixture_extract"
 tar -xzf "$fixture_package" -C "$fixture_extract"
-fixture_code="$fixture_extract/cttrend_corrected_pipeline"
+fixture_code="$fixture_extract/ctrend_corrected_pipeline"
 source_mutation_root="$TEMP_ROOT/source_mutation"
 mkdir -p "$source_mutation_root/logs"
 : > "$source_mutation_root/ranges.txt"
@@ -469,10 +469,10 @@ sealed_sha="$(sha256sum "$sealed_source" | awk '{print $1}')"
 source_map="$TEMP_ROOT/source_map.tsv"
 printf 'original_source.csv\t%s\t%s\n' "$sealed_sha" "$sealed_source" \
   > "$source_map"
-cttrend_verify_source_map "$source_map" \
+ctrend_verify_source_map "$source_map" \
   "$TEMP_ROOT/source_publish.sha256" 1
 printf 'mutation\n' >> "$sealed_source"
-if cttrend_verify_source_map "$source_map" \
+if ctrend_verify_source_map "$source_map" \
     "$TEMP_ROOT/source_publish_bad.sha256" 1 >/dev/null 2>&1; then
   echo "original sealed source mutation was not rejected" >&2
   exit 1
@@ -485,10 +485,10 @@ printf 'sealed log\n' > "$inventory_root/logs/phase.log"
   cd "$inventory_root"
   sha256sum logs/phase.log
 ) > "$inventory_root/status_inventory.sha256"
-cttrend_verify_sha256_inventory \
+ctrend_verify_sha256_inventory \
   "$inventory_root/status_inventory.sha256" "$inventory_root"
 printf 'post-seal mutation\n' >> "$inventory_root/logs/phase.log"
-if cttrend_verify_sha256_inventory \
+if ctrend_verify_sha256_inventory \
     "$inventory_root/status_inventory.sha256" \
     "$inventory_root" >/dev/null 2>&1; then
   echo "post-inventory log mutation was not rejected" >&2
@@ -499,9 +499,9 @@ fi
 # activation resolution check.
 canonical_root="$TEMP_ROOT/canonical"
 mkdir -p "$canonical_root/old" "$canonical_root/new"
-cttrend_atomic_symlink "$canonical_root/old" "$canonical_root/current"
-cttrend_atomic_symlink "$canonical_root/new" "$canonical_root/current"
-cttrend_atomic_symlink "$canonical_root/old" "$canonical_root/current"
+ctrend_atomic_symlink "$canonical_root/old" "$canonical_root/current"
+ctrend_atomic_symlink "$canonical_root/new" "$canonical_root/current"
+ctrend_atomic_symlink "$canonical_root/old" "$canonical_root/current"
 [[ "$(readlink -f "$canonical_root/current")" == \
    "$canonical_root/old" ]] || {
   echo "atomic canonical rollback did not restore the old bundle" >&2
@@ -536,9 +536,9 @@ rg -q 'raw_input_sources_at_publish.sha256' \
   "$RUNNER_DIR/run_production.sh"
 rg -q 'runner_source_inventory_at_publish.sha256' \
   "$RUNNER_DIR/run_production.sh"
-rg -q 'cttrend_verify_sha256_inventory' \
+rg -q 'ctrend_verify_sha256_inventory' \
   "$RUNNER_DIR/run_production.sh"
-rg -q 'cttrend_wait_for_process_group_exit' \
+rg -q 'ctrend_wait_for_process_group_exit' \
   "$RUNNER_DIR/run_production.sh"
 rg -q 'PHASE_EXIT_GRACE_SECONDS' \
   "$RUNNER_DIR/run_production.sh"

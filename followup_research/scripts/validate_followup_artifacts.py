@@ -432,7 +432,7 @@ def main():
     native=OUT/'E07/native_failure_audit'
     native_receipt=json.loads((native/'EXPORT_RECEIPT.json').read_text())
     native_equality=rows(native/'full_baseline_field_equality.csv')
-    if native_receipt['format']!='cttrend-e07-native-gates-export-v1' or \
+    if native_receipt['format']!='ctrend-e07-native-gates-export-v1' or \
             {r['experiment_id'] for r in native_equality}!={f'P{p}_M{m}_D{d}'
             for p in (0,1) for m in (1,2) for d in (0,1,2)} or \
             any(r['all_fields_isequaln']!='1' for r in native_equality):

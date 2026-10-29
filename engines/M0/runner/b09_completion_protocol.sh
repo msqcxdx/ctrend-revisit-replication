@@ -4,14 +4,14 @@
 # This file is sourced by run_production.sh.  It deliberately does not change
 # the caller's shell options.
 
-cttrend_b09_record_value() {
+ctrend_b09_record_value() {
   local file="$1" key="$2"
   [[ -f "$file" ]] || return 1
   awk -F= -v key="$key" \
     '$1 == key { print substr($0,index($0,"=")+1); exit }' "$file"
 }
 
-cttrend_b09_observed_terminal_state() {
+ctrend_b09_observed_terminal_state() {
   local shard_dir="$1" expected_run_id="$2" publication_timeout="$3" now_epoch="$4"
   local completion_file="$shard_dir/completion.env"
   local state_file="$shard_dir/state.env"
@@ -25,8 +25,8 @@ cttrend_b09_observed_terminal_state() {
   # the orchestrator to count a shard as complete.
   if [[ -e "$completion_file" ]]; then
     if [[ -f "$completion_file" && -s "$completion_file" &&
-          "$(cttrend_b09_record_value "$completion_file" complete 2>/dev/null || true)" == 1 &&
-          "$(cttrend_b09_record_value "$completion_file" research_run_id 2>/dev/null || true)" == \
+          "$(ctrend_b09_record_value "$completion_file" complete 2>/dev/null || true)" == 1 &&
+          "$(ctrend_b09_record_value "$completion_file" research_run_id 2>/dev/null || true)" == \
             "$expected_run_id" ]]; then
       printf 'COMPLETE\n'
     else
@@ -35,7 +35,7 @@ cttrend_b09_observed_terminal_state() {
     return 0
   fi
 
-  observed_state="$(cttrend_b09_record_value "$state_file" state 2>/dev/null || true)"
+  observed_state="$(ctrend_b09_record_value "$state_file" state 2>/dev/null || true)"
   [[ -n "$observed_state" ]] || observed_state=STARTING
   case "$observed_state" in
     FAILED*)
@@ -48,7 +48,7 @@ cttrend_b09_observed_terminal_state() {
       # COMPLETE without completion.env can be produced only by an older or
       # interrupted publisher.  Treat it as a bounded FINALIZING state, never
       # as success, so filesystem scheduling cannot race the merge.
-      updated_epoch="$(cttrend_b09_record_value "$state_file" updated_epoch 2>/dev/null || true)"
+      updated_epoch="$(ctrend_b09_record_value "$state_file" updated_epoch 2>/dev/null || true)"
       if [[ "$updated_epoch" =~ ^[0-9]+$ ]]; then
         age=$((now_epoch - updated_epoch))
       else

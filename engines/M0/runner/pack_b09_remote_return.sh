@@ -41,7 +41,7 @@ digest_count="$(find "$RESULTS_DIR/CTREND" -maxdepth 1 -type f \
   sha256sum -c ResearchDesignRunManifest.env.sha256
 )
 
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_old_v2_remote_return_XXXXXX)"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_old_v2_remote_return_XXXXXX)"
 cleanup() {
   local rc=$?
   trap - EXIT INT TERM
@@ -49,12 +49,12 @@ cleanup() {
   exit "$rc"
 }
 trap cleanup EXIT
-RETURN_ROOT="$TEMP_ROOT/cttrend_old_v2_b09_remote_return"
+RETURN_ROOT="$TEMP_ROOT/ctrend_old_v2_b09_remote_return"
 mkdir -p "$RETURN_ROOT"
 cp -a -- "$STATE_DIR" "$RETURN_ROOT/state"
 cp -a -- "$RESULTS_DIR" "$RETURN_ROOT/results"
 {
-  printf 'format=cttrend-old-v2-b09-remote-return-v1\n'
+  printf 'format=ctrend-old-v2-b09-remote-return-v1\n'
   printf 'mat_files=%s\n' "$mat_count"
   printf 'digest_files=%s\n' "$digest_count"
   printf 'packed_at=%s\n' "$(date -Is)"
@@ -68,7 +68,7 @@ cp -a -- "$RESULTS_DIR" "$RETURN_ROOT/results"
 mkdir -p "$(dirname "$OUTPUT")"
 temporary_output="${OUTPUT}.tmp.$$"
 tar -czf "$temporary_output" -C "$TEMP_ROOT" \
-  cttrend_old_v2_b09_remote_return
+  ctrend_old_v2_b09_remote_return
 archive_sha="$(sha256sum "$temporary_output" | awk '{print $1}')"
 mv -f -- "$temporary_output" "$OUTPUT"
 printf '%s  %s\n' "$archive_sha" "$(basename "$OUTPUT")" \

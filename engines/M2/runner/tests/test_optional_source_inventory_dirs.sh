@@ -4,7 +4,7 @@ set -euo pipefail
 
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 RELEASE_ROOT="$(cd "$RUNNER_DIR/../replication_release_src" 2>/dev/null && pwd || true)"
-T="$(mktemp -d /tmp/cttrend_old_optional_inventory_XXXXXX)"
+T="$(mktemp -d /tmp/ctrend_old_optional_inventory_XXXXXX)"
 trap 'rm -rf "$T"' EXIT
 
 mkdir -p "$T/source/Utils" "$T/source/LatexTables"

@@ -18,7 +18,7 @@ IDS=(M0_D0 M0_D1 M0_D2 M2_D0 M2_D1 M2_D2 M1_D0 M1_D1 M1_D2)
 
 mkdir -p "$(dirname "$OUTPUT_DIR")"
 mkdir "$OUTPUT_DIR"
-PREF="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_b19_pref_XXXXXX")"
+PREF="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_b19_pref_XXXXXX")"
 COMPLETE=0
 cleanup() {
   local rc=$?
@@ -26,7 +26,7 @@ cleanup() {
   rm -rf -- "$PREF"
   if [[ "$COMPLETE" -ne 1 ]]; then
     {
-      echo 'format=cttrend-b19-common-week-failure-v1'
+      echo 'format=ctrend-b19-common-week-failure-v1'
       echo "exit_code=$rc"
       echo "failed_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
     } > "$OUTPUT_DIR/B19_FAILED.env"
@@ -102,7 +102,7 @@ done
 COMMON_N="$(awk -F, 'NR==2{print $3;exit}' \
   "$OUTPUT_DIR/nine_method_all_common_summary.csv")"
 {
-  echo 'format=cttrend-b19-common-week-complete-v1'
+  echo 'format=ctrend-b19-common-week-complete-v1'
   echo 'methods=9'
   echo "all_nine_common_n=$COMMON_N"
   echo "input_bindings_sha256=$(sha256sum "$OUTPUT_DIR/b19_input_bindings.csv" | awk '{print $1}')"

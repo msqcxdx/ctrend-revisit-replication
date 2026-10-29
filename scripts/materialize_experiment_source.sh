@@ -80,7 +80,7 @@ fi
 EXCLUSION="$ROOT/config/exclusions/$DATA_ID.csv"
 EXCLUSION_SHA="$(sha256sum "$EXCLUSION" | awk '{print $1}')"
 {
-  echo 'format=cttrend-3x3-materialized-source-v1'
+  echo 'format=ctrend-3x3-materialized-source-v1'
   echo "experiment_id=$ID"
   echo "method_id=$METHOD"
   echo "data_id=$DATA_ID"

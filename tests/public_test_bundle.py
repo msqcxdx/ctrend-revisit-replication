@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / "cmc_acquisition"))
 from bundle import CMC_FILES, validate_summary, verify, write_manifest
 
 
-with tempfile.TemporaryDirectory(prefix="cttrend_public_bundle_") as temporary:
+with tempfile.TemporaryDirectory(prefix="ctrend_public_bundle_") as temporary:
     folder = Path(temporary)
     for name in CMC_FILES:
         if name == "screening_summary.json":

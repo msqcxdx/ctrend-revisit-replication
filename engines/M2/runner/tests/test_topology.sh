@@ -8,9 +8,9 @@ LOCAL_TOPOLOGY="$RUNNER_DIR/b09_local_full_8x15_topology.tsv"
 
 # shellcheck source=../b09_topology_lib.sh
 source "$RUNNER_DIR/b09_topology_lib.sh"
-[[ "$(cttrend_b09_topology_template two_host "$RUNNER_DIR")" == \
+[[ "$(ctrend_b09_topology_template two_host "$RUNNER_DIR")" == \
    "$TOPOLOGY" ]]
-[[ "$(cttrend_b09_topology_template local_full_8x15 "$RUNNER_DIR")" == \
+[[ "$(ctrend_b09_topology_template local_full_8x15 "$RUNNER_DIR")" == \
    "$LOCAL_TOPOLOGY" ]]
 
 awk -F '\t' '
@@ -48,10 +48,10 @@ awk -F '\t' '
     if (rows != 8 || count != 3072 || expected != 3073) exit 1
   }
 ' expected=1 "$LOCAL_TOPOLOGY"
-[[ "$(cttrend_b09_local_rows "$LOCAL_TOPOLOGY" | wc -l)" -eq 8 ]]
-[[ "$(cttrend_b09_remote_rows "$LOCAL_TOPOLOGY" | wc -l)" -eq 0 ]]
+[[ "$(ctrend_b09_local_rows "$LOCAL_TOPOLOGY" | wc -l)" -eq 8 ]]
+[[ "$(ctrend_b09_remote_rows "$LOCAL_TOPOLOGY" | wc -l)" -eq 0 ]]
 
-if cttrend_b09_topology_template unsupported "$RUNNER_DIR" >/dev/null 2>&1; then
+if ctrend_b09_topology_template unsupported "$RUNNER_DIR" >/dev/null 2>&1; then
   echo "unsupported topology mode was accepted" >&2
   exit 1
 fi

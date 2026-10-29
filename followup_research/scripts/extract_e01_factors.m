@@ -8,7 +8,7 @@ arguments
     sOutputDir (1,:) char
 end
 
-sEngine = fullfile(sRunRoot,'runtime','cttrend_corrected_pipeline');
+sEngine = fullfile(sRunRoot,'runtime','ctrend_corrected_pipeline');
 sDataPath = fullfile(sRunRoot,'data');
 sBase = fullfile(sRunRoot,'results','CTREND','CTREND_Base.mat');
 assert(isfile(fullfile(sRunRoot,'RUN_COMPLETE')),'Accepted run is incomplete');

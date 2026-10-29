@@ -308,7 +308,7 @@ def main() -> None:
         args.output_dir / "confirmed_external_corrupt_price_cells.csv", confirmed
     )
     summary = {
-        "format": "cttrend-v2-closed-external-corruption-audit-v1",
+        "format": "ctrend-v2-closed-external-corruption-audit-v1",
         "trigger_edges": len(triggers),
         "candidate_episodes": len(episodes),
         "confirmed_episodes": sum(

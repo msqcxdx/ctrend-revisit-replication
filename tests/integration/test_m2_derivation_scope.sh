@@ -259,7 +259,7 @@ PY
 
 # Exercise every actually materialized M2 D axis.  A package-only base test
 # is insufficient because D1/D2 add the configured exclusion overlay.
-TMP="$(mktemp -d /tmp/cttrend_m2_materialized_guards_XXXXXX)"
+TMP="$(mktemp -d /tmp/ctrend_m2_materialized_guards_XXXXXX)"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 for id in M2_D0 M2_D1 M2_D2; do

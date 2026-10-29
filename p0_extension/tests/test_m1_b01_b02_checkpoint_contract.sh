@@ -17,7 +17,7 @@ TEST_PARENT="${P0_CONTRACT_TEST_PARENT:-${TMPDIR:-/tmp}}"
   exit 2
 }
 mkdir -p "$TEST_PARENT"
-TMP="$(mktemp -d "$TEST_PARENT/cttrend_p0_m1_contract_XXXXXX")"
+TMP="$(mktemp -d "$TEST_PARENT/ctrend_p0_m1_contract_XXXXXX")"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 
@@ -51,15 +51,15 @@ EXPECTED_DESIGN="$ROOT/engines/M1/base/DesignChoices.mat"
 CTREND_RAW_ADJUSTMENT_MODE=none \
 CTREND_CORE_EXPERIMENT_ID=P0_M1_D0 \
 PIPELINE_SCOPE=full \
-CTTREND_VERIFY_PACKAGE_ROOT="$ROOT" \
-CTTREND_VERIFY_EXPERIMENT_ID=P0_M1_D0 \
-CTTREND_VERIFY_DATA_FILE="$DATA/b0DataOLHC.mat" \
-CTTREND_VERIFY_DESIGN_CHOICES_FILE="$SOURCE/DesignChoices.mat" \
-CTTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE="$EXPECTED_DESIGN" \
-CTTREND_B02_CONTRACT_PREFIX="$PREFIX" \
+CTREND_VERIFY_PACKAGE_ROOT="$ROOT" \
+CTREND_VERIFY_EXPERIMENT_ID=P0_M1_D0 \
+CTREND_VERIFY_DATA_FILE="$DATA/b0DataOLHC.mat" \
+CTREND_VERIFY_DESIGN_CHOICES_FILE="$SOURCE/DesignChoices.mat" \
+CTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE="$EXPECTED_DESIGN" \
+CTREND_B02_CONTRACT_PREFIX="$PREFIX" \
 MATLAB_PREFDIR="$PREF" \
   "$MATLAB_BIN" -licmode onlinelicensing -nodisplay -nosplash -batch \
-  "cd('$SOURCE'); run('setup.m'); run('b01ReadData.m'); addpath('$EXT_ROOT/tests'); verify_experiment_identity; eval(fileread(getenv('CTTREND_B02_CONTRACT_PREFIX'))); exit(0)" \
+  "cd('$SOURCE'); run('setup.m'); run('b01ReadData.m'); addpath('$EXT_ROOT/tests'); verify_experiment_identity; eval(fileread(getenv('CTREND_B02_CONTRACT_PREFIX'))); exit(0)" \
   > "$LOG" 2>&1 || {
     tail -120 "$LOG" >&2 || true
     exit 1

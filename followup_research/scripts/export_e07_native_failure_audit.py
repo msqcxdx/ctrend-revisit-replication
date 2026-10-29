@@ -231,7 +231,7 @@ def main() -> None:
                                          int(h["e07PredictorsNaN"][t,a]),
                                          int(h["e07SelectedRawMissing"][t,a]),
                                          int(h["e07PanelPresent"][t,a])])
-        receipt = {"format": "cttrend-e07-native-gates-export-v1",
+        receipt = {"format": "ctrend-e07-native-gates-export-v1",
                    "interpretation": "first_failed_gate_is_ordered_code_path_not_unique_cause",
                    "flag_bits": FLAG_BITS,
                    "source_manifests": {str(r): sha(r / "manifest.json")

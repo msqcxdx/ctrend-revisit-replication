@@ -9,17 +9,17 @@ OLD_PIPELINE_VARIANT="${OLD_PIPELINE_VARIANT:-v1}"
 case "$OLD_PIPELINE_VARIANT" in
   v1)
     DEFAULT_SOURCE_DIR="$PROJECT_DIR/base"
-    OLD_RUNTIME_ROOT_NAME=cttrend_old_pipeline
+    OLD_RUNTIME_ROOT_NAME=ctrend_old_pipeline
     RUN_NAME_PREFIX=old_v1
     ;;
   v2)
     DEFAULT_SOURCE_DIR="$PROJECT_DIR/old_code_v2"
-    OLD_RUNTIME_ROOT_NAME=cttrend_old_v2_pipeline
+    OLD_RUNTIME_ROOT_NAME=ctrend_old_v2_pipeline
     RUN_NAME_PREFIX=old_v2
     ;;
   m2)
     DEFAULT_SOURCE_DIR="$PROJECT_DIR/base"
-    OLD_RUNTIME_ROOT_NAME=cttrend_lookahead_only_pipeline
+    OLD_RUNTIME_ROOT_NAME=ctrend_lookahead_only_pipeline
     RUN_NAME_PREFIX=lookahead_only
     ;;
   *)
@@ -29,9 +29,9 @@ case "$OLD_PIPELINE_VARIANT" in
 esac
 SOURCE_DIR="${SOURCE_DIR:-$DEFAULT_SOURCE_DIR}"
 case "$OLD_PIPELINE_VARIANT" in
-  v1) DEFAULT_PACKAGE="$PROJECT_DIR/cttrend_old_pipeline.tar.gz" ;;
-  v2) DEFAULT_PACKAGE="$PROJECT_DIR/cttrend_old_v2_pipeline.tar.gz" ;;
-  m2) DEFAULT_PACKAGE="$PROJECT_DIR/cttrend_lookahead_only_pipeline.tar.gz" ;;
+  v1) DEFAULT_PACKAGE="$PROJECT_DIR/ctrend_old_pipeline.tar.gz" ;;
+  v2) DEFAULT_PACKAGE="$PROJECT_DIR/ctrend_old_v2_pipeline.tar.gz" ;;
+  m2) DEFAULT_PACKAGE="$PROJECT_DIR/ctrend_lookahead_only_pipeline.tar.gz" ;;
 esac
 PACKAGE="${1:-$DEFAULT_PACKAGE}"
 MATLAB_BIN="${MATLAB_BIN:-$(command -v matlab 2>/dev/null || true)}"
@@ -63,7 +63,7 @@ RUNTIME_PACKAGE="$RUN_ROOT/runtime_package.tar.gz"
 SHARD_RUN_ROOT="$RUN_ROOT/b09_shards"
 SHARD_RESULTS_ROOT="$RUN_ROOT/b09_shard_results"
 LOCK_FILE="$SOURCE_DIR/logs/${RUN_NAME_PREFIX}_pipeline.lock"
-REMOTE_PAYLOAD="$HANDOFF_DIR/cttrend_old_v2_b09_remote_payload_${RESEARCH_RUN_ID}.tar.gz"
+REMOTE_PAYLOAD="$HANDOFF_DIR/ctrend_old_v2_b09_remote_payload_${RESEARCH_RUN_ID}.tar.gz"
 CURRENT_PHASE_PID=""
 CURRENT_PHASE_PGID=""
 RUN_FINISHED=0
@@ -173,9 +173,9 @@ cleanup() {
     fi
     {
       if [[ "$OLD_PIPELINE_VARIANT" == m2 ]]; then
-        echo "format=cttrend-lookahead-only-run-failed-v1"
+        echo "format=ctrend-lookahead-only-run-failed-v1"
       else
-        echo "format=cttrend-old-v2-run-failed-v1"
+        echo "format=ctrend-old-v2-run-failed-v1"
       fi
       echo "research_run_id=$RESEARCH_RUN_ID"
       echo "failed_at=$(date -Is)"
@@ -281,9 +281,9 @@ cmp -s "$RUN_ROOT/source_code_before.sha256" "$RUN_ROOT/runtime_code_before.sha2
 
 {
   if [[ "$OLD_PIPELINE_VARIANT" == m2 ]]; then
-    echo "format=cttrend-lookahead-only-run-started-v1"
+    echo "format=ctrend-lookahead-only-run-started-v1"
   else
-    echo "format=cttrend-published-method-run-started-v1"
+    echo "format=ctrend-published-method-run-started-v1"
   fi
   echo "old_pipeline_variant=$OLD_PIPELINE_VARIANT"
   echo "research_run_id=$RESEARCH_RUN_ID"
@@ -370,7 +370,7 @@ log_event "START phase=unit_tests"
 "$RUNNER_DIR/tests/test_topology.sh" > "$LOG_ROOT/unit_tests.log" 2>&1
 if [[ "$OLD_PIPELINE_VARIANT" == "v2" ]]; then
   "$RUNNER_DIR/tests/test_legacy_v2_source_delta.sh" \
-    "$PROJECT_DIR/cttrend_old_pipeline.tar.gz" "$SOURCE_DIR" \
+    "$PROJECT_DIR/ctrend_old_pipeline.tar.gz" "$SOURCE_DIR" \
     >> "$LOG_ROOT/unit_tests.log" 2>&1
 elif [[ "$OLD_PIPELINE_VARIANT" == "v1" ]]; then
   grep -Fq "OLD_V1_B09_FIRST_COMBO" \
@@ -490,7 +490,7 @@ OLD_RUNTIME_ROOT_NAME="$OLD_RUNTIME_ROOT_NAME" \
 topology_file="$SHARD_RUN_ROOT/$B09_TOPOLOGY_TEMPLATE_NAME"
 # shellcheck source=b09_topology_lib.sh
 source "$RUNNER_DIR/b09_topology_lib.sh"
-cttrend_b09_validate_topology \
+ctrend_b09_validate_topology \
   "$topology_file" "$RUNNER_DIR/$B09_TOPOLOGY_TEMPLATE_NAME"
 
 remote_waiter_pid=""
@@ -510,7 +510,7 @@ while true; do
   for subshard in $(seq 1 "$B09_NUM_LOCAL_SUBSHARDS"); do
     shard_dir="$SHARD_RUN_ROOT/shard1/subshard${subshard}"
     heartbeat_file="$shard_dir/heartbeat.env"
-    state="$(cttrend_b09_observed_terminal_state "$shard_dir" \
+    state="$(ctrend_b09_observed_terminal_state "$shard_dir" \
       "$RESEARCH_RUN_ID" "$B09_COMPLETION_PUBLICATION_TIMEOUT_SECONDS" \
       "$(date +%s)")"
     count="$(awk -F= '$1=="combo_files"{print $2;exit}' "$heartbeat_file" 2>/dev/null || echo 0)"
@@ -553,8 +553,8 @@ validate_and_import_shard() {
   local completion="$SHARD_RUN_ROOT/$label/completion.env"
   local expected_count=$((last-first+1))
   [[ -f "$completion" &&
-     "$(cttrend_b09_record_value "$completion" complete)" == 1 &&
-     "$(cttrend_b09_record_value "$completion" research_run_id)" == \
+     "$(ctrend_b09_record_value "$completion" complete)" == 1 &&
+     "$(ctrend_b09_record_value "$completion" research_run_id)" == \
        "$RESEARCH_RUN_ID" &&
      -f "$manifest" && -f "$manifest.sha256" ]]
   (
@@ -584,7 +584,7 @@ validate_and_import_shard() {
 while IFS=$'\t' read -r source_label logical_shard execution_site \
     first_combo last_combo; do
   validate_and_import_shard "$source_label" "$first_combo" "$last_combo"
-done < <(cttrend_b09_source_rows "$topology_file")
+done < <(ctrend_b09_source_rows "$topology_file")
 
 combo_count="$(find "$RESULTS_DIR/CTREND" -maxdepth 1 -type f \
   -name 'CTREND_Combo*.mat' | wc -l)"
@@ -592,7 +592,7 @@ digest_count="$(find "$RESULTS_DIR/CTREND" -maxdepth 1 -type f \
   -name 'CTREND_Combo*.mat.sha256' | wc -l)"
 [[ "$combo_count" -eq 3072 && "$digest_count" -eq 3072 ]]
 {
-  echo "format=cttrend-old-v2-complete-b09-manifest-v1"
+  echo "format=ctrend-old-v2-complete-b09-manifest-v1"
   echo "research_run_id=$RESEARCH_RUN_ID"
   echo "combo_files=$combo_count"
   echo "digest_files=$digest_count"
@@ -601,7 +601,7 @@ digest_count="$(find "$RESULTS_DIR/CTREND" -maxdepth 1 -type f \
   echo "design_choices_sha256=$design_sha"
   echo "execution_topology=$OLD_V2_B09_EXECUTION_TOPOLOGY"
   echo "topology_sha256=$(sha256sum "$topology_file" | awk '{print $1}')"
-  echo "physical_sources=$(cttrend_b09_source_rows "$topology_file" | wc -l)"
+  echo "physical_sources=$(ctrend_b09_source_rows "$topology_file" | wc -l)"
   echo "merged_at=$(date -Is)"
 } > "$RESULTS_DIR/CTREND/ResearchDesignRunManifest.env"
 (
@@ -637,9 +637,9 @@ cmp -s "$RUN_ROOT/data_after_b02.sha256" "$RUN_ROOT/data_after_run.sha256"
 
 {
   if [[ "$OLD_PIPELINE_VARIANT" == m2 ]]; then
-    echo "format=cttrend-lookahead-only-run-complete-v1"
+    echo "format=ctrend-lookahead-only-run-complete-v1"
   else
-    echo "format=cttrend-published-method-run-complete-v1"
+    echo "format=ctrend-published-method-run-complete-v1"
   fi
   echo "complete=1"
   echo "old_pipeline_variant=$OLD_PIPELINE_VARIANT"

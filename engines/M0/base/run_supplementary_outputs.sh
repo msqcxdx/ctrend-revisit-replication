@@ -4,7 +4,7 @@ set -euo pipefail
 CODE_DIR="${CODE_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
 MATLAB_BIN="${MATLAB_BIN:-$(command -v matlab 2>/dev/null || true)}"
 RESULT_TABLES="$CODE_DIR/Results/Tables"
-TMP_DIR="$(mktemp -d /tmp/cttrend_supplementary_XXXXXX)"
+TMP_DIR="$(mktemp -d /tmp/ctrend_supplementary_XXXXXX)"
 
 TABLE3="$RESULT_TABLES/univariate_portfolio_sorts.tex"
 TABLEB2="$RESULT_TABLES/descriptive_statistics_of_asset_pricing_factor_returns.tex"

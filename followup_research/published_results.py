@@ -132,7 +132,7 @@ def pack() -> None:
         if compressor.wait() or errors or not parts:
             raise RuntimeError(f"Large-output pack failed: {errors}")
         manifest = {
-            "format": "cttrend-followup-large-outputs-v1",
+            "format": "ctrend-followup-large-outputs-v1",
             "compression": "tar.zst",
             "chunk_bytes": CHUNK_BYTES,
             "files": files,
@@ -149,7 +149,7 @@ def pack() -> None:
 
 def load_payload() -> dict:
     manifest = json.loads((PAYLOAD / "MANIFEST.json").read_text())
-    if manifest["format"] != "cttrend-followup-large-outputs-v1":
+    if manifest["format"] != "ctrend-followup-large-outputs-v1":
         raise RuntimeError("Unknown result payload format")
     for part in manifest["parts"]:
         path = PAYLOAD / part["name"]

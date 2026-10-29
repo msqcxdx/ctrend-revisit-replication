@@ -4,9 +4,9 @@ set -euo pipefail
 
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$RUNNER_DIR/.." && pwd)"
-PACKAGE="${OLD_V2_PACKAGE:-$PROJECT_DIR/cttrend_old_pipeline.tar.gz}"
+PACKAGE="${OLD_V2_PACKAGE:-$PROJECT_DIR/ctrend_old_pipeline.tar.gz}"
 CANONICAL_CODE_DIR="${CANONICAL_CODE_DIR:-$PROJECT_DIR/base}"
-OLD_RUNTIME_ROOT_NAME="${OLD_RUNTIME_ROOT_NAME:-cttrend_old_pipeline}"
+OLD_RUNTIME_ROOT_NAME="${OLD_RUNTIME_ROOT_NAME:-ctrend_old_pipeline}"
 MATLAB_BIN="${MATLAB_BIN:-$(command -v matlab 2>/dev/null || true)}"
 WORKERS_PER_SHARD="${WORKERS_PER_SHARD:-31}"
 LOGICAL_SHARD_ID="${LOGICAL_SHARD_ID:-1}"
@@ -30,7 +30,7 @@ EXPECTED_DESIGN_CHOICES_SHA256="${EXPECTED_DESIGN_CHOICES_SHA256:-}"
 EXPECTED_DATA_INPUTS_SHA256="${EXPECTED_DATA_INPUTS_SHA256:-}"
 # shellcheck source=b09_topology_lib.sh
 source "$RUNNER_DIR/b09_topology_lib.sh"
-TOPOLOGY_TEMPLATE="$(cttrend_b09_topology_template \
+TOPOLOGY_TEMPLATE="$(ctrend_b09_topology_template \
   "$B09_TOPOLOGY_MODE" "$RUNNER_DIR")"
 TOPOLOGY_FILE="$RUN_ROOT/$(basename "$TOPOLOGY_TEMPLATE")"
 
@@ -83,7 +83,7 @@ done
   echo "DesignChoices.mat does not match the post-b00 frozen hash" >&2
   exit 2
 }
-data_inventory_temporary="$(mktemp /tmp/cttrend_old_v2_local_data.XXXXXX)"
+data_inventory_temporary="$(mktemp /tmp/ctrend_old_v2_local_data.XXXXXX)"
 trap 'rm -f -- "$data_inventory_temporary"' RETURN
 (
   cd "$CANONICAL_CODE_DIR/DATA"
@@ -142,7 +142,7 @@ trap 'exit 143' TERM
 
 mkdir -p "$RUN_ROOT" "$RESULTS_ROOT"
 cp -- "$TOPOLOGY_TEMPLATE" "$TOPOLOGY_FILE"
-cttrend_b09_validate_topology "$TOPOLOGY_FILE" "$TOPOLOGY_TEMPLATE"
+ctrend_b09_validate_topology "$TOPOLOGY_FILE" "$TOPOLOGY_TEMPLATE"
 RUN_ID="${RESEARCH_RUN_ID:-$(</proc/sys/kernel/random/uuid)}"
 [[ "$RUN_ID" =~ ^[0-9a-fA-F-]{36}$ ]] || { echo "could not create research run ID: $RUN_ID" >&2; exit 2; }
 

@@ -283,7 +283,7 @@ not write to any accepted run root or to existing result inventories.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--registry-root", type=Path,
-                        default=os.environ.get("CTTREND_ACCEPTED_RUN_REGISTRY"))
+                        default=os.environ.get("CTREND_ACCEPTED_RUN_REGISTRY"))
     parser.add_argument("--results-root", type=Path, default=REPO / "results")
     parser.add_argument("--raw-close", type=Path,
                         default=REPO / "data/raw/common/close_cmc.csv")
@@ -293,7 +293,7 @@ def main():
                         default=REPO / "results/diagnostics/p0_selected_week_asset_audit")
     args = parser.parse_args()
     if args.registry_root is None:
-        parser.error("--registry-root (or CTTREND_ACCEPTED_RUN_REGISTRY) is required")
+        parser.error("--registry-root (or CTREND_ACCEPTED_RUN_REGISTRY) is required")
     registry_root = args.registry_root.resolve()
     results_root = args.results_root.resolve()
     raw_close = args.raw_close.resolve()

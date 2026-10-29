@@ -51,7 +51,7 @@ PORTABLE_DATA_INVENTORY_SHA="$(sha256sum "$PORTABLE_DATA_INVENTORY" | awk '{prin
 
 FORMAT="$(value format "$RUN_ROOT/RUN_COMPLETE")"
 # Sealed E1 reuse and fresh nine-cell runs carry different identity declarations.
-if [[ "$FORMAT" == cttrend-e1-full-complete-v1 ]]; then
+if [[ "$FORMAT" == ctrend-e1-full-complete-v1 ]]; then
   [[ "$ID" == M1_D0 && \
      "$(value experiment_id "$RUN_ROOT/RUN_COMPLETE")" == E1_raw_cmc_retain_3787 ]] || {
     echo "E1 reuse marker cannot identify $ID" >&2; exit 1;
@@ -59,7 +59,7 @@ if [[ "$FORMAT" == cttrend-e1-full-complete-v1 ]]; then
   IDENTITY_DECLARATION="$RUN_ROOT/RUN_COMPLETE"
 else
   MANIFEST="$RUN_ROOT/NINE_EXPERIMENT_LAUNCH_MANIFEST.env"
-  EXPECTED_LAUNCH_FORMAT=cttrend-nine-experiment-launch-v1
+  EXPECTED_LAUNCH_FORMAT=ctrend-nine-experiment-launch-v1
   [[ -s "$MANIFEST" && "$(value format "$MANIFEST")" == "$EXPECTED_LAUNCH_FORMAT" && \
      "$(value experiment_id "$MANIFEST")" == "$ID" && \
      "$(value method_id "$MANIFEST")" == "${ID%%_*}" && \
@@ -122,8 +122,8 @@ if [[ -e "$PROVENANCE_COMPATIBILITY" ]]; then
   PROVENANCE_COMPATIBILITY_FORMAT="$(value format "$PROVENANCE_COMPATIBILITY")"
   PROVENANCE_COMPATIBILITY_MODE="$(value mode "$PROVENANCE_COMPATIBILITY")"
   case "$PROVENANCE_COMPATIBILITY_FORMAT:$PROVENANCE_COMPATIBILITY_MODE" in
-    cttrend-m1-legacy-inventory-compatibility-v1:tests_subdirectory_shell_omission_v1) ;;
-    cttrend-m1-dynamic-figure-b2-recovery-compatibility-v1:dynamic_figure_b2_validator_recovery_v1) ;;
+    ctrend-m1-legacy-inventory-compatibility-v1:tests_subdirectory_shell_omission_v1) ;;
+    ctrend-m1-dynamic-figure-b2-recovery-compatibility-v1:dynamic_figure_b2_validator_recovery_v1) ;;
     *) echo 'unrecognized provenance compatibility mode' >&2; exit 1 ;;
   esac
   [[ "$(value experiment_id "$PROVENANCE_COMPATIBILITY")" == "$ID" && \
@@ -147,7 +147,7 @@ MATLAB_BIN="${MATLAB_BIN:-$(command -v matlab 2>/dev/null || true)}"
   echo "MATLAB_BIN is required for final experiment-identity acceptance" >&2
   exit 2
 }
-PREF="$(mktemp -d "${TMPDIR:-/tmp}/cttrend_identity_pref_XXXXXX")"
+PREF="$(mktemp -d "${TMPDIR:-/tmp}/ctrend_identity_pref_XXXXXX")"
 cleanup() { rm -rf -- "$PREF"; }
 trap cleanup EXIT
 IDENTITY_LOG="$RUN_ROOT/NINE_EXPERIMENT_IDENTITY_CHECK.log"
@@ -158,7 +158,7 @@ if [[ "$ID" == M1_* ]]; then
   EXPECTED_DESIGN_FILE="$ROOT/engines/M1/base/DesignChoices.mat"
   for candidate in "$RUN_ROOT/DesignChoices.mat" \
       "$RUN_ROOT/runtime/code/DesignChoices.mat" \
-      "$RUN_ROOT/runtime/cttrend_corrected_pipeline/DesignChoices.mat"; do
+      "$RUN_ROOT/runtime/ctrend_corrected_pipeline/DesignChoices.mat"; do
     if [[ -f "$candidate" ]]; then DESIGN_FILE="$candidate"; break; fi
   done
   [[ -n "$DESIGN_FILE" && -f "$EXPECTED_DESIGN_FILE" ]] || {
@@ -166,14 +166,14 @@ if [[ "$ID" == M1_* ]]; then
     exit 1
   }
 fi
-CTTREND_VERIFY_PACKAGE_ROOT="$ROOT" \
-CTTREND_VERIFY_EXPERIMENT_ID="$ID" \
-CTTREND_VERIFY_DATA_FILE="$DATA/b0DataOLHC.mat" \
-CTTREND_VERIFY_DESIGN_CHOICES_FILE="$DESIGN_FILE" \
-CTTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE="$EXPECTED_DESIGN_FILE" \
+CTREND_VERIFY_PACKAGE_ROOT="$ROOT" \
+CTREND_VERIFY_EXPERIMENT_ID="$ID" \
+CTREND_VERIFY_DATA_FILE="$DATA/b0DataOLHC.mat" \
+CTREND_VERIFY_DESIGN_CHOICES_FILE="$DESIGN_FILE" \
+CTREND_VERIFY_EXPECTED_DESIGN_CHOICES_FILE="$EXPECTED_DESIGN_FILE" \
 MATLAB_PREFDIR="$PREF" \
   "$MATLAB_BIN" -licmode onlinelicensing -nodisplay -nosplash -batch \
-  "addpath(fullfile(getenv('CTTREND_VERIFY_PACKAGE_ROOT'),'tests','result_checks')); verify_experiment_identity; exit(0)" \
+  "addpath(fullfile(getenv('CTREND_VERIFY_PACKAGE_ROOT'),'tests','result_checks')); verify_experiment_identity; exit(0)" \
   > "$IDENTITY_LOG" 2>&1 || {
     tail -80 "$IDENTITY_LOG" >&2 || true
     exit 1
@@ -182,7 +182,7 @@ grep -F "EXPERIMENT_IDENTITY_TEST_OK experiment=$ID" "$IDENTITY_LOG" >/dev/null
 
 ACCEPTANCE="$RUN_ROOT/NINE_EXPERIMENT_ACCEPTANCE.env"
 # Publish acceptance atomically and reject a conflicting prior record.
-ACCEPTANCE_FORMAT=cttrend-nine-experiment-acceptance-v1
+ACCEPTANCE_FORMAT=ctrend-nine-experiment-acceptance-v1
 if [[ ! -e "$ACCEPTANCE" ]]; then
   TMP="${ACCEPTANCE}.tmp.$$"
   {

@@ -429,7 +429,7 @@ def main() -> None:
     )
 
     summary = {
-        "format": "cttrend-v2-coinlore-crosscheck-v1",
+        "format": "ctrend-v2-coinlore-crosscheck-v1",
         "generated_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
         "source_search_url": SEARCH_URL,
         "source_history_url": HISTORY_URL,

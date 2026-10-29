@@ -13,7 +13,7 @@ HANDOFF_DIR="$3"
 RUN_ID="$4"
 STATE_DIR="$SHARD_RUN_ROOT/shard2/subshard1"
 RESULT_DIR="$RESULTS_ROOT/shard2/subshard1"
-RETURN_ARCHIVE="$HANDOFF_DIR/cttrend_old_v2_b09_remote_return_${RUN_ID}.tar.gz"
+RETURN_ARCHIVE="$HANDOFF_DIR/ctrend_old_v2_b09_remote_return_${RUN_ID}.tar.gz"
 RETURN_SIDECAR="$RETURN_ARCHIVE.sha256"
 POLL_SECONDS="${B09_MANUAL_RETURN_POLL_SECONDS:-60}"
 
@@ -73,7 +73,7 @@ trap cleanup EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 tar -xzf "$RETURN_ARCHIVE" -C "$extract_root"
-returned="$extract_root/cttrend_old_v2_b09_remote_return"
+returned="$extract_root/ctrend_old_v2_b09_remote_return"
 [[ -d "$returned/state" && -d "$returned/results" &&
    -f "$returned/RETURN.env" &&
    -f "$returned/RETURN_MANIFEST.sha256" ]] || {

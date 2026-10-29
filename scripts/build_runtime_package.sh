@@ -7,14 +7,14 @@ ID="${1:-}"
 SOURCE="${2:-}"
 OUTPUT="${3:-}"
 case "$ID" in
-  M0_D0|M0_D1|M0_D2) METHOD=M0; PACKAGE_NAME=cttrend_old_pipeline ;;
-  M1_D0|M1_D1|M1_D2) METHOD=M1; PACKAGE_NAME=cttrend_corrected_pipeline ;;
-  M2_D0|M2_D1|M2_D2) METHOD=M2; PACKAGE_NAME=cttrend_lookahead_only_pipeline ;;
+  M0_D0|M0_D1|M0_D2) METHOD=M0; PACKAGE_NAME=ctrend_old_pipeline ;;
+  M1_D0|M1_D1|M1_D2) METHOD=M1; PACKAGE_NAME=ctrend_corrected_pipeline ;;
+  M2_D0|M2_D1|M2_D2) METHOD=M2; PACKAGE_NAME=ctrend_lookahead_only_pipeline ;;
   *) echo "usage: $0 EXPERIMENT_ID MATERIALIZED_SOURCE OUTPUT.tar.gz" >&2; exit 2 ;;
 esac
 [[ -d "$SOURCE" && "$OUTPUT" == /* ]] || exit 2
 SOURCE="$(readlink -f -- "$SOURCE")"
-TEMP="$(mktemp -d /tmp/cttrend_2x3_package_XXXXXX)"
+TEMP="$(mktemp -d /tmp/ctrend_2x3_package_XXXXXX)"
 cleanup() { local rc=$?; trap - EXIT; rm -rf -- "$TEMP"; exit "$rc"; }
 trap cleanup EXIT INT TERM
 DEST="$TEMP/$PACKAGE_NAME"

@@ -112,7 +112,7 @@ def main():
         audit='isolated b02 daily quote perturbation, no production acceptance',
         driver_sha256=sha(Path(__file__)))
     try:
-        for m,engine in ((2,'cttrend_lookahead_only_pipeline'),(1,'cttrend_corrected_pipeline')):
+        for m,engine in ((2,'ctrend_lookahead_only_pipeline'),(1,'ctrend_corrected_pipeline')):
             eid=f'P0_M{m}_D1';parent=Path(identities[eid]['accepted_run_root']);source=parent/'runtime'/engine
             data=parent/'data';data=data if data.is_dir() else parent/'data.staging'
             original={str(p):sha(p) for p in (parent/'RUN_COMPLETE',source/'b02CalculateIndicators.m',

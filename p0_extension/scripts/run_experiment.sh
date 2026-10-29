@@ -76,10 +76,10 @@ BOOTSTRAP_RESULTS_ROOT="$WORK_BASE/bootstrap_results/$ID/$STAMP" \
 "$ROOT/scripts/build_runtime_package.sh" "$LEGACY_ID" "$SOURCE" "$PACKAGE"
 
 EXCLUSION="$ROOT/config/exclusions/$DATA_ID.csv"
-export CTTREND_DATA_TREATMENT_ID="$DATA_ID"
-export CTTREND_ASSET_EXCLUSION_FILE="$EXCLUSION"
-export CTTREND_ASSET_EXCLUSION_SHA256
-CTTREND_ASSET_EXCLUSION_SHA256="$(sha256sum "$EXCLUSION" | awk '{print $1}')"
+export CTREND_DATA_TREATMENT_ID="$DATA_ID"
+export CTREND_ASSET_EXCLUSION_FILE="$EXCLUSION"
+export CTREND_ASSET_EXCLUSION_SHA256
+CTREND_ASSET_EXCLUSION_SHA256="$(sha256sum "$EXCLUSION" | awk '{print $1}')"
 export CTREND_RAW_ADJUSTMENT_MODE=none
 export CTREND_CORE_EXPERIMENT_ID="$ID"
 export CTREND_PREPROCESSING_ID="$PREPROCESSING_ID"
@@ -91,7 +91,7 @@ export NUMEXPR_NUM_THREADS=1
 
 LAUNCH_MANIFEST="$SOURCE/../LAUNCH_MANIFEST.env"
 {
-  echo 'format=cttrend-pmd-launch-v1'
+  echo 'format=ctrend-pmd-launch-v1'
   echo "experiment_id=$ID"
   echo "preprocessing_id=$PREPROCESSING_ID"
   echo 'unified_missing_preprocessing=0'
@@ -99,7 +99,7 @@ LAUNCH_MANIFEST="$SOURCE/../LAUNCH_MANIFEST.env"
   echo "data_id=$DATA_ID"
   echo 'raw_adjustment_mode=none'
   echo "exclusion_file=$EXCLUSION"
-  echo "exclusion_sha256=$CTTREND_ASSET_EXCLUSION_SHA256"
+  echo "exclusion_sha256=$CTREND_ASSET_EXCLUSION_SHA256"
   echo "materialized_source=$SOURCE"
   echo "materialization_manifest_sha256=$(sha256sum "$SOURCE.materialization.env" | awk '{print $1}')"
   echo "runtime_package=$PACKAGE"

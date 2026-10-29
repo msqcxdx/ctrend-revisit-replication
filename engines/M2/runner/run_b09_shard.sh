@@ -143,7 +143,7 @@ if (( iNumRanges == 0 )); then
     "$(dirname "$B09_SHARD_HEARTBEAT_FILE")"
   completion_temporary="${B09_SHARD_COMPLETION_FILE}.tmp.$$"
   {
-    echo "format=cttrend-shard-complete-v1"
+    echo "format=ctrend-shard-complete-v1"
     echo "complete=1"
     echo "shard_id=$B09_SHARD_ID"
     echo "supervisor_pid=$$"
@@ -193,7 +193,7 @@ if (( iNumRanges == 0 )); then
 fi
 
 runtime_dir="$SHARD_LOG_DIR/runtime"
-driver_file="$runtime_dir/cttrend_b09_persistent_driver.m"
+driver_file="$runtime_dir/ctrend_b09_persistent_driver.m"
 session_log="$SHARD_LOG_DIR/pipeline.log"
 mkdir -p "$runtime_dir"
 
@@ -205,7 +205,7 @@ mkdir -p "$runtime_dir"
 # relies on implicit parfor consumers and does not configure a pool itself.
 # No repository MATLAB source is generated or modified.
 printf '%s\n' \
-  'function cttrend_b09_persistent_driver()' \
+  'function ctrend_b09_persistent_driver()' \
   'rangeFile = getenv("B09_RANGE_FILE");' \
   'fid = fopen(rangeFile,"r");' \
   'assert(fid >= 0,"Could not open persistent shard range file");' \
@@ -368,7 +368,7 @@ cleanup() {
   trap - EXIT INT TERM
   stop_matlab
   if [[ -n "$current_job_storage" ]]; then
-    cttrend_safe_remove_temp_dir "$current_job_storage" \
+    ctrend_safe_remove_temp_dir "$current_job_storage" \
       "$B09_JOB_STORAGE_ROOT" || rc=1
   fi
   if (( rc != 0 )) && [[ "$current_state" != "FAILED" && "$current_state" != "STOPPING" ]]; then
@@ -409,10 +409,10 @@ while true; do
   export PIPELINE_JOB_STORAGE="$current_job_storage"
   attempt_log="$SHARD_LOG_DIR/matlab_attempt_$attempt.log"
   if [[ -e "$current_job_storage" || -L "$current_job_storage" ]]; then
-    cttrend_safe_remove_temp_dir "$current_job_storage" \
+    ctrend_safe_remove_temp_dir "$current_job_storage" \
       "$B09_JOB_STORAGE_ROOT"
   fi
-  cttrend_prepare_temp_dir "$current_job_storage" \
+  ctrend_prepare_temp_dir "$current_job_storage" \
     "$B09_JOB_STORAGE_ROOT" "b09_shard_${B09_SHARD_ID}_attempt_$attempt"
   mkdir -p "$MATLAB_PREFDIR"
   ln -sfn "$(basename "$attempt_log")" "$SHARD_LOG_DIR/latest_matlab_attempt.log"
@@ -428,7 +428,7 @@ while true; do
     "$matlab_owner_file" "$matlab_owner_token" "$CODE_DIR" \
     "b09_shard_${B09_SHARD_ID}_attempt_${attempt}" \
     "$MATLAB_BIN" -licmode onlinelicensing -nodisplay -nosplash \
-    -batch "addpath(getenv('B09_DRIVER_DIR')); cd(getenv('PIPELINE_CODE_DIR')); cttrend_b09_persistent_driver" \
+    -batch "addpath(getenv('B09_DRIVER_DIR')); cd(getenv('PIPELINE_CODE_DIR')); ctrend_b09_persistent_driver" \
     > "$attempt_log" 2>&1 &
   matlab_pid=$!
   matlab_pgid=$matlab_pid
@@ -489,7 +489,7 @@ while true; do
   # has completely drained.  Allow that already-successful process group a
   # bounded natural-exit grace; only survivors are orphan failures.
   if (( rc == 0 )) && process_group_exists "$matlab_pgid"; then
-    if ! cttrend_wait_for_process_group_exit \
+    if ! ctrend_wait_for_process_group_exit \
         "$matlab_pgid" "$MATLAB_STOP_GRACE_SECONDS"; then
       timeout_reason="${timeout_reason:-residual_matlab_process_group}"
       stop_matlab
@@ -502,7 +502,7 @@ while true; do
   fi
   matlab_pid=""
   matlab_pgid=""
-  cttrend_safe_remove_temp_dir "$current_job_storage" \
+  ctrend_safe_remove_temp_dir "$current_job_storage" \
     "$B09_JOB_STORAGE_ROOT"
   current_job_storage=""
   printf 'matlab_attempt=%d ended_at=%s rc=%d pool_active=%d timeout_reason=%s\n' \
@@ -536,7 +536,7 @@ while true; do
       exit 1
     }
     {
-      echo "format=cttrend-old-v2-shard-manifest-v1"
+      echo "format=ctrend-old-v2-shard-manifest-v1"
       echo "research_run_id=$RUN_ID"
       echo "shard_id=$B09_SHARD_ID"
       echo "first_combo=$iFirstCombo"
@@ -572,7 +572,7 @@ while true; do
       "$(stat -c %s "$attempt_log" 2>/dev/null || printf '0')"
     completion_temporary="${B09_SHARD_COMPLETION_FILE}.tmp.$$"
     {
-      echo "format=cttrend-old-v2-shard-complete-v1"
+      echo "format=ctrend-old-v2-shard-complete-v1"
       echo "complete=1"
       echo "shard_id=$B09_SHARD_ID"
       echo "supervisor_pid=$$"

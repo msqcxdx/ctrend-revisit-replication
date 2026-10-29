@@ -6,7 +6,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-TMP="$(mktemp -d /tmp/cttrend_b09_terminal_publication_XXXXXX)"
+TMP="$(mktemp -d /tmp/ctrend_b09_terminal_publication_XXXXXX)"
 DECOY_PID=""
 cleanup() {
   local rc=$?
@@ -34,28 +34,28 @@ exercise_protocol() {
   source "$helper"
 
   printf 'state=COMPLETE\nupdated_epoch=100\n' > "$shard/state.env"
-  observed="$(cttrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 110)"
+  observed="$(ctrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 110)"
   [[ "$observed" == FINALIZING ]]
-  observed="$(cttrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 130)"
+  observed="$(ctrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 130)"
   [[ "$observed" == FAILED_MISSING_COMPLETION_RECORD ]]
 
   printf 'state=RUNNING\nupdated_epoch=120\n' > "$shard/state.env"
   {
-    printf 'format=cttrend-shard-complete-v1\n'
+    printf 'format=ctrend-shard-complete-v1\n'
     printf 'complete=1\n'
     printf 'research_run_id=%s\n' "$RUN_ID"
   } > "$shard/completion.env"
-  observed="$(cttrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 121)"
+  observed="$(ctrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 121)"
   [[ "$observed" == COMPLETE ]]
 
   sed -i 's/11111111-2222-4333-8444-555555555555/aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee/' \
     "$shard/completion.env"
-  observed="$(cttrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 121)"
+  observed="$(ctrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 121)"
   [[ "$observed" == FAILED_INVALID_COMPLETION_RECORD ]]
 
   rm -- "$shard/completion.env"
   printf 'state=FAILED\nupdated_epoch=121\n' > "$shard/state.env"
-  observed="$(cttrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 121)"
+  observed="$(ctrend_b09_observed_terminal_state "$shard" "$RUN_ID" 30 121)"
   [[ "$observed" == FAILED ]]
 }
 
@@ -91,7 +91,7 @@ for method in ("M0", "M2"):
         root / "engines" / method / "runner" / "run_production.sh"
     ).read_text(encoding="utf-8")
     assert 'source "$RUNNER_DIR/b09_completion_protocol.sh"' in production
-    assert "cttrend_b09_observed_terminal_state" in production
+    assert "ctrend_b09_observed_terminal_state" in production
     assert '[[ "$state" == COMPLETE ]] && complete=' in production
     assert '[[ "$state" == FAILED* ]] && failed=' in production
     assert '[[ "$state" == FAILED ]] && failed=' not in production

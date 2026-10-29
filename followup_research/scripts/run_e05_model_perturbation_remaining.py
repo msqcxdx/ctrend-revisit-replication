@@ -23,8 +23,8 @@ import uuid
 from run_e06_upstream_hybrids import ROOT, quote, sha
 
 
-ENGINE = {"M1": "cttrend_corrected_pipeline",
-          "M2": "cttrend_lookahead_only_pipeline"}
+ENGINE = {"M1": "ctrend_corrected_pipeline",
+          "M2": "ctrend_lookahead_only_pipeline"}
 ALREADY_TESTED = {"P0_M1_D1", "P0_M2_D1"}
 
 

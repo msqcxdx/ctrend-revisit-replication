@@ -59,7 +59,7 @@ assert len(checked) == expected_items, (
     f"checked {len(checked)}, expected {expected_items}"
 )
 print(json.dumps({
-    "format": "cttrend-output-registry-verification-v1",
+    "format": "ctrend-output-registry-verification-v1",
     "experiment_id": experiment_id,
     "checked_items": len(checked),
     "status": "PASS",

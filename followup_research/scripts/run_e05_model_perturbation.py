@@ -26,7 +26,7 @@ def main():
         script_sha256=sha(Path(__file__).with_name('test_e05_production_model_perturbation.m')),
         exit_calendar='held_fixed_not_tested',inputs=[],status='running')
     try:
-        for m,engine in ((2,'cttrend_lookahead_only_pipeline'),(1,'cttrend_corrected_pipeline')):
+        for m,engine in ((2,'ctrend_lookahead_only_pipeline'),(1,'ctrend_corrected_pipeline')):
             eid=f'P0_M{m}_D1';r=identities[eid];run=Path(r['accepted_run_root'])
             source=run/'runtime'/engine;result=Path(r['result_root'])/'CTREND/CTREND_Base.mat'
             paths=[run/'RUN_COMPLETE',source/'b05CreateCTREND.m',result]

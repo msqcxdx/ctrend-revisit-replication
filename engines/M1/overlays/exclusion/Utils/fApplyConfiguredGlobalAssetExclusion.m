@@ -38,10 +38,10 @@ assert(all(cellfun(@(m)size(m,2) == iNumAssets, ...
     {mOpen,mHigh,mLow,mClose,mME,mVolume})), ...
     'Configured exclusion received a raw panel with the wrong asset axis');
 
-sDataID = string(strtrim(getenv('CTTREND_DATA_TREATMENT_ID')));
-sFile = string(strtrim(getenv('CTTREND_ASSET_EXCLUSION_FILE')));
+sDataID = string(strtrim(getenv('CTREND_DATA_TREATMENT_ID')));
+sFile = string(strtrim(getenv('CTREND_ASSET_EXCLUSION_FILE')));
 sExpectedSHA = lower(string(strtrim( ...
-    getenv('CTTREND_ASSET_EXCLUSION_SHA256'))));
+    getenv('CTREND_ASSET_EXCLUSION_SHA256'))));
 assert(isscalar(sDataID) && ismember(sDataID,["D1","D2"]), ...
     'Configured exclusion is allowed only for D1 or D2');
 assert(isscalar(sFile) && strlength(sFile) > 0 && isfile(sFile), ...
@@ -88,7 +88,7 @@ for iIdxField = 1:numel(cMetadataFields)
 end
 
 rAudit = struct();
-rAudit.sFormat = 'cttrend-configured-global-asset-exclusion-v1';
+rAudit.sFormat = 'ctrend-configured-global-asset-exclusion-v1';
 rAudit.sDataTreatmentID = char(sDataID);
 rAudit.sExclusionFile = char(sFile);
 rAudit.sExclusionFileSHA256 = char(sObservedSHA);

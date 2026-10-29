@@ -108,7 +108,7 @@ Validation date: 2026-07-25 UTC
   executable MATLAB sources; the rejected external-disagreement list stays
   under `audit/output` and is absent from the runtime package.
 - The v2 package uses the established single
-  `cttrend_corrected_pipeline/` archive root and excludes audit evidence.
+  `ctrend_corrected_pipeline/` archive root and excludes audit evidence.
 - Package preflight verifies archive stability, executable MATLAB
   availability, absence of DATA/Results, required v2 files and exact
   source/runtime inventory equality without creating a run or starting

@@ -98,7 +98,7 @@ EXCLUSION="$ROOT/config/exclusions/$DATA_ID.csv"
 EXCLUSION_SHA="$(sha256sum "$EXCLUSION" | awk '{print $1}')"
 PARENT_B01="$BASE/b01ReadData.m"
 {
-  echo 'format=cttrend-2x3x3-p0-materialized-source-v1'
+  echo 'format=ctrend-2x3x3-p0-materialized-source-v1'
   echo "experiment_id=$ID"
   echo "preprocessing_id=$P_ID"
   echo "unified_missing_preprocessing=0"

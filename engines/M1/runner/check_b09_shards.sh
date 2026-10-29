@@ -41,7 +41,7 @@ for shard in $(seq 1 "$NUM_SHARDS"); do
   else
     state="${recorded_state:-stopped_or_failed}"
   fi
-  combo_files="$(find -L "$shard_dir/extract/cttrend_corrected_pipeline/Results/CTREND" \
+  combo_files="$(find -L "$shard_dir/extract/ctrend_corrected_pipeline/Results/CTREND" \
     -maxdepth 1 -type f -name 'CTREND_Combo*.mat' | wc -l)"
   total_shard_files="$((total_shard_files + combo_files))"
   last_progress="$(search_progress 'Estimate combo|persistent_range_|research_design_run_complete|shard_complete|Error using|error:' \

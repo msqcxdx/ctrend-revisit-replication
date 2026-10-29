@@ -15,7 +15,7 @@ sResult = fullfile(sRunRoot,'results');
 if ~isfolder(sResult)
     sResult = fullfile(sRunRoot,'results.staging');
 end
-sEngine = fullfile(sRunRoot,'runtime','cttrend_corrected_pipeline');
+sEngine = fullfile(sRunRoot,'runtime','ctrend_corrected_pipeline');
 sData = fullfile(sRunRoot,'data');
 if ~isfolder(sData)
     sData = fullfile(sRunRoot,'data.staging');

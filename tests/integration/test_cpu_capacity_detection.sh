@@ -36,7 +36,7 @@ fi
 # production environment.  A deliberately absent package must be the first
 # failure; the historical regression instead failed one line earlier with
 # OLD_B02_PARALLEL_WORKERS ... 1..nproc.
-TMP="$(mktemp -d /tmp/cttrend_cpu_capacity_test_XXXXXX)"
+TMP="$(mktemp -d /tmp/ctrend_cpu_capacity_test_XXXXXX)"
 cleanup() { rm -rf -- "$TMP"; }
 trap cleanup EXIT
 if (( BASELINE > 1 )); then

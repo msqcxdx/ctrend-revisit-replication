@@ -236,7 +236,7 @@ def main() -> None:
     write_csv(args.output_dir / "causal_external_error_episode_audit.csv", episodes)
     write_csv(args.output_dir / "causal_external_corrupt_price_cells.csv", cells)
     summary = {
-        "format": "cttrend-v2-causal-external-corruption-audit-v1",
+        "format": "ctrend-v2-causal-external-corruption-audit-v1",
         "trigger_assets": len(triggers_by_id),
         "episodes": len(episodes),
         "cells": len(cells),

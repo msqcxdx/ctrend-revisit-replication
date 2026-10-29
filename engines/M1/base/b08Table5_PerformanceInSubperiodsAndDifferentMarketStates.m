@@ -54,7 +54,7 @@ iIdxDataComb = tCombos.data_setting( find(strcmpi(tCombos.cOutlierTreatment, sOu
 % result; the exception never accepts an arbitrary or merely dimensionally
 % compatible artifact.
 sAllowedPredecessor = string(getenv( ...
-    'CTTREND_TABLE5_PREDECESSOR_FINGERPRINT'));
+    'CTREND_TABLE5_PREDECESSOR_FINGERPRINT'));
 
 % Load data
 load([sDataPath,sprintf('bCharacteristicsOLHC_Combo%i.mat', iIdxDataComb)]);

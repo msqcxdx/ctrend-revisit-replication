@@ -5,25 +5,25 @@ set -euo pipefail
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$RUNNER_DIR/.." && pwd)"
 CODE_DIR="${CODE_DIR:-$PROJECT_DIR/base}"
-OUTPUT="${1:-$PROJECT_DIR/cttrend_m1_pipeline.tar.gz}"
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_package_XXXXXX)"
+OUTPUT="${1:-$PROJECT_DIR/ctrend_m1_pipeline.tar.gz}"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_package_XXXXXX)"
 rmdir "$TEMP_ROOT"
 
 # shellcheck source=../base/run_safety.sh
 source "$CODE_DIR/run_safety.sh"
-cttrend_prepare_temp_dir "$TEMP_ROOT" /tmp package_build
+ctrend_prepare_temp_dir "$TEMP_ROOT" /tmp package_build
 
 cleanup_package_temp() {
   local rc=$?
   trap - EXIT INT TERM
-  cttrend_safe_remove_temp_dir "$TEMP_ROOT" /tmp || rc=1
+  ctrend_safe_remove_temp_dir "$TEMP_ROOT" /tmp || rc=1
   exit "$rc"
 }
 trap cleanup_package_temp EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
 
-PACKAGE_ROOT="$TEMP_ROOT/cttrend_corrected_pipeline"
+PACKAGE_ROOT="$TEMP_ROOT/ctrend_corrected_pipeline"
 mkdir -p "$PACKAGE_ROOT"
 
 # Explicitly exclude DATA, Results, logs, MATLAB preferences, and prior
@@ -50,8 +50,8 @@ if [[ -d "$CODE_DIR/tests" ]]; then
   cp -a -- "$CODE_DIR/tests" "$PACKAGE_ROOT/tests"
 fi
 
-temporary_archive="$TEMP_ROOT/cttrend_corrected_pipeline.tar.gz"
-tar -czf "$temporary_archive" -C "$TEMP_ROOT" cttrend_corrected_pipeline
+temporary_archive="$TEMP_ROOT/ctrend_corrected_pipeline.tar.gz"
+tar -czf "$temporary_archive" -C "$TEMP_ROOT" ctrend_corrected_pipeline
 mkdir -p -- "$(dirname "$OUTPUT")"
 output_temporary="${OUTPUT}.tmp.$$"
 cp -- "$temporary_archive" "$output_temporary"

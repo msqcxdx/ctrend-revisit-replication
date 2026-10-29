@@ -5,9 +5,9 @@ set -euo pipefail
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$RUNNER_DIR/.." && pwd)"
 SOURCE_DATA="${1:-$PROJECT_DIR/old_code_v2/.raw_input_seed}"
-OUTPUT="${2:-$PROJECT_DIR/cttrend_old_v2_required_data.tar.gz}"
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_old_v2_required_data_XXXXXX)"
-ROOT="$TEMP_ROOT/cttrend_old_v2_required_data"
+OUTPUT="${2:-$PROJECT_DIR/ctrend_old_v2_required_data.tar.gz}"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_old_v2_required_data_XXXXXX)"
+ROOT="$TEMP_ROOT/ctrend_old_v2_required_data"
 
 cleanup() {
   local rc=$?
@@ -40,7 +40,7 @@ cp -- "$PROJECT_DIR/old_code_v2/INPUT_DATA_REQUIREMENTS.md" "$ROOT/README.md"
 ) > "$ROOT/DATA_MANIFEST.sha256"
 mkdir -p "$(dirname "$OUTPUT")"
 temporary="${OUTPUT}.tmp.$$"
-tar -czf "$temporary" -C "$TEMP_ROOT" cttrend_old_v2_required_data
+tar -czf "$temporary" -C "$TEMP_ROOT" ctrend_old_v2_required_data
 archive_sha="$(sha256sum "$temporary" | awk '{print $1}')"
 mv -f -- "$temporary" "$OUTPUT"
 printf '%s  %s\n' "$archive_sha" "$(basename "$OUTPUT")" > "$OUTPUT.sha256"

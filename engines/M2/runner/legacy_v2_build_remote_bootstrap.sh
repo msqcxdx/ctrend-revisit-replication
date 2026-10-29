@@ -5,9 +5,9 @@ set -euo pipefail
 RUNNER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$RUNNER_DIR/.." && pwd)"
 HANDOFF_DIR="$PROJECT_DIR/remote_handoff_old_v2"
-OUTPUT="${1:-$PROJECT_DIR/cttrend_old_v2_remote_agent_bootstrap_20260801.tar.gz}"
-TEMP_ROOT="$(mktemp -d /tmp/cttrend_old_v2_bootstrap_XXXXXX)"
-ROOT="$TEMP_ROOT/cttrend_old_v2_remote_agent_bootstrap_20260801"
+OUTPUT="${1:-$PROJECT_DIR/ctrend_old_v2_remote_agent_bootstrap_20260801.tar.gz}"
+TEMP_ROOT="$(mktemp -d /tmp/ctrend_old_v2_bootstrap_XXXXXX)"
+ROOT="$TEMP_ROOT/ctrend_old_v2_remote_agent_bootstrap_20260801"
 
 cleanup() {
   local rc=$?
@@ -20,12 +20,12 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 
 cRequired=(
-  cttrend_old_v2_pipeline.tar.gz
-  cttrend_old_v2_pipeline.tar.gz.sha256
-  cttrend_old_v2_required_data.tar.gz
-  cttrend_old_v2_required_data.tar.gz.sha256
-  cttrend_old_v2_runner.tar.gz
-  cttrend_old_v2_runner.tar.gz.sha256
+  ctrend_old_v2_pipeline.tar.gz
+  ctrend_old_v2_pipeline.tar.gz.sha256
+  ctrend_old_v2_required_data.tar.gz
+  ctrend_old_v2_required_data.tar.gz.sha256
+  ctrend_old_v2_runner.tar.gz
+  ctrend_old_v2_runner.tar.gz.sha256
 )
 mkdir -p "$ROOT"
 for file in "${cRequired[@]}"; do
@@ -42,7 +42,7 @@ cp -- "$HANDOFF_DIR/REMOTE_AGENT_PROMPT.md" \
 ) > "$ROOT/BOOTSTRAP_FILES.sha256"
 temporary="${OUTPUT}.tmp.$$"
 tar -czf "$temporary" -C "$TEMP_ROOT" \
-  cttrend_old_v2_remote_agent_bootstrap_20260801
+  ctrend_old_v2_remote_agent_bootstrap_20260801
 archive_sha="$(sha256sum "$temporary" | awk '{print $1}')"
 mv -f -- "$temporary" "$OUTPUT"
 printf '%s  %s\n' "$archive_sha" "$(basename "$OUTPUT")" > "$OUTPUT.sha256"

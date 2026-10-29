@@ -39,7 +39,7 @@ INNER="$ROOT/outputs/experiments/$INNER_ID/registration.env"
 mkdir -p "$(dirname "$PUBLIC")"
 TMP="${PUBLIC}.tmp.$$"
 {
-  echo 'format=cttrend-pmd-wrapper-registration-v1'
+  echo 'format=ctrend-pmd-wrapper-registration-v1'
   echo "experiment_id=$ID"
   echo "preprocessing_id=$PREPROCESSING"
   echo "inner_experiment_id=$INNER_ID"
